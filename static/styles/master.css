@@ -7,7 +7,7 @@ div.bgimg:before{
     background-attachment: fixed;
     background-position: center;
     background-size: cover;
-    background-image: url(../images/nbg2.jpg);
+    background-image: url(../images/nbg.jpg);
     opacity: 0.8;
     /* use for before */
     position: absolute;
