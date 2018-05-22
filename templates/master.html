@@ -42,22 +42,23 @@
         
         
     </style>
+
+    {% block style_part %} {% endblock %}
 </head>
 
 <body>
     {% include 'navbar.html' %}
 
-    <div class="row row-main">
+    <!-- <div class="row row-main">
         <div id="sidebar" class="col-md-3 collapsed">
-            <!-- {% include 'tripmenu.html' %} -->
 
             <h1>HI</h1>
-            {% block slide_content %} {% endblock %}
         </div>
         <div id="mycontent" class="col-md-12">
-            {% block main_content %} {% endblock %}
         </div>
-    </div>
+    </div> -->
+    
+    {% block main_content %} {% endblock %}
 
     <div class="row">
         {% include 'footer.html' %}
@@ -83,6 +84,9 @@
             text: 'Thumbnail'
         });
     </script>
+
+    {% block script_part %} {% endblock %}
+
     <script>
         $(document).ready(function () {
             $(".toggle-sidebar").click(function () {
