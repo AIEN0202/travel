@@ -1,0 +1,124 @@
+{% extends 'master.html' %} {% block main_content %}
+
+<div class="position-relative">
+    <div class="col-md-5 mx-auto" style="padding-bottom: 0px!important;margin-bottom: 0px!important;">
+        <!-- <div class="col-md-12">
+            <form style="text-align: left">
+                <div>
+                        <div class="col-md-6 form-group">
+                                <label class="sr-only required" for="firstname">First Name</label>
+                                <input type="text" class="form-control" id="firstname" name="mem_firstname" aria-describedby="firstHelp" placeholder="Enter First Name">
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label class="sr-only required" for="lastname">Last Name</label>
+                                <input type="text" class="form-control" id="lastname" name="mem_lastname" aria-describedby="firstHelp" placeholder="Enter Last Name">
+                            </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email address</label>
+                    <input type="email" class="form-control" id="email" name="mem_email" aria-describedby="emailHelp" placeholder="Enter email">
+                    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                </div>
+                <div class="form-group">
+                    <label for="pwd">Password</label>
+                    <input type="password" class="form-control" id="pwd" name="mem_pwd" placeholder="Password">
+                </div>
+                <div class="form-group">
+                    <label for="bday">Birthday</label>
+                    <input type="date" class="form-control" id="bday" name="mem_bday">
+                </div>
+
+                <div class="form-group">
+                    <div class="form-check form-check-inline col-md-5">
+                        <input class="form-check-input" type="radio" name="mem_gen" id="gen1" value="M">
+                        <label class="form-check-label" for="gen1">Male</label>
+                    </div>
+                    <div class="form-check form-check-inline col-md-5">
+                        <input class="form-check-input" type="radio" name="mem_gen" id="gen2" value="F">
+                        <label class="form-check-label" for="gen2">Female</label>
+                    </div>
+                </div>
+
+                <div class="form-check">
+                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                    <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div> -->
+        <h1>建立您的會員資料</h1>
+        <hr>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label class="sr-only required" for="member_lastname">姓氏</label>
+                <input type="text" class="form-control" id="member_lastname" name="member_lastname" placeholder="姓氏" required="required">
+            </div>
+            <div class="form-group col-md-6">
+                <label class="sr-only required" for="member_firstname">名字</label>
+                <input type="text" class="form-control" id="member_firstname" name="member_firstname" placeholder="名字" required="required">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="sr-only required" for="member_email">電子信箱</label>
+            <input type="email" class="form-control" id="member_email" name="member_email" placeholder="電子信箱" required="required">
+        </div>
+        <div class="form-group">
+            <label class="sr-only required" for="member_birthday">生日</label>
+            <input type="text" class="form-control" id="member_birthday" name="member_birthday" placeholder="請輸入您的生日,例如：1990-03-30">
+        </div>
+
+        <hr>
+
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <input class="" type="radio" name="member_gender" id="gen1" value="M">
+                <label class="" for="gen1">男</label>
+            </div>
+            <div class="form-group col-md-6">
+                <input class="" type="radio" name="member_gender" id="gen1" value="Ｆ">
+                <label class="" for="gen1">女</label>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="member_country">居住國家</label>
+                <select id="member_country" name="member_country" class="form-control">
+                    <option selected>Choose...</option>
+                    <option>...</option>
+                </select>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="member_region">居住區域</label>
+                <select id="member_region" name="member_region" class="form-control">
+                    <option selected>Choose...</option>
+                    <option>...</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="gridCheck">
+                <label class="form-check-label" for="gridCheck">
+                    Check me out
+                </label>
+                <input class="form-check-input" type="checkbox" id="gridCheck">
+                <label class="form-check-label" for="gridCheck">
+                    Check me out
+                </label>
+                <input class="form-check-input" type="checkbox" id="gridCheck">
+                <label class="form-check-label" for="gridCheck">
+                    Check me out
+                </label>
+                <input class="form-check-input" type="checkbox" id="gridCheck">
+                <label class="form-check-label" for="gridCheck">
+                    Check me out
+                </label>
+            </div>
+        </div>
+    </div>
+    <!-- <div class="product-device box-shadow d-none d-md-block"></div>
+  <div class="product-device product-device-2 box-shadow d-none d-md-block"></div> -->
+</div>
+
+{% endblock %}
