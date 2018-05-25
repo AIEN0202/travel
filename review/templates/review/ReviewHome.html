@@ -1,5 +1,10 @@
 {% extends 'master.html' %}
 {% load static %}
+
+{% block style_part %}
+<link rel="stylesheet" href="{% static 'styles/review.css'%}">
+{% endblock %}
+
 {% block main_content %}
 <div class="row ReviewHomeMainPicSize">
     {% include 'review/ReviewPic.html' %}
@@ -14,15 +19,16 @@
         {% include 'review/DetailInfo.html' %}
       </div>
       <div class="col-12">
-        <div style="width:100%;border:red 3px solid;height:100%">
+        <!-- <div style="width:100%;border:red 3px solid;height:100%">
           1
-        </div>
+        </div> -->
 
       </div>
     </div>
   </fieldset>
 </div>
+{% endblock %}
 
-
-
+{% block script_part%}
+<script src="{%static 'scripts/review.js'%}"></script>
 {% endblock %}
