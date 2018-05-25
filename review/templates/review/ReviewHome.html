@@ -1,0 +1,28 @@
+{% extends 'master.html' %}
+{% load static %}
+{% block main_content %}
+<div class="row ReviewHomeMainPicSize">
+    {% include 'review/ReviewPic.html' %}
+  <fieldset class = "col-4 DetailInfo_TripCheck">
+    <legend>東京迪士尼</legend>
+    <div class="row">
+      <!-- First row is for important information -->
+      <div class="col-12">
+        {% include 'review/AvgStarShow.html' %}
+      </div>
+      <div class="col-12">
+        {% include 'review/DetailInfo.html' %}
+      </div>
+      <div class="col-12">
+        <div style="width:100%;border:red 3px solid;height:100%">
+          1
+        </div>
+
+      </div>
+    </div>
+  </fieldset>
+</div>
+
+
+
+{% endblock %}

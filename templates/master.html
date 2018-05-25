@@ -13,10 +13,12 @@
 
     <!-- Bootstrap core CSS -->
     <link href="http://bootstrap.hexschool.com/dist/css/bootstrap.min.css" rel="stylesheet">
-
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
     <!-- Custom styles for this template -->
     <link rel="stylesheet" href="{% static 'styles/product.css' %}">
     <link rel="stylesheet" href="{% static 'styles/master.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/review.css'%}">
 
     <style>
 		#row-main {
@@ -25,7 +27,7 @@
 		#mycontent {
 			transition: 0.3s ease;
 		}
-		
+
 		#sidebar {
 			transition: 0.3s ease;
 		}
@@ -38,9 +40,9 @@
 				margin-left: -25%; /* same width as sidebar */
 			}
         }
-        
-        
-        
+
+
+
     </style>
 
     {% block style_part %} {% endblock %}
@@ -57,7 +59,7 @@
         <div id="mycontent" class="col-md-12">
         </div>
     </div> -->
-    
+
     {% block main_content %} {% endblock %}
 
     <div class="row">
@@ -77,6 +79,9 @@
     <script src="http://bootstrap.hexschool.com/assets/js/vendor/popper.min.js"></script>
     <script src="http://bootstrap.hexschool.com/dist/js/bootstrap.min.js"></script>
     <script src="http://bootstrap.hexschool.com/assets/js/vendor/holder.min.js"></script>
+    <script src="{%static 'scripts/review.js'%}">
+
+    </script>
     <script>
         Holder.addTheme('thumb', {
             bg: '#55595c',

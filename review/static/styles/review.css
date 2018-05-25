@@ -1,0 +1,92 @@
+{%load static %}
+
+.ReviewHomeMainPicSize{
+  margin-top:10px;
+  margin-left:23vw;
+  padding:0px;
+  overflow:auto;
+}
+.haha{
+  border-radius:30px;
+}
+/* Slideshow container */
+.slideshow-container {
+  max-width: 30vw;
+  position: relative;
+  border-radius:30px;
+  /* margin:0px; */
+}
+
+/* Hide the images by default */
+.mySlides {
+    display: none;
+}
+
+/* Next & previous buttons */
+.prev, .next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  margin-top: -22px;
+  padding: 16px;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+}
+
+/* Position the "next button" to the right */
+.next {
+  right: 2%;
+  border-radius: 3px 0 0 3px;
+}
+
+/* On hover, add a black background color with a little bit see-through */
+.prev:hover, .next:hover {
+  background-color: rgba(0,0,0,0.8);
+  color: white;
+}
+
+/* AvgStarShow.html --Detail Info */
+
+.DetailInfo_TripCheck{
+  overflow:auto;
+}
+legend{
+    width:auto; /* Or auto */
+    /* padding:0 10px; /* To give a bit of padding on the left and right */ */
+    margin-bottom:0px;
+    font-size: 1.5vw;
+}
+/* Style of the icons */
+.Styleofsmallicon{
+  font-size:1vw;
+  color:#96e9e9;
+  margin-top:5px;
+}
+.Styleofsmallparagraph{
+  font-size:0.5vw;
+}
+.StyleofHashTags{
+  opacity:0.7;
+  font-size:10px;
+  padding:3px
+}
+.StyleofAvgStars{
+  font-size:25px;
+  opacity:0.7;
+}
+.StyleofAvgReview{
+  font-size:3px;
+}
+.container {padding:20px;}
+.form-control {width:120px;}
+.hide {display:none;}
+
+.popover{
+    width:250px;
+    height:200px;
+    left: 130px !important;
+}
