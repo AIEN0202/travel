@@ -30,7 +30,7 @@
 		#sidebar {
 			transition: 0.3s ease;
 		}
-		.collapsed {
+		.cus_collapsed {
 			display: none; /* hide it for small displays */
 		}
 		@media (min-width: 992px) {
@@ -39,6 +39,8 @@
 				margin-left: -25%; /* same width as sidebar */
 			}
         }
+
+        
 
 
 
@@ -98,6 +100,11 @@
                 $("#mycontent").toggleClass("col-md-12 col-md-9");
                 return false;
             });
+
+            $('#login_a').click(function(){
+                $('#login_from').toggleClass("cus_collapsed",5000);
+                $('#login_a').toggleClass("cus_collapsed");
+            })
         });
     </script>
 </body>
