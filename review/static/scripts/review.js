@@ -36,3 +36,28 @@ $('[data-toggle="popover"]').popover({
     html: false,
   })
 }
+
+//This is the Hover Function for Star of TheUserRate.html
+$('.TheUserStars').mouseenter(function(){
+  var StarID = parseInt($(this).attr('id'))
+  if (!($('#1').hasClass('GoodStar'))){
+    for(i = StarID; i>0;i--){
+      $("#"+i).toggleClass('GoodStar',1000)
+    }
+
+  }
+  else{
+    for(j = StarID; j<6;j++){
+      $("#"+j).removeClass('GoodStar',1000)
+    }
+    $(this).toggleClass('GoodStar',1000)
+    console.log("Star from beginning")
+  }
+})
+
+$('#submitbtn').click(function(){
+  var score = $('i.TheUserStars[class*="GoodStar"]')
+  console.log(score.length);
+  $('#hide').val(score.length)
+  // document.getElementById("test").submit();
+})

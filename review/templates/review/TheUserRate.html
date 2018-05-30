@@ -1,0 +1,13 @@
+{% load static %}
+<!-- <i class="fas fa-star TheUserStars" style='color:#FFC107;'></i> -->
+<i class="fas fa-star TheUserStars" id="1"></i>
+<i class="fas fa-star TheUserStars" id="2"></i>
+<i class="fas fa-star TheUserStars" id="3"></i>
+<i class="fas fa-star TheUserStars" id="4"></i>
+<i class="fas fa-star TheUserStars" id="5"></i>
+<hr style="margin:10px;">
+<form class="" action="{%url 'REVIEW:commenting'%}" method="post" id="test">
+{% csrf_token %}
+<button type="submit" class="btn btn-info" id="submitbtn"><i class="fas fa-comment-alt"> Start your review!</i></button>
+<input type="hidden" name="score" value="" id="hide">
+</form>

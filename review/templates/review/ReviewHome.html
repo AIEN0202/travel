@@ -1,15 +1,16 @@
 {% extends 'master.html' %}
 {% load static %}
-
+<!-- Load my own -->
 {% block style_part %}
 <link rel="stylesheet" href="{% static 'styles/review.css'%}">
 {% endblock %}
-
+<!-- Show my content -->
 {% block main_content %}
 <div class="row ReviewHomeMainPicSize">
     {% include 'review/ReviewPic.html' %}
-  <fieldset class = "col-4 DetailInfo_TripCheck">
-    <legend>東京迪士尼</legend>
+  <div class = "col-4 DetailInfo_TripCheck">
+    <div class="theDetailTitle">東京迪士尼</div>
+    <span class='theDetailSmallTitle'>遊樂園</span>
     <div class="row">
       <!-- First row is for important information -->
       <div class="col-12">
@@ -19,16 +20,26 @@
         {% include 'review/DetailInfo.html' %}
       </div>
       <div class="col-12">
-        <!-- <div style="width:100%;border:red 3px solid;height:100%">
-          1
-        </div> -->
-
+        {% include 'review/HashTagList.html' %}
       </div>
     </div>
-  </fieldset>
+  </div>
+</div>
+<!-- This is the part for user to rate and comment. -->
+<div class="row ReviewHomeMainPicSize">
+  <div class="col-8 TheUserRate">
+    {% include 'review/TheUserRate.html'%}
+  </div>
+  <div class="col-4 AddingtoNewTrip">
+    {% include 'review/AddingtoNewTrip.html'%}
+  </div>
+</div>
+<!-- This is the part for other ppl's rate and comment. -->
+<div class="ReviewHomeMainPicSize">
+  {% include 'review/OtherPplRate.html' %}
 </div>
 {% endblock %}
-
+<!-- Load my JS -->
 {% block script_part%}
 <script src="{%static 'scripts/review.js'%}"></script>
 {% endblock %}

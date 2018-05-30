@@ -1,0 +1,22 @@
+{% extends 'master.html' %}
+{% load static %}
+<!-- Load my own -->
+{% block style_part %}
+<link rel="stylesheet" href="{% static 'styles/reviewc.css' %}">
+{% endblock %}
+<!-- Show my content -->
+{% block main_content %}
+<div class="CommentDiv">
+  <i class="fas fa-star CStar"></i>
+  <i class="fas fa-star CStar"></i>
+  <i class="fas fa-star CStar"></i>
+  <i class="fas fa-star CStar"></i>
+  <i class="fas fa-star CStar"></i><br>
+  <textarea name="name" rows="8" cols="80"></textarea>
+</div>
+<!-- <input type="hidden" name="score" value="" id="hide"> -->
+{% endblock %}
+<!-- Load my JS -->
+{% block script_part%}
+<script src="{%static 'scripts/review.js'%}"></script>
+{% endblock %}

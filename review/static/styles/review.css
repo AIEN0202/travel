@@ -2,18 +2,17 @@
 
 .ReviewHomeMainPicSize{
   margin-top:10px;
-  margin-left:23vw;
+  margin-left:20%;
   padding:0px;
   overflow:auto;
-}
-.haha{
-  border-radius:30px;
+  width:80%;
+  height:auto;
 }
 /* Slideshow container */
 .slideshow-container {
-  max-width: 30vw;
+  max-width: 50%;
   position: relative;
-  border-radius:30px;
+  /* border-radius:30px; */
   /* margin:0px; */
 }
 
@@ -53,21 +52,30 @@
 
 .DetailInfo_TripCheck{
   overflow:auto;
+  max-width:25%;
 }
-legend{
-    width:auto; /* Or auto */
-    /* padding:0 10px; /* To give a bit of padding on the left and right */ */
-    margin-bottom:0px;
-    font-size: 1.5vw;
+.theDetailTitle{
+    font-size: 2vw;
+    padding:0px;
+    line-height: 5vh;
+    color:#414141;
+    font-weight:bold;
+}
+.theDetailSmallTitle{
+    color: gray;
+    opacity: 0.5;
+    font-style: italic;
+    font-size: 1vw;
 }
 /* Style of the icons */
 .Styleofsmallicon{
   font-size:1vw;
-  color:#96e9e9;
+  color:#414141;
   margin-top:5px;
 }
 .Styleofsmallparagraph{
-  font-size:0.5vw;
+  font-size:5px;
+  color:#414141;
 }
 .StyleofHashTags{
   opacity:0.7;
@@ -77,9 +85,11 @@ legend{
 .StyleofAvgStars{
   font-size:25px;
   opacity:0.7;
+  color:rgb(151,159,164);
 }
 .StyleofAvgReview{
   font-size:3px;
+  color:rgb(151,159,164);
 }
 .container {padding:20px;}
 .form-control {width:120px;}
@@ -88,5 +98,65 @@ legend{
 .popover{
     width:250px;
     height:200px;
-    left: 130px !important;
+    left: 210px !important;
+}
+.PopoverTotoalreviews{text-align: center;}
+
+/* This is the part for user to rate and comment */
+.TheUserRate{
+  padding:10px 0px;
+  margin:15px 30px;
+  max-width:45%;
+  text-align:center;
+  background-color:#F5F5F5;
+}
+.AddingtoNewTrip{
+  margin:15px 25px;
+  max-width:20%;
+  background-color:#F5F5F5;
+}
+.TheUserStars{
+  font-size:50px;
+  margin:0px 2.5px;
+  color:rgb(151,159,164);
+}
+.GoodStar
+{
+  color:#FFC107;
+}
+
+/* This is the part to show other ppl rating and reivews. */
+.OtherRateBlock{
+  border:1px red solid;
+  margin-right:18em;
+  padding-left:30px;
+  padding-right:30px;
+  /* height:auto; */
+}
+.OtherRateBlockStyle{
+  border:1px blue solid;
+  margin:10px 0px;
+  position:relative;
+  overflow:auto;
+  min-height: 80px;
+  /* overflow-y:hidden; */
+  height: auto;
+}
+.OthersID{
+  border:1px green solid;
+  min-width:10px;
+  min-height:10px;
+  width:100%;
+}
+.OthersStar{
+
+}
+.OthersReview{
+  border:1px red solid;
+  width:100%;
+  height:100%;
+  /* word-wrap: break-word; */
+  overflow-y:hidden;
+  /* min-height:50; */
+  padding:5px;
 }
