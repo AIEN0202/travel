@@ -3,6 +3,6 @@ from . import views
 
 app_name="REVIEW"
 urlpatterns = [
-    path('',views.reviewindex),
-    path('comment/',views.reviewcomment,name="commenting"),
+    path('',views.reviewindex,name="reviewindex"),
+    path('create/',views.create)
 ]

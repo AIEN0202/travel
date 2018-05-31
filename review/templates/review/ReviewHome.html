@@ -3,6 +3,7 @@
 <!-- Load my own -->
 {% block style_part %}
 <link rel="stylesheet" href="{% static 'styles/review.css'%}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.1/jquery.fancybox.min.css" />
 {% endblock %}
 <!-- Show my content -->
 {% block main_content %}
@@ -42,4 +43,5 @@
 <!-- Load my JS -->
 {% block script_part%}
 <script src="{%static 'scripts/review.js'%}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.1/jquery.fancybox.min.js"></script>
 {% endblock %}

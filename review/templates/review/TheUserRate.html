@@ -1,13 +1,25 @@
 {% load static %}
-<!-- <i class="fas fa-star TheUserStars" style='color:#FFC107;'></i> -->
 <i class="fas fa-star TheUserStars" id="1"></i>
 <i class="fas fa-star TheUserStars" id="2"></i>
 <i class="fas fa-star TheUserStars" id="3"></i>
 <i class="fas fa-star TheUserStars" id="4"></i>
 <i class="fas fa-star TheUserStars" id="5"></i>
 <hr style="margin:10px;">
-<form class="" action="{%url 'REVIEW:commenting'%}" method="post" id="test">
-{% csrf_token %}
-<button type="submit" class="btn btn-info" id="submitbtn"><i class="fas fa-comment-alt"> Start your review!</i></button>
-<input type="hidden" name="score" value="" id="hide">
-</form>
+<a data-fancybox data-animation-duration="700" data-src="#animatedModal" href="javascript:;" class="btn btn-primary" id="IcountStars"><i class="fas fa-comment-alt"> Start your review!</i></a>
+
+
+<div style="display: none;" id="animatedModal" class="animated-modal">
+  <div class="StarDiv">
+    <i class="fas fa-star TheUserStars" id="6"></i>
+    <i class="fas fa-star TheUserStars" id="7"></i>
+    <i class="fas fa-star TheUserStars" id="8"></i>
+    <i class="fas fa-star TheUserStars" id="9"></i>
+    <i class="fas fa-star TheUserStars" id="10"></i>
+  </div>
+  <form class="" action="{% url 'REVIEW:reviewindex' %}" method="post">
+    {% csrf_token %}
+    <textarea name="TextArea" rows="8" cols="80" id="ImHere"></textarea>
+    <input type="hidden" name="StarCount" value="">
+    <button type="submit" class="btn btn-info" id="submitbtn"><i class="fas fa-thumbs-up">  Review</i></button>
+  </form>
+</div>

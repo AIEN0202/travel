@@ -37,27 +37,41 @@ $('[data-toggle="popover"]').popover({
   })
 }
 
-//This is the Hover Function for Star of TheUserRate.html
+//This is the Function for Star of TheUserRate.html
 $('.TheUserStars').mouseenter(function(){
   var StarID = parseInt($(this).attr('id'))
-  if (!($('#1').hasClass('GoodStar'))){
-    for(i = StarID; i>0;i--){
-      $("#"+i).toggleClass('GoodStar',1000)
+  if (StarID <6){
+    for(bstar = 1;bstar<=5;bstar++){
+      $('#'+bstar).removeClass('GoodStar')
     }
-
+    for(sstar = StarID; sstar>0;sstar--){
+      $('#'+sstar).addClass('GoodStar')
+    }
   }
   else{
-    for(j = StarID; j<6;j++){
-      $("#"+j).removeClass('GoodStar',1000)
+    for(bstar = 6;bstar<=10;bstar++){
+      $('#'+bstar).removeClass('GoodStar')
     }
-    $(this).toggleClass('GoodStar',1000)
-    console.log("Star from beginning")
+    for(sstar = StarID; sstar>0;sstar--){
+      $('#'+sstar).addClass('GoodStar')
+    }
   }
 })
 
+
+//This is to send the final rating to other page.
 $('#submitbtn').click(function(){
   var score = $('i.TheUserStars[class*="GoodStar"]')
   console.log(score.length);
   $('#hide').val(score.length)
   // document.getElementById("test").submit();
+})
+
+// This is the connection between the rating count and the star count on the
+// comment page
+$('#IcountStars').click(function(){
+  var score = $('i.TheUserStars[class*="GoodStar"]')
+  for(c=6;c<=score.length+5;c++){
+    $("#"+c).toggleClass('GoodStar',1000)
+  }
 })

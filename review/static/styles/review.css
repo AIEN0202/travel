@@ -12,8 +12,6 @@
 .slideshow-container {
   max-width: 50%;
   position: relative;
-  /* border-radius:30px; */
-  /* margin:0px; */
 }
 
 /* Hide the images by default */
@@ -124,39 +122,100 @@
 {
   color:#FFC107;
 }
+/* ----------------------------------------------- */
+.animated-modal {
+max-width: 550px;
+border-radius: 4px;
+overflow: hidden;
+padding:30px;
+width:50%;
+height:50%;
+transform: translateY(-50px);
+transition: all .3s;
+}
+
+.fancybox-close-small{
+  margin-left:93%;
+}
+
+.animated-modal h2,
+.animated-modal .StarDiv,
+.animated-modal textarea,
+.animated-modal button {
+transform: translateY(-50px);
+opacity: 0;
+
+transition-property: transform, opacity;
+transition-duration: .4s;
+}
+
+.fancybox-slide--current .animated-modal,
+.fancybox-slide--current .animated-modal h2,
+.fancybox-slide--current .animated-modal .StarDiv,
+.fancybox-slide--current .animated-modal textarea,
+.fancybox-slide--current .animated-modal button {
+transform: translateY(0);
+opacity: 1;
+}
+
+/* Reveal content with different delays */
+.fancybox-slide--current .animated-modal h2 {
+transition-delay: .1s;
+}
+
+.fancybox-slide--current .animated-modal .StarDiv {
+transition-delay: .3s;
+}
+
+.fancybox-slide--current .animated-modal textarea {
+transition-delay: .4s;
+resize:none;
+}
+
+.StarDiv{
+  font-size:50px;
+  padding-bottom:10px;
+  color:rgb(151,159,164);
+}
+
+#submitbtn{
+  margin-left:88%;
+}
+
+/* ================================================== */
+
+
 
 /* This is the part to show other ppl rating and reivews. */
 .OtherRateBlock{
-  border:1px red solid;
+  /* border:1px red solid; */
   margin-right:18em;
   padding-left:30px;
   padding-right:30px;
-  /* height:auto; */
+  /* background-color:#F5F5F5; */
 }
 .OtherRateBlockStyle{
-  border:1px blue solid;
   margin:10px 0px;
   position:relative;
   overflow:auto;
   min-height: 80px;
-  /* overflow-y:hidden; */
   height: auto;
 }
 .OthersID{
-  border:1px green solid;
+  /* border:1px green solid; */
   min-width:10px;
   min-height:10px;
   width:100%;
 }
 .OthersStar{
+  color:rgb(151,159,164);
 
 }
 .OthersReview{
-  border:1px red solid;
+  border:1px black solid;
   width:100%;
   height:100%;
-  /* word-wrap: break-word; */
   overflow-y:hidden;
-  /* min-height:50; */
   padding:5px;
+  box-shadow: 5px 8px 8px #888888
 }
