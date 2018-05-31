@@ -1,25 +1,65 @@
 from django.shortcuts import render
+from . import member_models as Mbr
+import random
+from django.http import HttpResponse
 
 # Create your views here.
+
+
 def index(request):
-    return render(request,'member/index.html',locals())
+    return render(request, 'member/index.html', locals())
+
 
 def signup(request):
     if request.method == "POST":
+        memberid = random.randint(100000, 199999)
         lastname = request.POST["member_lastname"]
         firstname = request.POST["member_firstname"]
         email = request.POST["member_email"]
+        pwd = request.POST["member_pwd"]
         birthday = request.POST["member_birthday"]
-        country = request.POST["member_country"]
+        # country = request.POST["member_country"]
+        country = 1
         region = request.POST["member_region"]
         gender = request.POST["member_gender"]
         check = request.POST.getlist("member_check")
-        print(lastname + "/" +firstname+ "/" +email+ "/" +birthday+ "/" +country+ "/" +region+ "/" +gender)
-        print(check)
-    return render(request,'member/signup.html',locals())
+        checkstr = '/'.join(check)
+        sign_data = Mbr.Member()
+        sign_data.excute_sql("insert into travel.member (idMember, Membername, MemberEmail, MemberPassword, MemberBday, MemberGender, MemberidCountry, MemberHobby) values(%s, %s, %s, %s, %s, %s, %s, %s)",
+                             memberid, (lastname + "/" + firstname), email, pwd, birthday, gender, country, checkstr)
+        # print(lastname + "/" +firstname+ "/" +email+ "/" +birthday+ "/" +country+ "/" +region+ "/" +gender)
+        # print(check)
+        # print(type(check))
+        # print(checkstr)
+
+    get_city_data = Mbr.Member()
+    citylist = get_city_data.select_all("SELECT * FROM travel.country")
+    print(citylist)
+
+    return render(request, 'member/signup.html', locals())
+
 
 def login(request):
-    email = request.POST["loginmail"]
-    pwd = request.POST["loginpwd"]
-    print(email)
-    return render(request,'member/index.html',locals())
+    isLogin = False
+    if request.method == "POST":
+        email = request.POST["loginmail"]
+        pwd = request.POST["loginpwd"]
+        # print(email)
+        login_chexk = Mbr.Member()
+        res = login_chexk.select_one(
+            "select idMember from travel.member where MemberEmail = %s and MemberPassword = %s", email, pwd)
+        # print(res[0])
+        if res is not None and res[0] is not None:
+            isLogin = True
+            
+            response = HttpResponse(
+                "<script>localStorage.setItem('isLogin','{}');location.href='../';</script>".format(isLogin))
+                # return response
+        else:
+            response = HttpResponse(
+                "<script>alert('login fail');location.href='/';</script>")
+                
+        return response
+        
+
+    return render(request, 'member/signup.html', locals())
