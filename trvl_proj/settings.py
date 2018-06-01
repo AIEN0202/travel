@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'member',
     'review',
     'trip',
+    'res',
 ]
 
 MIDDLEWARE = [
