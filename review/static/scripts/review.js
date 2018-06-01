@@ -79,4 +79,7 @@ $('#FINALSTARCOUNT').click(function(){
   var fscore = $('i.TheUserStars[class*="GoodStar"]')
   // console.log((fscore.length/2))
   $('#HiddenStarCount').val((fscore.length/2))
+  // console.log(new Date($.now()))
+  var td = new Date($.now());
+  $('#HiddenReviewTime').val(td.getMonth()+1+'/'+td.getDate()+'/'+td.getFullYear())
 })

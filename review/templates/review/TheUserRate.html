@@ -4,7 +4,7 @@
 <i class="fas fa-star TheUserStars" id="3"></i>
 <i class="fas fa-star TheUserStars" id="4"></i>
 <i class="fas fa-star TheUserStars" id="5"></i>
-<a data-fancybox data-animation-duration="700" data-src="#animatedModal" href="javascript:;" class="btn btn-primary" id="IcountStars"><i class="fas fa-comment-alt"></i></a>
+<a data-fancybox data-animation-duration="700" data-src="#animatedModal" href="javascript:;" class="btn btn-primary" id="IcountStars"><i class="fas fa-comment-alt" style="font-size:21px;"></i></a>
 
 
 <div style="display: none;" id="animatedModal" class="animated-modal">
@@ -19,6 +19,7 @@
     {% csrf_token %}
     <textarea name="TextArea" rows="8" cols="80" id="ImHere"></textarea>
     <input type="hidden" id="HiddenStarCount" name="HStarCount" value="">
+    <input type="hidden" id="HiddenReviewTime" name="HReviewTime" value="">
     <button type="submit" class="btn btn-info" id="FINALSTARCOUNT"><i class="fas fa-thumbs-up">Review</i></button>
   </form>
 </div>

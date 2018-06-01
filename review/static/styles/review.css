@@ -83,7 +83,7 @@
 .StyleofAvgStars{
   font-size:25px;
   opacity:0.7;
-  color:rgb(151,159,164);
+  color:#d8d8d8;
 }
 .StyleofAvgReview{
   font-size:3px;
@@ -102,22 +102,20 @@
 
 /* This is the part for user to rate and comment */
 .TheUserRate{
-  padding:10px 0px;
-  margin:15px 0px;
+  padding:0px 10px;
   max-width:45%;
-  text-align:center;
   /* background-color:#F5F5F5; */
 }
 .AddingtoNewTrip{
-  margin:15px 0px;
   /* max-width:30%; */
-  padding:10px 0px;
-  margin-left:90px;
+  /* padding/:10px 0px; */
+  padding-left:30px;
+  margin-left:85px;
 }
 .TheUserStars{
   font-size:30px;
   margin:0px 2.5px;
-  color:rgb(151,159,164);
+  color:#d8d8d8;
 }
 .GoodStar
 {
@@ -126,6 +124,10 @@
 #IcountStars{
   font-size:15px;
   margin-bottom:10px;
+  border-color:#484848;
+  background-color:#484848;
+  width:45px;
+  height:35px;
 }
 /* ----------------------------------------------- */
 .animated-modal {
@@ -212,7 +214,7 @@ resize:none;
   color:#484848;
 }
 .OthersStar{
-  color:rgb(151,159,164);
+  color:#d8d8d8;
 }
 .TimeOfReview{
   font-size: 10px;
