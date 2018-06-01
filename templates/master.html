@@ -63,9 +63,15 @@
 
     {% block main_content %} {% endblock %}
 
+
+    {% if isFooterShow  == True%}
     <div class="row">
         {% include 'footer.html' %}
     </div>
+    {% else %}
+        
+    {% endif %}
+    
 
 
 

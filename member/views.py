@@ -1,12 +1,15 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from . import member_models as Mbr
 import random
 from django.http import HttpResponse
+import json
 
 # Create your views here.
 
 
 def index(request):
+    request.session.clear()
+    isFooterShow = True
     return render(request, 'member/index.html', locals())
 
 
@@ -19,7 +22,7 @@ def signup(request):
         pwd = request.POST["member_pwd"]
         birthday = request.POST["member_birthday"]
         # country = request.POST["member_country"]
-        country = 1
+        country = 9001
         region = request.POST["member_region"]
         gender = request.POST["member_gender"]
         check = request.POST.getlist("member_check")
@@ -35,6 +38,7 @@ def signup(request):
     get_city_data = Mbr.Member()
     citylist = get_city_data.select_all("SELECT * FROM travel.country")
     print(citylist)
+    isFooterShow = True
 
     return render(request, 'member/signup.html', locals())
 
@@ -50,16 +54,41 @@ def login(request):
             "select idMember from travel.member where MemberEmail = %s and MemberPassword = %s", email, pwd)
         # print(res[0])
         if res is not None and res[0] is not None:
-            isLogin = True
             
-            response = HttpResponse(
-                "<script>localStorage.setItem('isLogin','{}');location.href='../';</script>".format(isLogin))
-                # return response
+            request.session['user'] = res
+            request.session.modified = True
+
+            return redirect('../member/Main_index')
         else:
-            response = HttpResponse(
-                "<script>alert('login fail');location.href='/';</script>")
-                
-        return response
+            response = HttpResponse("<script>alert('login fail');location.href='/';</script>")
+            return response
         
 
-    return render(request, 'member/signup.html', locals())
+    return render(request, 'member/Main_index.html', locals())
+
+
+def Main_index(request):
+    isFooterShow = False
+
+    if 'user' in request.session:
+        useris = request.session['user']
+        print("GET {}".format(useris))
+        isLogin = True
+    else:
+        print("NO GET")
+
+    return render(request, 'member/Main_index.html', locals())
+
+
+def mReg(request):
+    if request.method == "GET":
+        c_id = request.GET["country"]
+        if c_id is not None:
+            print("YES")
+            get_region_data = Mbr.Member()
+            Regionlist = get_region_data.select_all("SELECT * FROM travel.member_region where idCountry = %s",c_id)
+            print(json.dumps(Regionlist))
+            response = json.dumps({"Reglist" : Regionlist})
+            return HttpResponse(response, content_type='application/json')
+
+    return HttpResponse("HI")
