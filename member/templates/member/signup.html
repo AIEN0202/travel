@@ -37,7 +37,7 @@
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="member_country">居住國家</label>
-                    <select id="member_country" name="member_country" class="form-control">
+                    <select id="member_country" name="member_country" class="dlist form-control">
                         <option selected>Choose...</option>
                         {% for c_item in citylist %}
                         <option value={{c_item.0}}>{{c_item.1}}</option>
@@ -58,7 +58,7 @@
                     <label class="" for="gen1">男</label>
                 </div>
                 <div class="form-group col-md-6">
-                    <input class="" type="radio" name="member_gender" id="gen1" value="Ｆ">
+                    <input class="" type="radio" name="member_gender" id="gen2" value="Ｆ">
                     <label class="" for="gen1">女</label>
                 </div>
             </div>
@@ -109,9 +109,49 @@
 {% endblock %}
 
 {% block script_part %} 
+<script
+  src="https://code.jquery.com/jquery-3.3.1.js"
+  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+  crossorigin="anonymous"></script>
 <script>
-    $('#member_region').change(function(){
+    $().ready(function(){
+        $('.dlist').change(function(){
+        var a = $( ".dlist option:selected" ).val();
+        // console.log(a);
+        get_region(a);
         
-    })
+        });
+
+        function get_region(id){
+            $.get("{% url 'member:mReg' %}",{'country': id},
+            function(data){
+                // console.log(data);
+                console.log(data.Reglist[0][0]);
+                console.log(data.Reglist.length)
+                // console.log(typeof(data));
+                // var list = $.parseJSON(data);
+                // console.log(list);
+
+                var reg_sel = $('#member_region');
+
+                reg_sel.empty()
+
+                var reg_sel_flg = $(document.createDocumentFragment());
+
+                for(i =0; i < data.Reglist.length; i++){
+                    console.log(data.Reglist[i][0]);
+                    var opt = $('<option></option>');
+                    opt.text(data.Reglist[i][1])
+                    opt.val(data.Reglist[i][0])
+
+                    reg_sel_flg.append(opt)
+                }
+
+                reg_sel.append(reg_sel_flg)
+
+            });
+        };
+    });
+    
 </script>
 {% endblock %}
