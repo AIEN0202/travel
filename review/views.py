@@ -11,16 +11,17 @@ def reviewindex(request):
     # Using for loop to seperate the items we need.
     for memberreview in members:
         # memberreview.memberid will return Member object
-        TupleOfReview.append((memberreview.contentofreview,memberreview.rating,memberreview.memberid.idmember))
+        TupleOfReview.append((memberreview.contentofreview,memberreview.rating,memberreview.memberid.idmember,memberreview.datereview))
     if request.method=="POST":
         TextArea = request.POST['TextArea']
         # Get random ID
         ReviewID = random.randint(200000, 299999)
+        DateOfReview = request.POST['HReviewTime']
         PlaceID = '1'
         mmm1 = 181445
         MemberID = m1.Member.objects.get(idmember=mmm1)
         StarCounts = request.POST['HStarCount']
-        rw.objects.create(contentofreview = TextArea,memberid = MemberID,datereview = '2008/01/01',idreview = ReviewID,placeid = PlaceID,typeplace = 'Happy',rating = StarCounts)
+        rw.objects.create(contentofreview = TextArea,memberid = MemberID,datereview = DateOfReview,idreview = ReviewID,placeid = PlaceID,typeplace = 'Happy',rating = StarCounts)
         return redirect('/review')
 
     return render(request,'review/ReviewHome.html',locals())
