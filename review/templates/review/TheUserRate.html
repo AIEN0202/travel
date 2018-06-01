@@ -4,8 +4,7 @@
 <i class="fas fa-star TheUserStars" id="3"></i>
 <i class="fas fa-star TheUserStars" id="4"></i>
 <i class="fas fa-star TheUserStars" id="5"></i>
-<hr style="margin:10px;">
-<a data-fancybox data-animation-duration="700" data-src="#animatedModal" href="javascript:;" class="btn btn-primary" id="IcountStars"><i class="fas fa-comment-alt"> Start your review!</i></a>
+<a data-fancybox data-animation-duration="700" data-src="#animatedModal" href="javascript:;" class="btn btn-primary" id="IcountStars"><i class="fas fa-comment-alt"></i></a>
 
 
 <div style="display: none;" id="animatedModal" class="animated-modal">
@@ -19,7 +18,7 @@
   <form class="" action="{% url 'REVIEW:reviewindex' %}" method="post">
     {% csrf_token %}
     <textarea name="TextArea" rows="8" cols="80" id="ImHere"></textarea>
-    <input type="hidden" name="StarCount" value="">
-    <button type="submit" class="btn btn-info" id="submitbtn"><i class="fas fa-thumbs-up">  Review</i></button>
+    <input type="hidden" id="HiddenStarCount" name="HStarCount" value="">
+    <button type="submit" class="btn btn-info" id="FINALSTARCOUNT"><i class="fas fa-thumbs-up">Review</i></button>
   </form>
 </div>
