@@ -94,11 +94,11 @@
 .hide {display:none;}
 
 .popover{
-    width:250px;
-    height:200px;
+    width:200px;
+    height:180px;
     left: 210px !important;
 }
-.PopoverTotoalreviews{text-align: center;}
+.PopoverTotoalreviews{text-align: center;margin-left:50px;margin-top:5px;}
 
 /* This is the part for user to rate and comment */
 .TheUserRate{
@@ -184,8 +184,6 @@ resize:none;
 
 /* ================================================== */
 
-
-
 /* This is the part to show other ppl rating and reivews. */
 .OtherRateBlock{
   /* border:1px red solid; */
@@ -209,7 +207,10 @@ resize:none;
 }
 .OthersStar{
   color:rgb(151,159,164);
-
+}
+.TimeOfReview{
+  font-size: 10px;
+  color:gray;
 }
 .OthersReview{
   border:1px black solid;

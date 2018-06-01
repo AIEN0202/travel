@@ -75,3 +75,8 @@ $('#IcountStars').click(function(){
     $("#"+c).toggleClass('GoodStar',1000)
   }
 })
+$('#FINALSTARCOUNT').click(function(){
+  var fscore = $('i.TheUserStars[class*="GoodStar"]')
+  // console.log((fscore.length/2))
+  $('#HiddenStarCount').val((fscore.length/2))
+})

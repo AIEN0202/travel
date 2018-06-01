@@ -19,7 +19,7 @@
   <form class="" action="{% url 'REVIEW:reviewindex' %}" method="post">
     {% csrf_token %}
     <textarea name="TextArea" rows="8" cols="80" id="ImHere"></textarea>
-    <input type="hidden" name="StarCount" value="">
-    <button type="submit" class="btn btn-info" id="submitbtn"><i class="fas fa-thumbs-up">  Review</i></button>
+    <input type="hidden" id="HiddenStarCount" name="HStarCount" value="">
+    <button type="submit" class="btn btn-info" id="FINALSTARCOUNT"><i class="fas fa-thumbs-up">Review</i></button>
   </form>
 </div>
