@@ -1,0 +1,25 @@
+{% extends 'master.html' %}
+{% load static %}
+<!-- Load my own -->
+{% block style_part %}
+<link rel="stylesheet" href="{% static 'styles/trip.css'%}">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+{% endblock %}
+<!-- Show my content -->
+{% block main_content %}
+<!-- This is the part for user to rate and comment. -->
+<div class="row fulltrip">
+  <div class="col-3">
+    {% include 'trip/left.html' %}
+  </div>
+  <div class="col-9">
+    {% include 'trip/explore.html' %}
+  </div>
+</div>
+{% endblock %}
+<!-- Load my JS -->
+{% block script_part%}
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="{%static 'scripts/trip.js'%}"></script>
+{% endblock %}
