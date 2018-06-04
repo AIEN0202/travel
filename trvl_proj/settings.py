@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'member',
+    'trip',
     'review',
 ]
 
@@ -81,8 +82,8 @@ DATABASES = {
         # 'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'travel',
-        'USER': 'root',
-        'PASSWORD': 'root',
+        'USER': 'willy',
+        'PASSWORD': 'abcd1234',
         'HOST': 'localhost'
     }
 }

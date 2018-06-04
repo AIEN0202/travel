@@ -9,15 +9,15 @@
 
 <div style="display: none;" id="animatedModal" class="animated-modal">
   <div class="StarDiv">
-    <i class="fas fa-star TheUserStars" id="6"></i>
-    <i class="fas fa-star TheUserStars" id="7"></i>
-    <i class="fas fa-star TheUserStars" id="8"></i>
-    <i class="fas fa-star TheUserStars" id="9"></i>
-    <i class="fas fa-star TheUserStars" id="10"></i>
+    <i class="fas fa-star TheUserStars TheLastStar" id="6"></i>
+    <i class="fas fa-star TheUserStars TheLastStar" id="7"></i>
+    <i class="fas fa-star TheUserStars TheLastStar" id="8"></i>
+    <i class="fas fa-star TheUserStars TheLastStar" id="9"></i>
+    <i class="fas fa-star TheUserStars TheLastStar" id="10"></i>
   </div>
   <form class="" action="{% url 'REVIEW:reviewindex' %}" method="post">
     {% csrf_token %}
-    <textarea name="TextArea" rows="8" cols="80" id="ImHere"></textarea>
+    <textarea name="TextArea" rows="8" cols="80" maxlength="500" id="ImHere"></textarea>
     <input type="hidden" id="HiddenStarCount" name="HStarCount" value="">
     <input type="hidden" id="HiddenReviewTime" name="HReviewTime" value="">
     <button type="submit" class="btn btn-info" id="FINALSTARCOUNT"><i class="fas fa-thumbs-up">Review</i></button>

@@ -7,19 +7,22 @@
       <div class="OthersID">
         <!-- OtherUserID -->
         <span style="margin:0px">{{OtherReviewDetail.2}}</span>
+        <!-- Time of rating -->
         <span class="TimeOfReview">{{OtherReviewDetail.3}}</span><br>
         <!-- OtherUserRating -->
+        {% for x in OtherReviewDetail.1%}
+        <i class="fas fa-star OthersStar" style="color:#ffb400"></i>
+        {% endfor %}
+        {% for x in OtherReviewDetail.4%}
         <i class="fas fa-star OthersStar"></i>
-        <i class="fas fa-star OthersStar"></i>
-        <i class="fas fa-star OthersStar"></i>
-        <i class="fas fa-star OthersStar"></i>
-        <i class="fas fa-star OthersStar"></i>
-        <!-- Time of rating -->
+        {% endfor %}
       </div>
     </div>
     <div class="col-9" style="padding:5px 5px;margin-bottom:15px;background-color:#EEEEEE;border-radius:10px">
       <div class="OthersReview">
-        {{OtherReviewDetail.0}}
+        {% for x in OtherReviewDetail.0 %}
+        <p>{{x}}</p>
+        {% endfor %}
       </div>
     </div>
     {% endfor %}
