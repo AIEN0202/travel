@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+    <link href="../../datep/css/" rel="stylesheet">
+    <link href="../../datep/css/bootstrap-datepicker.css" rel="stylesheet">
+    
+    <style>
+        body {font-family: 'Roboto', sans-serif; color: gray; padding-top: 10px;}
+details {position: relative;}
+details summary::-webkit-details-marker {
+  display: none;
+}
+details summary::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  background: url("data:image/svg+xml;base64,PHN2ZyBoZWlnaHQ9IjM0IiB2aWV3Qm94PSIwIDAgMjQgMjQiIHdpZHRoPSIzNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNOC41OSAxNi4zNGw0LjU4LTQuNTktNC41OC00LjU5TDEwIDUuNzVsNiA2LTYgNnoiLz48L3N2Zz4=");
+  norepeat: 10% 10% / 1em 1em;
+  width: 1.5em;
+  height: 1.5em;
+  transition: transform 0.1s linear;
+}
+summary {
+  width: 100%;
+  padding: 5px;
+  padding-left: 28px;
+  text-transform: uppercase;
+  font-weight: bold;
+  background-color: #ffffff;
+  /* border-bottom: 2px solid #ccc; */
+}
+summary:hover {
+  color: #a1a1a1;
+}
+summary:focus {
+  outline: none;
+}
+details[open] summary:before {
+  transform: rotate(90deg);
+}
+details[open] > summary {
+  color: #666666;
+}
+details[open] > summary ~ * {
+  animation: open 1s ease;
+}
+@keyframes open {
+  0% {opacity: 0;
+  }
+  100% {opacity: 1;
+  }
+}
+
+ul li{
+    list-style: decimal;
+    margin: 0px;
+    border-left: #413c45 dotted 2pt;
+    max-width: 250px;
+    border-radius: 6%;
+    padding : 5px 5px 5px 5px; 
+    font-size: 0.8em;
+
+}
+.placename,.resname,.hotname{
+    color:#3a393e;
+    font-size: 1.3em;
+    padding-left: 10px;
+}
+.placedd,.resdd,.hotdd{
+    color:#a1a1a1;
+    font-size: 1em;
+    padding-left: 10px;
+}    
+.delli{
+    float: right;
+    padding-right: 10px;
+    color:#a1a1a1
+}
+  .highlight { height: 1.4em; line-height: 1.4em; background-color: #f0f0f0 }
+    </style>
+    <script>
+        // Fetch all details element
+const details = Array.from(document.querySelectorAll("details"));
+
+// Add onclick listeners
+details.forEach(targetDetail => {
+  targetDetail.addEventListener("click", () => {
+    // Close all details that are not targetDetail
+    details.forEach(detail => {
+      if (detail !== targetDetail) {
+        detail.removeAttribute("open");
+      }
+    });
+  });
+});
+
+    </script>
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script src="./js/moment.js"></script>
+  <script src="./js/bootstrap-datepicker.js"></script>
+  <script src="./js/bootstrap-datepaginator.js"></script>
+  <script>
+    $(function() {
+        $("#sortable").sortable({
+        placeholder: "highlight"
+      });
+      $("#sortable").disableSelection();
+    } );
+
+    $(document).ready(function(){
+      $(".delli").on("click", function(){
+       $(this).closest("li").remove(); 
+    });
+});
+    </script>
+</head>
+<body>
+  <H5 style="padding-left: 120px">TRIP NAME</H5>
+  <img src="../../static/images/eg_pd.png">
+        <div class="container-fluid">
+                <div class="row">
+                  <div class="col-10 offset-1">se
+                      <details>
+                        <summary>Attractions</summary>
+                          <ul id="sortable">
+                            <li class="ui-state-default"><div class='placename'>Place 1</div><div class='delli'><i class="fas fa-times"></i></div><div class='placedd'>Art Museum</div></li>
+                            <li class="ui-state-default"><div class='placename'>Place 2</div><div class='delli'><i class="fas fa-times"></i></div><div class='placedd'>Description</div></li>
+                            <li class="ui-state-default"><div class='placename'>Place 3</div><div class='delli'><i class="fas fa-times"></i></div><div class='placedd'>Description</div></li>
+                            <li class="ui-state-default"><div class='placename'>Place 4</div><div class='delli'><i class="fas fa-times"></i></div><div class='placedd'>Description</div></li>
+                            <li class="ui-state-default"><div class='placename'>Place 5</div><div class='delli'><i class="fas fa-times"></i></div><div class='placedd'>Description</div></li>
+                            <li class="ui-state-default"><div class='placename'>Place 6</div><div class='delli'><i class="fas fa-times"></i></div><div class='placedd'>Description</div></li>
+                          </ul>      
+                      </details>
+                      <details>
+                        <summary>Food</summary>
+                        <ul id="sortable">
+                          <li class="ui-state-default"><div class='resname'>Brunch</div><div class='delli'><i class="fas fa-times"></i></div><div class='resdd'>French Style Restaurant</div></li>
+                          <li class="ui-state-default"><div class='resname'>長中文字串下午茶時間</div><div class='delli'><i class="fas fa-times"></i></div><div class='resdd'>Cafe</div></li>
+                          <li class="ui-state-default"><div class='resname'>Supper</div><div class='delli'><i class="fas fa-times"></i></div><div class='resdd'>蔬食餐廳</div></li>
+                        </ul>
+                      </details>
+                      <details>
+                        <summary>Accomondation</summary>
+                        <ul id="sortable">
+                          <li class="ui-state-default  ui-state-disabled"><div class='hotname'>Hotel of the Day</div><div class='delli'><i class="fas fa-times"></i></div><div class='hotdd'></div></li>
+                        </ul>
+                      </details>
+                  </div>
+                </div>
+              </div>
+              <footer>
+                 <p style="padding-left: 100pt"><input type="submit" value="Bon Voyage"></p>
+              </footer>
+</body>
+</html>

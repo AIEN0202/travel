@@ -33,12 +33,12 @@
 		.cus_collapsed {
 			display: none; /* hide it for small displays */
 		}
-		@media (min-width: 992px) {
+		/* @media (min-width: 992px) {
 			.collapsed {
 				display: block;
-				margin-left: -25%; /* same width as sidebar */
+				margin-left: -25%; 
 			}
-        }
+        } */
 
         
 
@@ -101,11 +101,11 @@
 
     <script>
         $(document).ready(function () {
-            $(".toggle-sidebar").click(function () {
-                $("#sidebar").toggleClass("collapsed");
-                $("#mycontent").toggleClass("col-md-12 col-md-9");
-                return false;
-            });
+            // $(".toggle-sidebar").click(function () {
+            //     $("#sidebar").toggleClass("collapsed");
+            //     $("#mycontent").toggleClass("col-md-12 col-md-9");
+            //     return false;
+            // });
 
             $('#login_a').click(function(){
                 $('#login_from').toggleClass("cus_collapsed",5000);

@@ -70,6 +70,9 @@ def login(request):
 def Main_index(request):
     isFooterShow = False
 
+    get_city_data = Mbr.Member()
+    citylist = get_city_data.select_all("SELECT * FROM travel.country")
+
     if 'user' in request.session:
         useris = request.session['user']
         print("GET {}".format(useris))
@@ -99,6 +102,19 @@ def mReg(request):
             print("YES")
             get_region_data = Mbr.Member()
             Regionlist = get_region_data.select_all("SELECT * FROM travel.member_region where idCountry = %s",c_id)
+            print(json.dumps(Regionlist))
+            response = json.dumps({"Reglist" : Regionlist})
+            return HttpResponse(response, content_type='application/json')
+
+    return HttpResponse("HI")
+
+def mainReg(request):
+    if request.method == "GET":
+        c_id = request.GET["country"]
+        if c_id is not None:
+            print("YES")
+            get_region_data = Mbr.Member()
+            Regionlist = get_region_data.select_all("SELECT * FROM travel.region where idCountry = %s",c_id)
             print(json.dumps(Regionlist))
             response = json.dumps({"Reglist" : Regionlist})
             return HttpResponse(response, content_type='application/json')

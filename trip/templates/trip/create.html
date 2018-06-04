@@ -1,0 +1,123 @@
+<!-- 行程前置表單 -->
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css"></link>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+    <style>
+        td{padding:0em 0em 0.5em 1.2em}
+        fieldset{border:0em}
+    </style>
+    <script>
+        $(function () {
+            $('input.dates').daterangepicker({
+    "autoApply": true,
+    "maxSpan": {
+        "days": 7},
+    "locale": {
+        "format": "MM/DD/YYYY",
+        "separator": " - ",
+        "applyLabel": "Apply",
+        "cancelLabel": "Cancel",
+        "fromLabel": "From",
+        "toLabel": "To",
+        "customRangeLabel": "Custom",
+        "weekLabel": "W",
+        "daysOfWeek": [
+            "S",
+            "M",
+            "T",
+            "W",
+            "T",
+            "F",
+            "S"
+        ],
+        "monthNames": [
+            "January",
+            "February",
+            "March",
+            "April",
+            "May",
+            "June",
+            "July",
+            "August",
+            "September",
+            "October",
+            "November",
+            "December"
+        ],
+        "firstDay": 1
+    },
+    "startDate": "05/18/2018",
+    "endDate": "05/24/2018"
+    },
+    function(start, end, label) {
+    console.log('New date range selected: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') + ' (predefined range: ' + label + ')');
+    })});
+    </script>
+
+</head>
+<body>
+    <form action="#" method="POST" enctype="multipart/form-data" style="padding-left: 20px; font-family: 'Roboto', sans-serif;color:#010101c7;font-weight:600;">
+        <fieldset>
+            <table>
+               <tr> 
+                <td><label for="tripname"><i class="fas fa-bookmark"></i></label></td>
+                <td><input type="text" name="tripname" placeholder="為這趟旅行命名"></td>
+                </tr>
+                <tr> 
+                    <td><label for="location"><i class="fas fa-map-marker-alt"></i></label></td>
+                    <td><select name="country" form="country" id="country">
+                    <option value="" disable selected>國家</option>
+                    <option value="tw">台灣</option>
+                    <option value="us">美國</option>
+                    <option value="jp">日本</option>
+                  </select>
+                <select name="city" form="city" id="city">
+                    <option value="" disable selected>城市</option>
+                        <option value="us"></option>
+                        <option value="jp"></option>
+                </select></td>
+            </tr>
+            <tr>
+                    <td><label for="daterange"><i class="fas fa-calendar-alt"></i></label></td>
+                    <td><input class="dates" type="text" name="daterange"></td>
+            </tr>
+            <tr>
+                <td><label for="Travelers"><i class="fas fa-user-friends"></i></label></td>
+                <td><input type="number" id="Travelers" min="1" max="12" placeholder="人" size="15"></td>
+            </tr>
+            <tr>
+                <td><label for="Paced"><i class="fas fa-shoe-prints" data-fa-transform="rotate-90"></i></label></td>
+                <td>愜意<input type="range" id="Paced" value="2",min="1" max="4" step="1">充實</td>
+            </tr>
+                    <tr>
+                        <td><label for="Style"><i class="fas fa-map-signs"></i></label></td>
+                        <td><input type="checkbox" id="Style" value="kid">家庭 <input type="checkbox" id="Style" value="cul">文化 <input type="checkbox" id="Style" value="foo">美食 
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td><input type="checkbox" id="Style" value="rom">浪漫 
+                        <input type="checkbox" id="Style" value="nat">自然 <input type="checkbox" id="Style" value="sho">購物 </td>
+                    </tr>
+                    <tr>
+                            <td></td>
+                            <td style="padding-top: 0.8em">
+                                    <input type="reset" value="Restart">
+                                    <input type="submit" value="Let's GO"></td>
+                        </tr>
+                </table>
+        </fieldset>
+    </form>
+</body>
+
+</html>

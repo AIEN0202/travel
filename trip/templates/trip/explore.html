@@ -1,29 +1,39 @@
 {% load static %}
 <header>
 <div id="myBtnContainer" style="padding-left: 3em">
-  <button class="btn active" onclick="filterSelection('all')"> Show all</button>
+  <!-- <button class="btn active" onclick="filterSelection('all')"> Show all</button>
   <button class="btn" onclick="filterSelection('Culture')"> Culture </button>
   <button class="btn" onclick="filterSelection('Art')"> Art </button>
-  <button class="btn" onclick="filterSelection('Nature')"> Nature </button>
+  <button class="btn" onclick="filterSelection('Nature')"> Nature </button> -->
+  <!-- Willy Code -->
+  <button class="btn active WFilterbyName"> Show all</button>
+  <button class="btn WFilterbyName"> Culture </button>
+  <button class="btn WFilterbyName"> Art </button>
+  <button class="btn WFilterbyName"> Nature </button>
+  <button class="btn WFilterbyName"> 小吃 </button>
 </div>
 </header>
 <content>
-  <div class="row">
-<div class="column Nature">
-  <div class="content" style="background-image: url('../../static/images/Museum-of-Natural-History.jpg');">
+<div class="row" id='WeStartHere'>
+<!-- <div class="column Nature">
+  <div class="content" style="background-image: url('https://qz.com/wp-content/uploads/2018/03/coffee.jpg?quality=80&strip=all&w=3000');">
       <a href="https://unsplash.com/photos/HkTMcmlMOUQ" target="_blank">
-          <div class="content-overlay"></div>
-          <img class="content-image" alt="Nature" src="../../static/images/Museum-of-Natural-History.jpg">
+        <div class="content-overlay"></div>
+          <img class="content-image" alt="Nature" src="https://qz.com/wp-content/uploads/2018/03/coffee.jpg?quality=80&strip=all&w=3000">
           <div class="content-details fadeIn-bottom">
           <h3 class="content-title">Museum of Natural History</h3>
           <p class="content-text">★★★★☆</p>
-          </div>
+          <select class="PositionOfSelect" name="">
+            <option value="">12/31</option>
+            <option value="">1</option>
+          </select>
+         </div>
       </a>
   </div>
 </div>
   <div class="column Art">
     <div class="content" style="background-image: url('../../static/images/The-New-Museum.jpg');">
-        <a href="https://newmuseum.org" target="_blank">
+        <a href="/review" target="_blank">
             <div class="content-overlay"></div>
             <img class="content-image" alt="Art" src="../../static/images/The-New-Museum.jpg">
             <div class="content-details fadeIn-bottom">
@@ -104,7 +114,8 @@
                                         </div>
                                     </a>
                                 </div>
-                            </div>
+                            </div> -->
 <!-- END GRID -->
+
 </div>
 </content>

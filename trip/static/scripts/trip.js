@@ -41,14 +41,25 @@ for (i = 0; i < acc.length; i++) {
 
 // end of accordion
 
+
+// $( function() {
+
+// } );
+// end of sortable
+
 // delete list
 $(document).ready(function () {
   $(".delli").on("click", function () {
     $(this).closest("li").remove();
   });
-// sortable
+
+  // $("#sortable").sortable({
+  //   placeholder: "ui-state-highlight"
+  // });
+  // $("#sortable").disableSelection();
+
   $(".sortable").sortable({
-    placeholder: "highlight"
+    placeholder: "ui-state-highlight"
   });
   $(".sortable").disableSelection();
 
@@ -105,5 +116,77 @@ for (var i = 0; i < btns.length; i++) {
     this.className += " active";
   });
 }
+
+//selector
+  // $(".selector").change(function () {
+  //   console.log('hi')
+  //   console.log($(this))
+  //   // $("ul#sortable").append("li.ui-state-default")
+  //   // var sorttitle=("content-title").text(data[i]['RestName']);
+  // });
+  $('#WeStartHere').on('change','.selector',function(){
+    console.log($(this).val())  //date
+    console.log($(this).attr('name')) //placename
+    Hi = '#sp'+$(this).val()
+    console.log(typeof (Hi))
+    console.log(Hi)
+    // $(Hi).append($(this).attr('name'))
+    $(Hi).append($(document.createElement('li')).addClass('ui-state-default').text($(this).attr('name')).append($(document.createElement('div')).addClass('delli').text("x")));
+    $(".delli").on("click", function () {
+      $(this).closest("li").remove();
+    });
+  })
+
+//Willy try Code
+$('.WFilterbyName').click(function(){
+  var CurrentState = $(this).text();
+  $.ajax({
+  url: 'ajax/Wchange/',
+  data: {
+    'CurrentFilter': CurrentState
+  },
+  dataType: 'json',
+  success: function (data) {
+    $('CurrentFilter').empty();
+    for(i = 0; i <= data.length;i++){
+
+    var FinalR = $(document.createElement('div')).addClass('column show')
+    console.log(FinalR)
+    var PicContent = $(document.createElement('div')).addClass('content')
+    var smallPic = data[i]['RestImg']
+    PicContent.css('background-image',"url("+smallPic+")")
+
+    var linktor = '/review/' + data[i]['Resid']
+    var LinktoR = $(document.createElement('a')).attr('href','linktor').text(data[i]['RestName'])
+    var div1 = $(document.createElement('div')).addClass('content-overlay')
+    var div2 = $(document.createElement('div')).addClass("content-details fadeIn-bottom")
+    var PiCTitle = $(document.createElement('h3')).addClass("content-title").html(LinktoR)
+    var PiCRate = $(document.createElement('p')).addClass('content-text').text('★★★★☆')
+    //adding selector
+    var PickADate= $(document.createElement('select')).addClass('selector').attr('name',data[i]['RestName'])
+    // var PickDate = $(document.createElement('option')).text('Hi')
+    // PickADate.append(PickDate)
+    var DfOption=$(document.createElement('option'));
+      DfOption.text("Pick A Date")
+      PickADate.append(DfOption)
+
+    for (n = 1; n <= 7;n++){
+      var DateOption=$(document.createElement('option')).attr("value",n);
+      DateOption.text("Day"+n)
+      // console.log(typeof DateOption)
+      PickADate.append(DateOption)
+      }
+
+    div2.append(PiCTitle,PiCRate,PickADate)
+    // LinktoR.append(div1,div2)
+    PiCTitle.append(LinktoR) // link pictitle to review?
+    PicContent.append(LinktoR,div2)
+    FinalR.append(PicContent)
+    $('#WeStartHere').append(FinalR)
+  }
+  }
+});
+
+})
 
 // end of explore

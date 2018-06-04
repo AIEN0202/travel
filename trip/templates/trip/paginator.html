@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link href="../../datep/css/bootstrap.css" rel="stylesheet">
+    <link href="../../datep/css/bootstrap-datepaginator.css" rel="stylesheet">
+</head>
+<body>
+    <div id="paginator"></div>
+    <script src="../../datep/js/jquery.js"></script>
+    <script src="../../datep/js/moment.js"></script>
+    <script src="../../datep/js/bootstrap-datepicker.js"></script>
+    <script src="../../datep/js/bootstrap-datepaginator.js"></script>
+    <script> 
+        $(document).ready(function() {
+        $('.datepicker').datepicker({
+            format: "yyyy-mm-dd",
+    })
+    //Listen for the change even on the input
+        .change(dateChanged)
+        .on('changeDate', dateChanged);
+});
+    function dateChanged(ev) {
+        $(this).datepicker('hide');
+        if ($('#startdate').val() != '' && $('#enddate').val() != '') {
+            $('#period').text(diffInDays() + ' d.');
+        } else {
+            $('#period').text("-");
+    }
+}
+    </script>
+            <div id="paginator1" class="datepaginator">
+
+<script type="text/javascript">
+    var datepaginator = function() {
+        return {
+            init: function() {
+                $("#paginator1").datepaginator()
+                // ,
+                // $("#paginator4").datepaginator({
+                //     onSelectedDateChanged: function(a, t) {
+                //     alert("Selected date: " + moment(t).format("Do, MMM YYYY"))
+                //     }
+                // })
+            }
+        }
+    }();
+    $(document).ready(function() {
+        datepaginator.init()
+    });
+    </script>
+</body>
+</html>
