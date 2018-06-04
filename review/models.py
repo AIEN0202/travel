@@ -8,15 +8,15 @@
 from django.db import models
 from member import models as m1
 
-
 class Review(models.Model):
     memberid = models.ForeignKey(m1.Member, models.DO_NOTHING, db_column='MemberID')  # Field name made lowercase.
     typeplace = models.CharField(db_column='TypePlace', max_length=45, blank=True, null=True)  # Field name made lowercase.
     placeid = models.CharField(db_column='PlaceID', max_length=45, blank=True, null=True)  # Field name made lowercase.
     rating = models.CharField(db_column='Rating', max_length=45, blank=True, null=True)  # Field name made lowercase.
     datereview = models.CharField(db_column='DateReview', max_length=45, blank=True, null=True)  # Field name made lowercase.
-    contentofreview = models.CharField(db_column='ContentofReview', max_length=45, blank=True, null=True)  # Field name made lowercase.
+    contentofreview = models.CharField(db_column='ContentofReview', max_length=500, blank=True, null=True)  # Field name made lowercase.
     idreview = models.IntegerField(db_column='idReview', primary_key=True)  # Field name made lowercase.
+    hastable = models.CharField(db_column='HasTable', max_length=500, blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
         managed = False

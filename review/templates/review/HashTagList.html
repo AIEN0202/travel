@@ -1,9 +1,4 @@
 {% load static %}
-<span><i class="fas fa-hashtag btn btn-secondary StyleofHashTags">觀光景點</i></span>
-<span><i class="fas fa-hashtag btn btn-secondary StyleofHashTags">吃喝</i></span>
-<span><i class="fas fa-hashtag btn btn-secondary StyleofHashTags">好玩！</i></span>
-<span><i class="fas fa-hashtag btn btn-secondary StyleofHashTags">Like4Like</i></span>
-<span><i class="fas fa-hashtag btn btn-secondary StyleofHashTags">Like4Like</i></span>
-<span><i class="fas fa-hashtag btn btn-secondary StyleofHashTags">Like4Like</i></span>
-<span><i class="fas fa-hashtag btn btn-secondary StyleofHashTags">Like4Like</i></span>
-<span><i class="fas fa-hashtag btn btn-secondary StyleofHashTags">Like4Like</i></span>
+{% for x in HasTList%}
+<span><i class="fas fa-hashtag btn btn-secondary StyleofHashTags">{{x}}</i></span>
+{% endfor %}
