@@ -2,6 +2,16 @@
 {% load static%} 
 {% block style_part %}
 {% endblock %} 
+
 {% block main_content %}
-<p>HI {{useris}}</p>
+<div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-light bgimg">
+    <div class="col-md-5 p-lg-5 mx-auto my-5" style="padding-bottom: 0px!important;margin-bottom: 0px!important;">
+        <h1 class="display-4 font-weight-normal">HI {{useris}}</h1>
+        <p class="lead font-weight-normal">Your next trip is {{isLogin}}</p>
+        <!-- <a class="btn btn-outline-secondary" href="{% url 'member:signup' %}">Sign up</a> -->
+    </div>
+</div>
 {% endblock %}
+
+{% block script_part %}
+{% endblock %} 

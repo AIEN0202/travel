@@ -79,6 +79,18 @@ def Main_index(request):
 
     return render(request, 'member/Main_index.html', locals())
 
+def trv_detail(request):
+    isFooterShow = False
+
+    if 'user' in request.session:
+        useris = request.session['user']
+        print("GET {}".format(useris))
+        isLogin = True
+    else:
+        print("NO GET")
+
+    return render(request, 'member/trv_detail.html', locals())
+
 
 def mReg(request):
     if request.method == "GET":
