@@ -147,7 +147,7 @@ $('.WFilterbyName').click(function(){
   },
   dataType: 'json',
   success: function (data) {
-    $('CurrentFilter').empty();
+    // $('CurrentFilter').empty();
     for(i = 0; i <= data.length;i++){
 
     var FinalR = $(document.createElement('div')).addClass('column show')

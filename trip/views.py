@@ -9,6 +9,12 @@ from .models import Restaurant as rest
 
 def trip(request):
     context = "the trip page"
+    if 'user' in request.session:
+        useris = request.session['user']
+        print("GET {}".format(useris))
+        isLogin = True
+    else:
+        print("NO GET")
     if request.method == "POST":
         tripname = request.POST["tripname"]
         miantrip_country = request.POST["miantrip_country"]
@@ -37,6 +43,7 @@ def trip(request):
         print('')
         print(Stylelist)
         print('')
+        
     return render(request,'trip/trip.html',locals())
 
 #Create a function for Ajax to call later
