@@ -5,10 +5,8 @@ from django.shortcuts import render
 from django.http import JsonResponse,HttpResponse
 from member import models as m1
 from .models import Restaurant as rest
-<<<<<<< HEAD
 from member import member_models as MB
 import random
-=======
 from .models import Hotel as hotel
 from .models import Attraction as attr
 
@@ -16,7 +14,6 @@ from .models import Attraction as attr
     # 	if request.method == 'POST':
 	# 	""=request.POST.get('')
 	# return render(request,'trip/trip.html',locals())
->>>>>>> c8f411a5d251a670198a882ab3ffdfe00f0b27fd
 
 
 def trip(request):
