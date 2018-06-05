@@ -5,28 +5,64 @@ from django.shortcuts import render
 from django.http import JsonResponse,HttpResponse
 from member import models as m1
 from .models import Restaurant as rest
+from member import member_models as MB
+import random
 
 
 def trip(request):
     context = "the trip page"
+    tripid_fromsession = None
+
     if 'user' in request.session:
         useris = request.session['user']
         print("GET {}".format(useris))
         isLogin = True
+
+        if_trip_exist = MB.Member()
+        trip_day_res = if_trip_exist.select_one('SELECT count(B.idday) FROM travel.itinerary as A, travel.itinerary_day as B where A.TripID = B.TripID and A.idMember = %s;', useris)
+        trip_res = if_trip_exist.select_one('SELECT count(TripID) FROM travel.itinerary where idMember = %s;', useris)
+
+        if trip_res is not None :
+            if trip_res[0] != 0 and trip_day_res[0] == 0:
+                print('start dalete')
+                if_trip_exist.excute_sql('delete from travel.itinerary where idMember = %s;', useris)
+            else:
+                # print('pass' + trip_res[0] + "/" + trip_day_res[0])
+                pass
+        else:
+            pass
+
     else:
         print("NO GET")
-    if request.method == "POST":
+
+    if 'tripid' in request.session:
+         tripid_fromsession = request.session['tripid']
+    else:
+        pass
+
+    if request.method == "POST":  
+        tripid = random.randint(700000, 799999)   
+        userid = request.session['user']   
         tripname = request.POST["tripname"]
         miantrip_country = request.POST["miantrip_country"]
         miantrip_region = request.POST["miantrip_region"]
         departyear = request.POST["departyear"]
         departmonth = request.POST["departmonth"]
         departday = request.POST["departday"]
+        totaltripdate = departyear+"/"+departmonth+"/"+departday
         tripday = request.POST["tripday"]
         Travelers = request.POST["Travelers"]
         Travelpath = request.POST["Travelpath"]
         check = request.POST.getlist("Style")
         Stylelist = '/'.join(check)
+        trip_data = MB.Member()
+        trip_data.excute_sql("INSERT INTO travel.itinerary (TripID, idMember, TripName, Day, Arrival, Travelers, Paced, Style, idCountry, idRegion) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s);", tripid, userid, tripname, tripday, totaltripdate, Travelers, Travelpath, Stylelist, miantrip_country, miantrip_region)
+
+        request.session['tripid'] = tripid
+        request.session.modified = True
+
+        tripid_fromsession = request.session['tripid']
+
         print(tripname)
         print('')
         print(miantrip_country)
