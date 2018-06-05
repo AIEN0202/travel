@@ -19,6 +19,7 @@
                 </li>
         </ul>
     </div>
+    <span ></span>
     <button class="accordion">餐飲</button>
     <div class="panel">
         <ul id="sr1" class="sortable">
@@ -98,3 +99,7 @@
                         </ul>
                     </div>
             </div>
+        <form method="post" action="">
+            {% csrf_token %}
+            <button type="submit" id="send">出發</button>
+        </form>

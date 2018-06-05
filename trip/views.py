@@ -5,8 +5,18 @@ from django.shortcuts import render
 from django.http import JsonResponse,HttpResponse
 from member import models as m1
 from .models import Restaurant as rest
+<<<<<<< HEAD
 from member import member_models as MB
 import random
+=======
+from .models import Hotel as hotel
+from .models import Attraction as attr
+
+# def trip(request):
+    # 	if request.method == 'POST':
+	# 	""=request.POST.get('')
+	# return render(request,'trip/trip.html',locals())
+>>>>>>> c8f411a5d251a670198a882ab3ffdfe00f0b27fd
 
 
 def trip(request):
@@ -84,27 +94,38 @@ def trip(request):
 
 #Create a function for Ajax to call later
 def Wchange(request):
+    print("HI")
     #Define a variable for ajax to into.
     CurrentFilter = request.GET.get('CurrentFilter',None).strip()
-
+    CheckForSelect = request.GET.get('CheckForSelect',None).strip()
     #Create Empty list for input
     ImList = []
-
     #Get Everything from database
-    RestInfo = rest.objects.filter(type='American (Traditional)')
-
+    if CheckForSelect == "Attraction":
+        Info = attr.objects.filter(type=CurrentFilter)
+    elif CheckForSelect == "Restuarant":
+        Info = rest.objects.filter(type=CurrentFilter)
+    elif CheckForSelect == "Hotel":
+        Info = hotel.objects.filter(type=CurrentFilter)
+    else:
+        print("Faile")
     #Loop through the Query Objects
 
-    for x in RestInfo:
+    for x in Info:
         #Create a new Dictionary
         ImDict = {}
-        RestName = x.title
-        print(RestName)
-        ImDict['RestName'] = RestName
-        RestImg = x.imgsrc
-        ImDict['RestImg'] = RestImg
-        RestId = x.resid
-        ImDict['Resid'] = RestId
+        Name = x.title
+        ImDict['Name'] = Name
+        Img = x.imgsrc
+        ImDict['Img'] = Img
+        if CheckForSelect == "Attraction":
+            Idlala = x.idattraction
+        elif CheckForSelect == "Restuarant":
+            Idlala = x.resid
+        elif CheckForSelect == "Hotel":
+            Idlala = x.id_hotel
+        
+        ImDict['Id'] = Idlala
 
         #Pass in the data to list
         ImList.append(ImDict)
