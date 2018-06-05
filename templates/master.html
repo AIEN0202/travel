@@ -33,12 +33,12 @@
 		.cus_collapsed {
 			display: none; /* hide it for small displays */
 		}
-		@media (min-width: 992px) {
+		/* @media (min-width: 992px) {
 			.collapsed {
 				display: block;
-				margin-left: -25%; /* same width as sidebar */
+				margin-left: -25%; 
 			}
-        }
+        } */
 
         
 
@@ -50,6 +50,7 @@
 </head>
 
 <body>
+    <span style="display: none" name="lalala" id="lalala">N</span>
     {% include 'navbar.html' %}
 
     <!-- <div class="row row-main">
@@ -101,16 +102,74 @@
 
     <script>
         $(document).ready(function () {
-            $(".toggle-sidebar").click(function () {
-                $("#sidebar").toggleClass("collapsed");
-                $("#mycontent").toggleClass("col-md-12 col-md-9");
-                return false;
-            });
+            // $(".toggle-sidebar").click(function () {
+            //     $("#sidebar").toggleClass("collapsed");
+            //     $("#mycontent").toggleClass("col-md-12 col-md-9");
+            //     return false;
+            // });
 
             $('#login_a').click(function(){
                 $('#login_from').toggleClass("cus_collapsed",5000);
                 $('#login_a').toggleClass("cus_collapsed");
             })
+
+
+            $('#at').click(function(){
+                $('#lalala').text('A');
+                $('#myBtnContainer').empty();
+                get_region('A')
+            })
+            $('#ht').click(function(){
+                $('#lalala').text('H');
+                $('#myBtnContainer').empty();
+                get_region('H')
+            })
+            $('#rt').click(function(){
+                $('#lalala').text('R');
+                $('#myBtnContainer').empty();
+                get_region('R')
+            })
+            // {% url 'member:getStyle' %}
+            function get_region(style){
+            $.get("{% url 'member:getStyle' %}",{'style': style},
+            function(data){
+                // /member/getStyle
+                // console.log(data);
+                // console.log(data.Reglist[0][0]);
+                // console.log(data.Reglist.length)
+                // console.log(typeof(data));
+                // var list = $.parseJSON(data);
+                // console.log(list);
+
+                var reg_sel = $('#myBtnContainer');
+
+                reg_sel.empty()
+
+                var reg_sel_flg = $(document.createDocumentFragment());
+
+                //  <button class="btn active WFilterbyName"> Show all</button>
+                //  <button class="btn WFilterbyName"> Culture </button>
+                //  <button class="btn WFilterbyName"> Art </button>
+                //  <button class="btn WFilterbyName"> Nature </button>
+                //  <button class="btn WFilterbyName"> 小吃 </button>
+                var showall = $('<button class="btn active WFilterbyName">Show all</button>');
+                reg_sel_flg.append(showall)
+                for(i =0; i < data.Reglist.length; i++){
+                    console.log(data.Reglist[i][0]);
+                    var opt = $('<button class="btn WFilterbyName"></button>');
+                    opt.text(data.Reglist[i][0])
+                    // opt.val(data.Reglist[i][0])
+
+                    reg_sel_flg.append(opt)
+                }
+
+                reg_sel.append(reg_sel_flg)
+
+            });
+        };
+
+
+
         });
     </script>
 </body>

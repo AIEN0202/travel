@@ -20,7 +20,11 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('member.urls')),
     path('member/', include('member.urls')),
+<<<<<<< HEAD
     path('review/<int:PlaceID>',include('review.urls')),
+=======
+    path('review/',include('review.urls')),
+>>>>>>> ec63508f9485bc49479ff184ef7688a8964da67c
     path('trip/',include('trip.urls')),
     path('res/',include('res.urls')),
 ]

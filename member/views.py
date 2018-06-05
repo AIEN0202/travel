@@ -70,6 +70,9 @@ def login(request):
 def Main_index(request):
     isFooterShow = False
 
+    get_city_data = Mbr.Member()
+    citylist = get_city_data.select_all("SELECT * FROM travel.country")
+
     if 'user' in request.session:
         useris = request.session['user']
         print("GET {}".format(useris))
@@ -101,6 +104,42 @@ def mReg(request):
             Regionlist = get_region_data.select_all("SELECT * FROM travel.member_region where idCountry = %s",c_id)
             print(json.dumps(Regionlist))
             response = json.dumps({"Reglist" : Regionlist})
+            return HttpResponse(response, content_type='application/json')
+
+    return HttpResponse("HI")
+
+def mainReg(request):
+    if request.method == "GET":
+        c_id = request.GET["country"]
+        if c_id is not None:
+            print("YES")
+            get_region_data = Mbr.Member()
+            Regionlist = get_region_data.select_all("SELECT * FROM travel.region where idCountry = %s",c_id)
+            print(json.dumps(Regionlist))
+            response = json.dumps({"Reglist" : Regionlist})
+            return HttpResponse(response, content_type='application/json')
+
+    return HttpResponse("HI")
+
+def getStyle(request):
+    if request.method == "GET":
+        c_style = request.GET["style"]
+        if c_style is not None:
+            print("YES")
+            get_region_data = Mbr.Member()
+            stylelist = None
+
+            if c_style == 'A':
+                stylelist = get_region_data.select_all("SELECT distinct(a.type) FROM travel.attraction as a;")
+            elif c_style == 'H':
+                stylelist = get_region_data.select_all("SELECT distinct(a.type) FROM travel.hotel as a;")
+            elif c_style == 'R':
+                stylelist = get_region_data.select_all("SELECT distinct(a.type) FROM travel.restaurant as a;")
+            else:
+                stylelist = get_region_data.select_all("SELECT distinct(a.type) FROM travel.attraction as a;")
+
+            print(json.dumps(stylelist))
+            response = json.dumps({"Reglist" : stylelist})
             return HttpResponse(response, content_type='application/json')
 
     return HttpResponse("HI")

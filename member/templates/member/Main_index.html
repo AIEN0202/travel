@@ -1,17 +1,315 @@
-{% extends 'master.html' %}
-{% load static%} 
-{% block style_part %}
-{% endblock %} 
+{% extends 'master.html' %} {% load static%} {% block style_part %}
 
-{% block main_content %}
+
+<link rel="stylesheet" href="{% static 'styles/create.css'%}">
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css"></link>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.1/jquery.fancybox.min.css" /> {% endblock %} {% block main_content %}
 <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-light bgimg">
     <div class="col-md-5 p-lg-5 mx-auto my-5" style="padding-bottom: 0px!important;margin-bottom: 0px!important;">
         <h1 class="display-4 font-weight-normal">HI {{useris}}</h1>
         <p class="lead font-weight-normal">Your next trip is {{isLogin}}</p>
         <!-- <a class="btn btn-outline-secondary" href="{% url 'member:signup' %}">Sign up</a> -->
+
+        <form action="" method="post">
+
+        </form>
     </div>
 </div>
-{% endblock %}
+<div class="container" style="text-align: center;margin-top: 40px;">
+    <a class="btn btn-primary" data-fancybox data-animation-duration="700" data-src="#animatedModal" href="javascript:;">
+        Start New
+    </a>
+</div>
+<!-- <a data-fancybox data-animation-duration="700" data-src="#animatedModal" href="javascript:;" class="btn btn-primary" id="IcountStars"><i class="fas fa-comment-alt" style="font-size:21px;"></i></a> -->
 
-{% block script_part %}
-{% endblock %} 
+
+<div style="display: none;z-index: 1101!important;max-width: 550px;width: 100%;" id="animatedModal" class="animated-modal">
+    <form class="" action="{% url 'trip:trip' %}" method="post">
+        {% csrf_token %}
+        <div class="card card-body">
+            <fieldset>
+                <table style="width: 100%;">
+                    <tr>
+                        <td>
+                            <label for="tripname">
+                                <i class="fas fa-bookmark"></i>
+                            </label>
+                        </td>
+                        <td>
+                            <input type="text" class="form-control" name="tripname" placeholder="為這趟旅行命名">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="location">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </label>
+                        </td>
+                        <td>
+                            <!-- <select name="country" id="country">
+                                <option value="" disable selected>國家</option>
+                                <option value="tw">台灣</option>
+                                <option value="us">美國</option>
+                                <option value="jp">日本</option>
+                            </select>
+                            <select name="city" id="city">
+                                <option value="" disable selected>城市</option>
+                                <option value="us">US</option>
+                                <option value="jp">JP</option>
+                            </select> -->
+                            <div class="row" style="margin-left: 0px;margin-right: 0px;">
+                                <div class="col-md-6" style="padding-right: 0px;padding-left: 0px;">
+                                        <select id="miantrip_country" name="miantrip_country" class="dlist form-control">
+                                                <option selected>國家</option>
+                                                {% for c_item in citylist %}
+                                                <option value={{c_item.0}}>{{c_item.1}}</option>
+                                                {% endfor %}
+                                         </select>
+                                </div>
+                                <div class="col-md-6" style="padding-right: 0px;padding-left: 0px;">
+                                        <select id="miantrip_region" name="miantrip_region" class="form-control">
+                                                <option selected>地區</option>
+                                         </select>
+                                </div>
+                            </div>
+                            
+                             
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="daterange">
+                                <i class="fas fa-calendar-alt"></i>
+                            </label>
+                        </td>
+                        <td>
+                            <!-- <input class="dates" type="text" name="daterange"> -->
+                            <div class="row" style="margin-left: 0px;margin-right: 0px;">
+                                    <div class="col-md-3" style="padding-right: 0px;padding-left: 0px;text-align: center;">
+                                            出發日期
+                                    </div>
+                                    <div class="col-md-3" style="padding-right: 0px;padding-left: 0px;">
+                                            <select class="form-control" id="year_sel1" name="departyear">年</select>
+                                    </div>
+                                    <div class="col-md-3" style="padding-right: 0px;padding-left: 0px;">
+                                            <select class="form-control" id="mt_sel2" name="departmonth">月</select>
+                                    </div>
+                                    <div class="col-md-3" style="padding-right: 0px;padding-left: 0px;">
+                                            <select class="form-control" id="dt_sel3" name="departday">日</select>
+                                    </div>
+                                </div>
+                            <!-- <div class="divcontent" id="cal_sel">
+                                <select class="form-control" id="year_sel1"></select>年
+                                <select id="mt_sel2"></select>月
+                                <select id="dt_sel3"></select>日
+                            </div> -->
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="daterange">
+                                <i class="fas fa-calendar-plus"></i>
+                            </label>
+                        </td>
+                        <td>
+                            <input type="number" class="form-control" id="Travel_day" min="1" max="7" placeholder="行程天數" size="15" name="tripday">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="Travelers">
+                                <i class="fas fa-user-friends"></i>
+                            </label>
+                        </td>
+                        <td>
+                            <input type="number" class="form-control" id="Travelers" min="1" max="12" placeholder="人" size="15" name="Travelers">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="Paced">
+                                <i class="fas fa-shoe-prints" data-fa-transform="rotate-90"></i>
+                            </label>
+                        </td>
+                        <td>
+                                <div class="row" style="margin-left: 0px;margin-right: 0px;">
+                                        <div class="col-md-2" style="padding-right: 0px;padding-left: 0px;">愜意</div>
+                                        <div class="col-md-8" style="padding-right: 0px;padding-left: 0px;">
+                                                <input type="range" id="Paced" value="2" ,min="1" max="4" step="1" class="form-control" name="Travelpath">
+                                        </div>
+                                        <div class="col-md-2" style="padding-right: 0px;padding-left: 0px;">充實</div>
+                                        
+                                    </div>
+                            </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="Style">
+                                <i class="fas fa-map-signs"></i>
+                            </label>
+                        </td>
+                        <td>
+                            <!-- <input type="checkbox" name="Style" value="kid">家庭
+                            <input type="checkbox" name="Style" value="cul">文化
+                            <input type="checkbox" name="Style" value="foo">美食 -->
+                            <div class="row" style="margin-left: 0px;margin-right: 0px;">
+                                    <div class="col-md-4" style="padding-right: 0px;padding-left: 0px;">
+                                            <input type="checkbox" name="Style" value="kid" id="gridCheck1">家庭
+                                    </div>
+                                    <div class="col-md-4" style="padding-right: 0px;padding-left: 0px;">
+                                            <input type="checkbox" name="Style" value="cul" id="gridCheck2">文化
+                                    </div>
+                                    <div class="col-md-4" style="padding-right: 0px;padding-left: 0px;">
+                                            <input type="checkbox" name="Style" value="foo" id="gridCheck3">美食
+                                    </div>
+                                    <div class="col-md-4" style="padding-right: 0px;padding-left: 0px;">
+                                            <input type="checkbox" name="Style" value="rom" id="gridCheck4">浪漫
+                                    </div>
+                                    <div class="col-md-4" style="padding-right: 0px;padding-left: 0px;">
+                                            <input type="checkbox" name="Style" value="nat" id="gridCheck5">自然
+                                    </div>
+                                    <div class="col-md-4" style="padding-right: 0px;padding-left: 0px;">
+                                            <input type="checkbox" name="Style" value="sho" id="gridCheck6">購物
+                                    </div>
+                                </div>
+                        </td>
+                    </tr>
+                    <!-- <tr>
+                        <td></td>
+                        <td>
+                            <input type="checkbox" name="Style" value="rom">浪漫
+                            <input type="checkbox" name="Style" value="nat">自然
+                            <input type="checkbox" name="Style" value="sho">購物 </td>
+                    </tr> -->
+                    <tr>
+                        <td colspan="2" style="padding-top: 0.8em;text-align: center;">
+                            <input type="reset" value="Restart">
+                            <input type="submit" value="Let's GO">
+                        </td>
+                    </tr>
+                </table>
+            </fieldset>
+        </div>
+
+    </form>
+</div>
+{% endblock %} {% block script_part %}
+
+
+<!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.1/jquery.fancybox.min.js"></script>
+<!-- <script src="{%static 'scripts/create.js'%}"></script> -->
+
+<script>
+    function yr_or_mt_chng() {
+        gen_dt();
+        print_text()
+    }
+
+    function gen_dt() {
+        yr_get = document.getElementById("year_sel1").value;
+        mt_get = document.getElementById("mt_sel2").value;
+
+        var dt_temp = new Date(yr_get, mt_get, 0);
+        dt_total = dt_temp.getDate();
+        dr_chd_count = document.getElementById("dt_sel3").childElementCount;
+
+        if (dr_chd_count != 0) {
+            document.getElementById("dt_sel3").innerHTML = "";
+        }
+
+        for (dti = 0; dti < dt_total; dti++) {
+            selnode_dt = document.getElementById("dt_sel3");
+            dt_op = document.createElement("option");
+            dt_tx = document.createTextNode(dti + 1);
+            dt_op.appendChild(dt_tx);
+            dt_op.setAttribute("id", ("dt" + dti));
+            dt_op.setAttribute("value", dti + 1);
+            dt_op.setAttribute("class", "dtclass");
+            selnode_dt.appendChild(dt_op);
+
+            selnode_dt.addEventListener("change", print_text);
+        }
+
+        print_text()
+    }
+
+    function print_text() {
+        yr_get = document.getElementById("year_sel1").value;
+        mt_get = document.getElementById("mt_sel2").value;
+        dt_get = document.getElementById("dt_sel3").value;
+        // document.getElementById("date_text").innerHTML = "<span>" + "你選擇的日期是" + yr_get + "年" + mt_get + "月" + dt_get + "日" + "</span>" ;
+    }
+
+    for (yr = 2018; yr <= 2100; yr++) {
+        selnode = document.getElementById("year_sel1");
+        yr_op = document.createElement("option");
+        yr_tx = document.createTextNode(yr);
+        yr_op.appendChild(yr_tx);
+        yr_op.setAttribute("id", ("y" + yr));
+        yr_op.setAttribute("value", yr);
+        selnode.appendChild(yr_op);
+
+        selnode.addEventListener("change", yr_or_mt_chng);
+    }
+
+    for (mt = 0; mt <= 11; mt++) {
+        selnode_mt = document.getElementById("mt_sel2");
+        mt_op = document.createElement("option");
+        mt_tx = document.createTextNode(mt + 1);
+        mt_op.appendChild(mt_tx);
+        mt_op.setAttribute("id", ("M" + mt));
+        selnode_mt.appendChild(mt_op);
+
+        selnode_mt.addEventListener("change", yr_or_mt_chng);
+    }
+
+    document.onload = gen_dt();
+</script>
+
+<script
+  src="https://code.jquery.com/jquery-3.3.1.js"
+  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+  crossorigin="anonymous"></script>
+
+<script>
+        $().ready(function(){
+            $('.dlist').change(function(){
+            var a = $( ".dlist option:selected" ).val();
+            // console.log(a);
+            get_region(a);
+            
+            });
+    
+            function get_region(id){
+                $.get("{% url 'member:mainReg' %}",{'country': id},
+                function(data){
+                    // console.log(data.Reglist[0][0]);
+                    // console.log(data.Reglist.length);
+    
+                    var reg_sel = $('#miantrip_region');
+    
+                    reg_sel.empty()
+    
+                    var reg_sel_flg = $(document.createDocumentFragment());
+    
+                    for(i =0; i < data.Reglist.length; i++){
+                        console.log(data.Reglist[i][0]);
+                        var opt = $('<option></option>');
+                        opt.text(data.Reglist[i][1])
+                        opt.val(data.Reglist[i][0])
+    
+                        reg_sel_flg.append(opt)
+                    }
+    
+                    reg_sel.append(reg_sel_flg)
+    
+                });
+            };
+        });
+        
+    </script>
+
+{% endblock %}
