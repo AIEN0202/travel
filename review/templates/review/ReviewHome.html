@@ -10,8 +10,8 @@
 <div class="row ReviewHomeMainPicSize">
     {% include 'review/ReviewPic.html' %}
   <div class = "col-4 DetailInfo_TripCheck">
-    <div class="theDetailTitle">東京迪士尼</div>
-    <span class='theDetailSmallTitle'>遊樂園</span>
+    <div class="theDetailTitle">{{CorrectPlaceName}}</div>
+    <span class='theDetailSmallTitle'>{{CorrectPlaceType}}</span>
     <div class="row">
       <!-- First row is for important information -->
       <div class="col-12">
@@ -27,9 +27,6 @@
 <div class="row ReviewHomeMainPicSize">
   <div class="col-3 TheUserRate">
     {% include 'review/TheUserRate.html'%}
-  </div>
-  <div class="col-4 AddingtoNewTrip">
-    {% include 'review/AddingtoNewTrip.html'%}
   </div>
 </div>
 <!-- This is the part for other ppl's rate and comment. -->

@@ -177,13 +177,14 @@ $('.WFilterbyName').click(function(){
       var smallPic = data[i]['Img']
     }
     else{
-      var smallPic = '' 
+      var smallPic = ''
     }
 //add null pic
 
     PicContent.css('background-image',"url("+smallPic+")")
     var linktor = '/review/' + data[i]['ID']
-    var LinktoR = $(document.createElement('a')).attr('href','linktor').text(data[i]['Name'])
+    console.log(data[i]['ID'])
+    var LinktoR = $(document.createElement('a')).attr('href',linktor).text(data[i]['Name'])
     var div1 = $(document.createElement('div')).addClass('content-overlay')
     var div2 = $(document.createElement('div')).addClass("content-details fadeIn-bottom")
     var PiCTitle = $(document.createElement('h3')).addClass("content-title").html(LinktoR)
@@ -255,13 +256,13 @@ function BTNclick(style_t){
       var smallPic = data[i]['Img']
     }
     else{
-      var smallPic = '' 
+      var smallPic = ''
     }
 //add null pic
 
     PicContent.css('background-image',"url("+smallPic+")")
-    var linktor = '/review/' + data[i]['ID']
-    var LinktoR = $(document.createElement('a')).attr('href','linktor').text(data[i]['Name'])
+    var linktor = '/review/?placeide=' + data[i]['Id']
+    var LinktoR = $(document.createElement('a')).attr('href',linktor).text(data[i]['Name'])
     var div1 = $(document.createElement('div')).addClass('content-overlay')
     var div2 = $(document.createElement('div')).addClass("content-details fadeIn-bottom")
     var PiCTitle = $(document.createElement('h3')).addClass("content-title").html(LinktoR)
