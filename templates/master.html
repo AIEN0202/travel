@@ -50,7 +50,7 @@
 </head>
 
 <body>
-    <span style="display: none" name="lalala" id="lalala">N</span>
+    <span style="display: none" name="lalala" id="lalala">A</span>
     {% include 'navbar.html' %}
 
     <!-- <div class="row row-main">
@@ -155,8 +155,10 @@
                 var showall = $('<button class="btn active WFilterbyName">Show all</button>');
                 reg_sel_flg.append(showall)
                 for(i =0; i < data.Reglist.length; i++){
-                    console.log(data.Reglist[i][0]);
-                    var opt = $('<button class="btn WFilterbyName"></button>');
+                    console.log(typeof(data.Reglist[i][0]));
+                    str_t = "'" + data.Reglist[i][0] + "'"
+                    strbtn = '<button class="btn WFilterbyName" onclick="BTNclick('+ str_t +')"></button>'
+                    var opt = $(strbtn);
                     opt.text(data.Reglist[i][0])
                     // opt.val(data.Reglist[i][0])
 

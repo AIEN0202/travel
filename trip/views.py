@@ -100,7 +100,7 @@ def Wchange(request):
     #Get Everything from database
     if CheckForSelect == "Attraction":
         Info = attr.objects.filter(type=CurrentFilter)
-    elif CheckForSelect == "Restuarant":
+    elif CheckForSelect == "Restaurant":
         Info = rest.objects.filter(type=CurrentFilter)
     elif CheckForSelect == "Hotel":
         Info = hotel.objects.filter(type=CurrentFilter)
@@ -117,7 +117,7 @@ def Wchange(request):
         ImDict['Img'] = Img
         if CheckForSelect == "Attraction":
             Idlala = x.idattraction
-        elif CheckForSelect == "Restuarant":
+        elif CheckForSelect == "Restaurant":
             Idlala = x.resid
         elif CheckForSelect == "Hotel":
             Idlala = x.id_hotel
