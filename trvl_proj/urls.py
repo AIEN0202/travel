@@ -23,4 +23,5 @@ urlpatterns = [
     path('review/',include('review.urls')),
     path('trip/',include('trip.urls')),
     path('res/',include('res.urls')),
+    path('hotel/',include('hotel.urls')),
 ]

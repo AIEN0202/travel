@@ -123,7 +123,8 @@ def Wchange(request):
             Idlala = x.id_hotel
         
         ImDict['Id'] = Idlala
-
+        print(ImDict['Id'])
+        
         #Pass in the data to list
         ImList.append(ImDict)
 
