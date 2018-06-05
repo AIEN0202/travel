@@ -40,7 +40,6 @@ INSTALLED_APPS = [
     'member',
     'trip',
     'review',
-    'trip',
     'res',
 ]
 
@@ -87,6 +86,7 @@ DATABASES = {
         'USER': 'willy',
         'PASSWORD': 'abcd1234',
         'HOST': 'localhost'
+
     }
 }
 
