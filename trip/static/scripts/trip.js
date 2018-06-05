@@ -140,37 +140,63 @@ for (var i = 0; i < btns.length; i++) {
 //Willy try Code
 $('.WFilterbyName').click(function(){
   var CurrentState = $(this).text();
+  console.log(CurrentState)
+  if ($('#lalala').text() == "A"){
+    var AppendIDCheck = '#sp'
+    var AppendID = 'idAttraction'
+    var AppendSelect = 'Attraction'
+  }
+  else if ($('#lalala').text() == "H"){
+    var AppendIDCheck = "#sh"
+    var AppendID = 'id_hotel'
+    var AppendSelect = 'Hotel'
+  }
+  else if ($('#lalala').text() == "R"){
+    var AppendIDCheck = "#sr"
+    var AppendID = 'Resid'
+    var AppendSelect = 'Restaurant'
+  }
+
   $.ajax({
   url: 'ajax/Wchange/',
   data: {
-    'CurrentFilter': CurrentState
+    'CurrentFilter': CurrentState,
+    'CheckForSelect' : AppendSelect
   },
   dataType: 'json',
   success: function (data) {
-    $('CurrentFilter').empty();
+    $('#WeStartHere').empty();
+    console.log("hi")
     for(i = 0; i <= data.length;i++){
 
     var FinalR = $(document.createElement('div')).addClass('column show')
     console.log(FinalR)
     var PicContent = $(document.createElement('div')).addClass('content')
-    var smallPic = data[i]['RestImg']
-    PicContent.css('background-image',"url("+smallPic+")")
 
-    var linktor = '/review/' + data[i]['Resid']
-    var LinktoR = $(document.createElement('a')).attr('href','linktor').text(data[i]['RestName'])
+    if (data[i]['Img'] != ""){
+      var smallPic = data[i]['Img']
+    }
+    else{
+      var smallPic = '' 
+    }
+//add null pic
+
+    PicContent.css('background-image',"url("+smallPic+")")
+    var linktor = '/review/' + data[i]['ID']
+    var LinktoR = $(document.createElement('a')).attr('href','linktor').text(data[i]['Name'])
     var div1 = $(document.createElement('div')).addClass('content-overlay')
     var div2 = $(document.createElement('div')).addClass("content-details fadeIn-bottom")
     var PiCTitle = $(document.createElement('h3')).addClass("content-title").html(LinktoR)
     var PiCRate = $(document.createElement('p')).addClass('content-text').text('★★★★☆')
     //adding selector
-    var PickADate= $(document.createElement('select')).addClass('selector').attr('name',data[i]['RestName'])
+    var PickADate= $(document.createElement('select')).addClass('selector').attr('name',data[i]['Name'])
     // var PickDate = $(document.createElement('option')).text('Hi')
     // PickADate.append(PickDate)
     var DfOption=$(document.createElement('option'));
       DfOption.text("Pick A Date")
       PickADate.append(DfOption)
 
-    for (n = 1; n <= 7;n++){
+    for (n = 1; n <= 5;n++){
       var DateOption=$(document.createElement('option')).attr("value",n);
       DateOption.text("Day"+n)
       // console.log(typeof DateOption)

@@ -40,7 +40,6 @@ INSTALLED_APPS = [
     'member',
     'trip',
     'review',
-    'trip',
     'res',
 ]
 
@@ -84,9 +83,9 @@ DATABASES = {
         # 'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'travel',
-        'USER': 'willy',
+        'USER': 'testconn',
         'PASSWORD': 'abcd1234',
-        'HOST': 'localhost'
+        'HOST': '192.168.21.87'
     }
 }
 

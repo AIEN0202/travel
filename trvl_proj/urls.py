@@ -21,10 +21,6 @@ urlpatterns = [
     path('', include('member.urls')),
     path('member/', include('member.urls')),
     path('review/',include('review.urls')),
-<<<<<<< HEAD
-    path('trip/',include('trip.urls'))
-=======
     path('trip/',include('trip.urls')),
     path('res/',include('res.urls')),
->>>>>>> 19a4261fb9f9d420cb40ef63af69c2298e04b627
 ]

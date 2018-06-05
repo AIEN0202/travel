@@ -2,12 +2,28 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto);
 /* for the left */
 
-
+#send {
+  background-color: #484848;
+  border-radius: 12px;
+  border: none;
+  color: white;
+  padding: 8px 60px;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 500;
+  margin: 4px 2px;
+  opacity: 0.6;
+  transition: 0.3s;
+  display: inline-block;
+  text-decoration: none;
+  cursor: pointer;
+}
+#send:hover {opacity: 1}
 /* Style the tab */
 .tab {
     overflow: hidden;
-    border: 1px solid #ccc;
-    background-color: #f1f1f1;
+    border: 5px solid #fff
+    background-color: #fff;
 }
 
 /* Style the buttons that are used to open the tab content */
@@ -34,20 +50,22 @@
 /* Style the tab content */
 .daytab {
     display: none;
-    padding: 6px 12px;
-    border: 1px solid #ccc;
+    padding: 6px 6px;
+    border: none;
     border-top: none;
 }
 /* accordion */
 /* Style the buttons that are used to open and close the accordion panel */
 .accordion {
     background-color: #eee;
-    color: #444;
+    color: #484848;
     cursor: pointer;
     padding: 18px;
     width: 100%;
-    text-align: left;
+    text-align: left;    
     border: none;
+    border-bottom: #ffffff 1em solid;
+
     outline: none;
     transition: 0.4s;
 }
@@ -59,18 +77,21 @@
 
 /* Style the accordion panel. Note: hidden by default */
 .panel {
-    padding: 0 18px;
+    padding: 5 18px;
     background-color: white;
     display: none;
     overflow: hidden;
 }
 /* end of accordion(or is it) */
 /* sortable */
-
+.ui-state-default{
+  list-style: none;
+  padding: 5px 0px
+}
 #sortable { list-style-type: none; margin: 0; padding: 0; width: 60%; }
   #sortable li { margin: 0 5px 5px 5px; padding: 5px; font-size: 1.2em; height: 1.5em; }
   html>body #sortable li { height: 1.5em; line-height: 1.2em; }
-  .ui-state-highlight { height: 1.5em; line-height: 1.2em; }
+  .ui-state-highlight { height: 1.5em; line-height: 1.2em; color: #eee}
 
 /* delete list */
 .delli{
