@@ -5,19 +5,19 @@ from member import models as m1
 from django.db.models import Avg,Count
 import random
 # Create your views here.
-def reviewindex(request):
+def reviewindex(request,PlaceID):
     TupleOfReview = []
+
+    #Check for login
     isFooterShow=False
     if 'user' in request.session:
         useris = request.session['user']
         isLogin = True
     else:
         return redirect('../member/')
-
     # This is for filter out the place name, and get the range for stars
     MainPlace = rw.objects.filter(typeplace="Happy")
     HI3 = MainPlace.aggregate(Avg('rating'))
-    # print(HI3)
     TOTALREVIEWC = MainPlace.aggregate(Count('contentofreview'))
     if HI3['rating__avg'] is not None:
         AVGGSTARR = range(round(HI3['rating__avg']))
@@ -47,6 +47,8 @@ def reviewindex(request):
         RealBStar = range(5-int(memberreview.rating))
         # print(RealBStar)
         TupleOfReview.append((RealContent,RealGStar,RealName,memberreview.datereview,RealBStar))
+
+    #Post
 
     if request.method=="POST":
         TextArea = request.POST['TextArea']
