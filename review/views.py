@@ -5,8 +5,14 @@ from member import models as m1
 from django.db.models import Avg,Count
 import random
 # Create your views here.
-def reviewindex(request,PlaceID):
+def reviewindex(request):
     TupleOfReview = []
+
+    if request.method=="GET":
+        es = request.GET['placeide']
+        request.session['placeide'] = es
+        request.session.modified = True
+        print('+++++++++'+es)
 
     #Check for login
     isFooterShow=False
@@ -51,6 +57,7 @@ def reviewindex(request,PlaceID):
     #Post
 
     if request.method=="POST":
+        print('in post')
         TextArea = request.POST['TextArea']
         SeperateTextArea = TextArea.split("#")
         TrueTextArea = SeperateTextArea[0]
@@ -62,8 +69,15 @@ def reviewindex(request,PlaceID):
         MemberID = m1.Member.objects.get(idmember=useris[0])
         StarCounts = request.POST['HStarCount']
         rw.objects.create(contentofreview = TrueTextArea,memberid = MemberID,datereview = DateOfReview,idreview = ReviewID,placeid = PlaceID,typeplace = 'Happy',rating = StarCounts,hastable = HastagText)
-        return redirect('/review')
+        print('post func')
 
+        if 'placeide' in request.session:
+            placeide = request.session['placeide']
+            return redirect('/review/?placeide={}'.format(placeide))
+        else:
+            return redirect('/trip')
+
+    print('after post func')
     return render(request,'review/ReviewHome.html',locals())
 
 def create(request):
