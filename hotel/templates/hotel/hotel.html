@@ -4,6 +4,11 @@
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" /> {% endblock %} {% block main_content %}
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.1/jquery.fancybox.min.css" />
+<style>
+.form-group{
+
+}
+</style>
 <div class="container" style="margin-top: 50px">
 
   <div class="row">
@@ -44,14 +49,20 @@
         <!-- 表單頭 -->
         <div>
           
-          <label>飯店名稱:  {{dname}}</label>
-          <label>飯店型態:  {{dtype}}</label>
+          <h2 style="font-size: 2em;
+          padding:0px;
+          line-height: 5vh;
+          color:#414141;
+          font-weight:bold;">{{dname}}</h2>
+          <h4 style="color: gray;
+          opacity: 0.5;
+          font-style: italic;
+          font-size: 1em; text-transform: uppercase;">{{dtype}}</h4>
 
         </div>
         <div class="form-group">
 
-          <label for="hdate">訂房日期</label>
-          <input type="text" name="daterange" id="daterange" class="form-control" value="01/01/2018 - 01/15/2018" id="hdate" />
+          <label for="hdate">訂房日期</label><input type="text" name="daterange" id="daterange" class="form-control" value="01/01/2018 - 01/15/2018" id="hdate" />
         </div>
 
         <div class="form-group">
@@ -70,16 +81,16 @@
 
           <select name="room" id="room">
             <option value="PP">房型</option>
-            <option value="P1">房型:{{dstyle1}}</option>
-            <option value="A">房型:{{dstyle}}</option>
+            <option value="P1">{{dstyle1}} / ${{dprice}}</option>
+            <option value="A">{{dstyle}} / ${{dprice1}}</option>
           
           </select>
-         <select name="price" id="price">
+         <!-- <select name="price" id="price">
             <option value="P1">價格</option>
             <option value="P1">價格:{{dprice}}</option>
             <option value="P2">價格:{{dprice1}}</option>
             
-          </select>
+          </select> -->
 
           <select name="quantity" id="quantity">
             <option value="Q1">數量</option>
@@ -90,6 +101,8 @@
             <option value="Q6">5</option>  
           </select>
           <br>
+          <br>
+    
            
       
        <!-- <script>alert("訂位成功，將有專人跟您聯絡")</script>
@@ -110,9 +123,28 @@
           alert("訂位成功，將有專人跟您聯絡");
           }
           </script>
-          <button type="submit" onclick="ShowToday()">送出資料</button> 
+       
+          <!-- <button type="submit" onclick="ShowToday()">送出資料</button>  -->
+
+        <button type="submit" onclick="ShowToday()" class="btn btn-primary" style="width:100%;margin-top:1%;background-color:#fc642d">
+          <a style="font-size:100%;color:beige;font-family:sans-serif;" width="100% ">
+              送出資料
+          </a>
+        </button>
+
+        <button type="submit"  class="btn btn-primary" style="width:100%;margin-top:1%;background-color:#484848">
+            <a href="/res/booking" style="font-size:100%;color:beige;font-family:sans-serif;" width="100% ">
+                回上一頁
+            </a>
+          </button>
 
 
+
+        <!-- <button type="submit" onclick="ShowToday()" class="btn btn-primary" style="width:100%;margin-top:1%;background-color:#fc642d">
+            <a style="font-size:100%;color:beige;font-family:sans-serif;" width="100% ">
+                送出資料
+            </a>
+          </button> -->
 
 
 
