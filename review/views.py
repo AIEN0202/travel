@@ -1,18 +1,15 @@
 from django.shortcuts import render,redirect
 from django.db import connection
 from .models import Review as rw
+from .models import Attraction as at
+from .models import Hotel as ht
+from .models import Restaurant as rest
 from member import models as m1
 from django.db.models import Avg,Count
 import random
 # Create your views here.
 def reviewindex(request):
     TupleOfReview = []
-
-    if request.method=="GET":
-        es = request.GET['placeide']
-        request.session['placeide'] = es
-        request.session.modified = True
-        print('+++++++++'+es)
 
     #Check for login
     isFooterShow=False
@@ -21,8 +18,28 @@ def reviewindex(request):
         isLogin = True
     else:
         return redirect('../member/')
+
+    #Save data to session
+    if request.method=="GET":
+        pid = request.GET['placeide']
+        request.session['placeide'] = pid
+        request.session.modified = True
+
+    #Judge Where to read database
+    if pid.startswith('3'):
+        CorrectPlace = at.objects.filter(idattraction = pid).get()
+        print(CorrectPlace)
+    elif pid.startswith('5'):
+        CorrectPlace = rest.objects.filter(resid = pid).get()
+    elif pid.startswith('6'):
+        CorrectPlace = ht.objects.filter(id_hotel = pid).get()
+    else:
+        print("False")
+
+    MainPlace = rw.objects.filter(placeid = pid)
+    reviews = rw.objects.filter(placeid = pid).order_by('datereview')
+
     # This is for filter out the place name, and get the range for stars
-    MainPlace = rw.objects.filter(typeplace="Happy")
     HI3 = MainPlace.aggregate(Avg('rating'))
     TOTALREVIEWC = MainPlace.aggregate(Count('contentofreview'))
     if HI3['rating__avg'] is not None:
@@ -32,18 +49,31 @@ def reviewindex(request):
         AVGGSTARR = range(0)
         AVGBSTARR = range(0,5)
     ShowAllHasTag = MainPlace.values('hastable')
-    # print(ShowAllHasTag)
+    print(ShowAllHasTag)
     HasTList = []
-    for showHastab in ShowAllHasTag:
-        if showHastab!=None:
-            HasTList = HasTList + showHastab['hastable'].split(',')
-    print(HasTList)
 
-    # Get review object within the database
-    members = rw.objects.filter(typeplace="Happy").order_by('datereview')
+    for showHastab in ShowAllHasTag:
+        if showHastab['hastable']!=None:
+            HasTList = HasTList + showHastab['hastable'].split(',')
+        else:
+            HasTList = []
+
+    CorrectPlaceName = CorrectPlace.title
+    CorrectPlaceType = CorrectPlace.type
+    CorrectPlacePic = CorrectPlace.imgsrc
+    if CorrectPlace.tel is None:
+        CorrectPlacePhone = "none"
+    else:
+        CorrectPlacePhone = CorrectPlace.tel
+    CorrectPlaceAddr = CorrectPlace.addr
+    CorrectPlaceTime = CorrectPlace.time
+    if CorrectPlace.time is None:
+        CorrectPlaceTime = "Open 24 hours"
+    else:
+        CorrectPlaceTime = CorrectPlace.time
 
     # Using for loop to seperate the items we need.
-    for memberreview in members:
+    for memberreview in reviews:
 
         # memberreview.memberid will return Member object
         AllName = memberreview.memberid.membername.split('/')
