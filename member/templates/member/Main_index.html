@@ -25,7 +25,7 @@
 
 
 <div style="display: none;z-index: 1101!important;max-width: 550px;width: 100%;" id="animatedModal" class="animated-modal">
-    <form class="" action="{% url 'trip:trip' %}" method="post">
+    <form class="" action="{% url 'trip:trip' %}" method="POST">
         {% csrf_token %}
         <div class="card card-body">
             <fieldset>

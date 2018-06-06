@@ -6,6 +6,8 @@ from . import modelsres
 from .modelsres import bookingq
 import datetime
 import random
+from member import member_models as Mbr
+
 # Create your views here.
 def res(request):
     ##用resid抓圖片src
@@ -69,70 +71,77 @@ def booking(request):
         ##用resid抓圖片src
     bk = modelsres.bookingq() #modelsproduct.Product()
     ##從行程day抓id
-    rid = bk.resid('1')
-    aid = bk.atdid('1')
-    hid = bk.hotelid('1')
-    # test = bk.CT(Countryname,country,idCountry,9001)
+#     rid = bk.resid('1')
+#     aid = bk.atdid('1')
+#     hid = bk.hotelid('1')
+#     # test = bk.CT(Countryname,country,idCountry,9001)
     
-    # print(rid)
-    # rid = rid[0]
-##建list 拔/塞id
-        ####reslist
-    newlist=[]
-    for i in rid:
-        newlist.append(i.split('/'))
+#     # print(rid)
+#     # rid = rid[0]
+# ##建list 拔/塞id
+#         ####reslist
+#     newlist=[]
+#     for i in rid:
+#         newlist.append(i.split('/'))
 
-    alist=[]
-    for i in aid:
-        alist.append(i.split('/'))  
+#     alist=[]
+#     for i in aid:
+#         alist.append(i.split('/'))  
 
-    hlist=[]
-    for i in hid:
-        hlist.append(i.split('/'))
+#     hlist=[]
+#     for i in hid:
+#         hlist.append(i.split('/'))
         
-####----------------加項11:30
-    print(alist)
-    print(hlist)
+# ####----------------加項11:30
+#     print(alist)
+#     print(hlist)
 
-    teid="700001"
-    trp = bk.trip(teid)
+    teid = None
+
+    if 'tripid' in request.session:
+        teid = request.session['tripid']
+    else:
+        pass
+    print(teid)
+    # teid="700001"
+    # trp = bk.trip(teid)
     # print(trp)
     # dname=d[0]
     # dtype=d[1]
     # dtel=d[2]
 
-####newlist塞成dictiona
-    reidlist = newlist[0]
+# ####newlist塞成dictiona
+#     reidlist = newlist[0]
 
-    resdictlist = []
+#     resdictlist = []
 
-    for item in reidlist:
-        print(item)
-        d = bk.detail(item)
-        resdictlist.append({'resid':item,'title':d[0]})
-#################################
-#####aid跟---------------------
-    Alist = alist[0]
+#     for item in reidlist:
+#         print(item)
+#         d = bk.detail(item)
+#         resdictlist.append({'resid':item,'title':d[0]})
+# #################################
+# #####aid跟---------------------
+#     Alist = alist[0]
 
-    Adictlist = []
+#     Adictlist = []
 
-    for item in Alist:
-        print(item)
-        d = bk.atd(item)
-        Adictlist.append({'Aid':item,'Atitle':d[0]})
+#     for item in Alist:
+#         print(item)
+#         d = bk.atd(item)
+#         Adictlist.append({'Aid':item,'Atitle':d[0]})
 
-    print(Adictlist)
-####-------------------hid------
-    Hlist = hlist[0]
+#     print(Adictlist)
+# ####-------------------hid------
+#     Hlist = hlist[0]
 
-    Hdictlist = []
+#     Hdictlist = []
 
-    for item in Hlist:
-        print(item)
-        d = bk.Hname(item)
-        Hdictlist.append({'Hid':item,'Htitle':d[0]})
+#     for item in Hlist:
+#         print(item)
+#         d = bk.Hname(item)
+#         Hdictlist.append({'Hid':item,'Htitle':d[0]})
 
-    print(Hdictlist)
+#     print(Hdictlist)
 #####################################
     if 'user' in request.session:
         useris = request.session['user']
@@ -142,8 +151,8 @@ def booking(request):
         print("NO GET")
 
 #######################################
-
-    IALL=bk.itine(uid)
+    # TRIP DATA
+    IALL=bk.itine(uid,teid)
     print(IALL[2])
     tname=IALL[2]
     tday=IALL[3]
@@ -156,80 +165,157 @@ def booking(request):
     fcountry = (bk.country(tcountry)[0])
     farea = (bk.area(tarea)[0])
     print(fcountry)
-##################################################################################################################
-######################################################################################################################
-    cday=2
-    rei=1
-    rea=1
-    hea=1
-    Hdictlist1 = []
-    Adictlist1 = []
-    resdictlist1 = []
-    while cday<=tday:
-        rid2 = bk.resid(cday)
-        aid2 = bk.atdid(cday)
-        hid2 = bk.hotelid(cday)
-        # print("HHH:",rid2,aid2,hid2)
-        cday += 1
-######################################################################################################################
-        newlist1=[]
-        for i in rid2:
-            newlist1.append(i.split('/'))
 
-        alist1=[]
-        for i in aid2:
-            alist1.append(i.split('/'))  
+    sign_data = Mbr.Member()
+    triplist = sign_data.select_all("SELECT * FROM travel.itinerary_day where TripID = %s ;", teid)
+    TOTAL_reslist = []
+    
+    for it in triplist:
+        print(it)
+        day = it[0]        
+        hot = it[1]
+        res = it[2]        
+        attr = it[4]
+        attrlist = []
+        hotlist = []
+        reslist = []
+        print("RES{} HOT{} ATTR{}".format(res,hot,attr))
+        if attr != '':
+            for aitem in attr.split('/'):
+                sel_name_data = Mbr.Member()
+                a_name = sel_name_data.select_one('SELECT title FROM travel.attraction where idAttraction = %s;',aitem)
+                # print('aaaaaaaaaaaaaaaaaaa')
+                # print(a_name[0])
+                # print('aaaaaaaaaaaaaaaaaaa')
+                attrlist.append(a_name[0])
+                attrlist.append({'getid':aitem,'getname':a_name[0]})
+        else:
+            attrlist = []
 
-        hlist1=[]
-        for i in hid2:
-            hlist1.append(i.split('/'))
+        if hot != '':
+            for hitem in hot.split('/'):
+                h_sel_name_data = Mbr.Member()                
+                h_name = h_sel_name_data.select_one('SELECT title FROM travel.hotel where id_hotel = %s;',hitem)
+                # print('hhhhhhhhhhhhhhhhhhhh')
+                # print(h_name[0])
+                # print('hhhhhhhhhhhhhhhhhhhh')
+                # print(h_name[0])
+                hotlist.append(h_name[0])
+                hotlist.append({'getid':hitem,'getname':h_name[0]})
+        else:
+            hotlist = []
+
+        if res != '':
+            for ritem in res.split('/'):
+
+                r_sel_name_data = Mbr.Member()
+                r_name = r_sel_name_data.select_one('SELECT title FROM travel.restaurant where Resid = %s;',ritem)
+                # print('rrrrrrrrrrrrrrrrrr')
+                # print(r_name[0])
+                # print('rrrrrrrrrrrrrrrrrrr')
+                # reslist.append(r_name[0])
+                reslist.append({'getid':ritem,'getname':r_name[0]})
+        else:
+            reslist = []
+
+        TOTAL_reslist.append({'day':day,'attr':attrlist,'hot':hotlist,'res':reslist})
+
+        print(day)
+        print(attr)
+        print(hot)
+        print(res)
+        print('')
+    print(TOTAL_reslist)
+    
+    #--------------------------------------------MARK----------------------------------------------
+# ##################################################################################################################
+# ######################################################################################################################
+#     print('AFTER itine')
+#     cday=1
+#     rei=1
+#     rea=1
+#     hea=1
+#     Hdictlist1 = []
+#     Adictlist1 = []
+#     resdictlist1 = []
+#     print('BEFORE WHILE')
+#     while cday<=tday:
+#         print('AFTER WHILE')
+#         rid2 = bk.resid(cday)
+#         aid2 = bk.atdid(cday)
+#         hid2 = bk.hotelid(cday)
+#         # print("HHH:",rid2,aid2,hid2)
+#         cday += 1
+# ######################################################################################################################
+#         newlist1=[]
+#         for i in rid2:
+#             newlist1.append(i.split('/'))
+
+#         alist1=[]
+#         for i in aid2:
+#             alist1.append(i.split('/'))  
+
+#         hlist1=[]
+#         print('===-----===')
+#         print(hid2)
+#         for i in hid2:
+#             hlist1.append(i.split('/'))
             
-        # print(newlist1,alist1,hlist1)
+#         # print(newlist1,alist1,hlist1)
+#         print('////////////////////////////')
+#         print(newlist1)
+#         print('////////////////////////////')
 
-        ####newlist塞成dictiona
-        reidlist1 = newlist1[0]
+#         ####newlist塞成dictiona
+#         reidlist1 = newlist1[0]
 
-        # resdictlist1 = []
-
-        for item in reidlist1:
-            residc = "resid"+str(rei)
-            # print(residc)
-            titlec = "title"+str(rei)
-            d = bk.detail(item)
-            resdictlist1.append({residc:item,titlec:d[0]})
+#         # resdictlist1 = []
+#         print('=======================')
+#         print(reidlist1)
+#         print('=======================')
+#         for item in reidlist1:
+#             residc = "resid"+str(rei)
+#             # print(residc)
+#             titlec = "title"+str(rei)
+#             d = bk.detail(item)
+#             resdictlist1.append({residc:item,titlec:d[0]})
             
-            rei += 1
-            print(resdictlist1)
-        #####景點###############
-        Alist1 = alist1[0]
+#             rei += 1
+#             print(resdictlist1)
+#         #####景點###############
+#         Alist1 = alist1[0]
 
-        # Adictlist1 = []
+#         # Adictlist1 = []
 
-        for item in Alist1:
-            Aidc = "Aid"+str(rea)
-            # print(hi)
-            Atitlec = "Atitle"+str(rea)
-            d = bk.atd(item)
-            print("hi")
-            Adictlist1.append({Aidc:item,Atitlec:d[0]})
+#         for item in Alist1:
+#             Aidc = "Aid"+str(rea)
+#             # print(hi)
+#             Atitlec = "Atitle"+str(rea)
+#             d = bk.atd(item)
+#             print("hi")
+#             Adictlist1.append({Aidc:item,Atitlec:d[0]})
             
-            rea += 1
-            print(Adictlist1)
-         ##########hotel#####################
-        Hlist1 = hlist1[0]
+#             rea += 1
+#             print(Adictlist1)
+#          ##########hotel#####################
+#         Hlist1 = hlist1[0]
 
-        # Hdictlist1 = []
+#         # Hdictlist1 = []
+#         print("///////")
+#         print(hlist1)
 
-        for item in Hlist1:
-            Hidc = "Hid"+str(hea)
-            # print(hi)
-            Htitlec = "Htitle"+str(hea)
-            d = bk.Hname(item)
-            print("hi")
-            Hdictlist1.append({Hidc:item,Htitlec:d[0]})
+#         for item in Hlist1:
+#             Hidc = "Hid"+str(hea)
+#             # print(hi)
+#             Htitlec = "Htitle"+str(hea)
+#             d = bk.Hname(item)
+#             print("hi")
+#             Hdictlist1.append({Hidc:item,Htitlec:d[0]})
             
-            hea += 1
-            print(Hdictlist1)
+#             hea += 1
+#             print(Hdictlist1)
+
+    #--------------------------------------------MARK----------------------------------------------
 
     return render(request,'res/booking.html',locals())
 

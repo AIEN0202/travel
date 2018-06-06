@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 # from django.core.files.storage import fileSystemStorage
 # from . import modelscreate
 # We need this in order to return Json format
@@ -19,16 +19,27 @@ from django.db.models import Avg
 
 
 def trip(request):
+    print('======================================================')
     context = "the trip page"
     tripid_fromsession = None
     triptotalday = None
     triptotalpanel = None
+
+    useris = None
 
     if 'user' in request.session:
         useris = request.session['user']
         print("GET {}".format(useris))
         isLogin = True
 
+    else:
+        print("NO GET")
+
+    print('post part')
+
+    if request.method == "POST":  
+        print('START POST')
+        
         if_trip_exist = MB.Member()
         trip_day_res = if_trip_exist.select_one('SELECT count(B.idday) FROM travel.itinerary as A, travel.itinerary_day as B where A.TripID = B.TripID and A.idMember = %s;', useris)
         trip_res = if_trip_exist.select_one('SELECT count(TripID) FROM travel.itinerary where idMember = %s;', useris)
@@ -39,27 +50,12 @@ def trip(request):
                 if_trip_exist.excute_sql('delete from travel.itinerary where idMember = %s;', useris)
             else:
                 # print('pass' + trip_res[0] + "/" + trip_day_res[0])
-                pass
+                print('no need dalete')
         else:
-            pass
+            print('is all good')
 
-    else:
-        print("NO GET")
-
-    if 'tripid' in request.session:
-         tripid_fromsession = request.session['tripid']
-    else:
-        pass
-
-    if 'tpday' in request.session:
-         triptotalday = range(2, int(request.session['tpday'])+1)
-         triptotalpanel = range(1, int(request.session['tpday'])+1)
-    else:
-        pass
-
-    if request.method == "POST":
-        tripid = random.randint(700000, 799999)
-        userid = request.session['user']
+        tripid = random.randint(700000, 799999)   
+        userid = request.session['user']   
         tripname = request.POST["tripname"]
         miantrip_country = request.POST["miantrip_country"]
         miantrip_region = request.POST["miantrip_region"]
@@ -102,6 +98,19 @@ def trip(request):
         print(Stylelist)
         print('')
 
+    print('end part')
+
+    if 'tripid' in request.session:
+         tripid_fromsession = request.session['tripid']
+    else:
+        print('NO tripid')
+    
+    if 'tpday' in request.session:
+         triptotalday = range(2, int(request.session['tpday'])+1) 
+         triptotalpanel = range(1, int(request.session['tpday'])+1) 
+    else:
+        print('NO tpday')
+        
     return render(request,'trip/trip.html',locals())
 
 
@@ -112,15 +121,32 @@ def trippost(request):
     if request.method == "POST":
         if 'tpday' in request.session:
             totalday = int(request.session['tpday'])+1
+            print(totalday)
             for days in range(1,totalday):
                 print('day{}'.format(days))
                 attrname = 'i_daysp'+str(days)
                 hotelname = 'i_daysh'+str(days)
                 resname = 'i_daysr'+str(days)
-                get_attr= request.POST[attrname][:-2]
-                get_hot= request.POST[hotelname][:-2]
-                get_res= request.POST[resname][:-2]
+                get_attr= request.POST[attrname] 
+                get_hot= request.POST[hotelname]
+                get_res= request.POST[resname]
                 tripid = request.session['tripid']
+
+                if get_attr is None:
+                    get_attr = ''
+                else:
+                    get_attr= request.POST[attrname][:-1]
+
+                if get_hot is None:
+                    get_hot = ''
+                else:
+                    get_hot= request.POST[hotelname][:-1]
+
+                if get_res is None:
+                    get_res = ''
+                else:
+                    get_res= request.POST[resname][:-1]
+
                 print(tripid)
                 print(get_attr)
                 print(get_hot)
@@ -129,6 +155,7 @@ def trippost(request):
                 trip_data = MB.Member()
                 trip_data.excute_sql("insert into itinerary_day values(%s, %s, %s, %s, %s);", days, get_hot, get_res, tripid, get_attr)
 
+            return redirect('../../res/booking')
         else:
             pass
 
