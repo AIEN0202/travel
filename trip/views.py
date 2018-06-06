@@ -19,6 +19,8 @@ from .models import Attraction as attr
 def trip(request):
     context = "the trip page"
     tripid_fromsession = None
+    triptotalday = None
+    triptotalpanel = None
 
     if 'user' in request.session:
         useris = request.session['user']
@@ -46,6 +48,12 @@ def trip(request):
          tripid_fromsession = request.session['tripid']
     else:
         pass
+    
+    if 'tpday' in request.session:
+         triptotalday = range(2, int(request.session['tpday'])+1) 
+         triptotalpanel = range(1, int(request.session['tpday'])+1) 
+    else:
+        pass
 
     if request.method == "POST":  
         tripid = random.randint(700000, 799999)   
@@ -68,7 +76,12 @@ def trip(request):
         request.session['tripid'] = tripid
         request.session.modified = True
 
+        request.session['tpday'] = tripday
+        request.session.modified = True
+
         tripid_fromsession = request.session['tripid']
+        triptotalday = range(2, int(request.session['tpday'])+1) 
+        triptotalpanel = range(1, int(request.session['tpday'])+1) 
 
         print(tripname)
         print('')
@@ -89,6 +102,42 @@ def trip(request):
         
     return render(request,'trip/trip.html',locals())
 
+
+def trippost(request):
+    # request.session.clear()
+    # isFooterShow = True
+    # print("XDDDD")
+    if request.method == "POST":
+        if 'tpday' in request.session:
+            totalday = int(request.session['tpday'])+1
+            for days in range(1,totalday):
+                print('day{}'.format(days))
+                attrname = 'i_daysp'+str(days)
+                hotelname = 'i_daysh'+str(days)
+                resname = 'i_daysr'+str(days)
+                get_attr= request.POST[attrname][:-2] 
+                get_hot= request.POST[hotelname][:-2]
+                get_res= request.POST[resname][:-2]
+                tripid = request.session['tripid']
+                print(tripid)
+                print(get_attr) 
+                print(get_hot) 
+                print(get_res) 
+                print('')
+                trip_data = MB.Member()
+                trip_data.excute_sql("insert into itinerary_day values(%s, %s, %s, %s, %s);", days, get_hot, get_res, tripid, get_attr)
+
+        else:
+            pass
+
+    
+
+
+         
+
+    return render(request, 'trip/trip.html', locals())
+
+
 #Create a function for Ajax to call later
 def Wchange(request):
     print("HI")
@@ -105,7 +154,13 @@ def Wchange(request):
     elif CheckForSelect == "Hotel":
         Info = hotel.objects.filter(type=CurrentFilter)
     else:
-        print("Faile")
+        if CheckForSelect == "Attraction":
+            Info = attr.objects.all()
+        elif CheckForSelect == "Restaurant":
+            Info = rest.objects.all()
+        elif CheckForSelect == "Hotel":
+            Info = hotel.objects.all()
+        
     #Loop through the Query Objects
 
     for x in Info:

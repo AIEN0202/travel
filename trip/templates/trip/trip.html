@@ -22,4 +22,31 @@
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script src="{%static 'scripts/trip.js'%}"></script>
+<script>
+  $().ready(function(){
+    
+  });
+
+  $('#send').click(function(){
+      var daycount = $('.tablinks').length
+      
+
+      for (i = 1; i <= daycount; i++) {
+        var atraction = '#daysp'+i.toString()
+        var hotel = '#daysr'+i.toString()
+        var res = '#daysh'+i.toString()
+        var inputatraction = '#i_daysp'+i.toString()
+        var inputhotel = '#i_daysr'+i.toString()
+        var inputres = '#i_daysh'+i.toString()
+        console.log($(atraction).text())
+        $(inputatraction).val($(atraction).text())
+        $(inputhotel).val($(hotel).text())
+        $(inputres).val($(res).text())
+        
+      }
+      alert(daycount);
+      document.getElementById("leftform").submit();
+      
+    })
+</script>
 {% endblock %}
