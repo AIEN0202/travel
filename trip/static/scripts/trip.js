@@ -190,7 +190,8 @@ $('.WFilterbyName').click(function(){
       var smallPic = data[i]['Img']
     }
     else{
-      var smallPic = ''
+      // var smallPic = '../static/images/null.jpg'
+      var smallPic = 'xxx'
     }
 //add null pic
 
@@ -217,10 +218,11 @@ $('.WFilterbyName').click(function(){
       PickADate.append(DateOption)
       }
 
-    div2.append(PiCTitle,PiCRate,PickADate)
+    // div2.append(PiCTitle,PiCRate,PickADate)
     // LinktoR.append(div1,div2)
-    PiCTitle.append(LinktoR) // link pictitle to review?
-    PicContent.append(LinktoR,div2)
+    LinktoR.append(PiCTitle) // link pictitle to review?
+    div2.append(LinktoR,PiCRate,PickADate)
+    PicContent.append(div1,div2)
     FinalR.append(PicContent)
     $('#WeStartHere').append(FinalR)
   }
@@ -267,9 +269,12 @@ function BTNclick(style_t){
 
     if (data[i]['Img'] != ""){
       var smallPic = data[i]['Img']
+      console.log(smallPic)
     }
+
     else{
-      var smallPic = ''
+      var smallPic = '../static/images/null.jpg'
+      console.log('NULL IMG'+smallPic)
     }
 //add null pic
 
@@ -295,12 +300,11 @@ function BTNclick(style_t){
       PickADate.append(DateOption)
       }
 
-    div2.append(PiCTitle,PiCRate,PickADate)
-    // LinktoR.append(div1,div2)
-    PiCTitle.append(LinktoR) // link pictitle to review?
-    PicContent.append(LinktoR,div2)
-    FinalR.append(PicContent)
-    $('#WeStartHere').append(FinalR)
+      PiCTitle.append(LinktoR) // link pictitle to review?
+      div2.append(PiCTitle,PiCRate,PickADate)
+      PicContent.append(div1,div2)
+      FinalR.append(PicContent)
+      $('#WeStartHere').append(FinalR)
   }
   }
 });
