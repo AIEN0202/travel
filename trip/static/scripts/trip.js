@@ -173,24 +173,11 @@ $('.WFilterbyName').click(function(){
     console.log(FinalR)
     var PicContent = $(document.createElement('div')).addClass('content')
 
-<<<<<<< HEAD
-    if (data[i]['Img'] != ""){
-      var smallPic = data[i]['Img']
-    }
-    else{
-      var smallPic = ''
-    }
-//add null pic
-
-    PicContent.css('background-image',"url("+smallPic+")")
-    var linktor = '/review/' + data[i]['ID']
-    console.log(data[i]['ID'])
-=======
     // if (data[i]['Img'] != ""){
     //   var smallPic = data[i]['Img']
     // }
     // else{
-    //   var smallPic = '' 
+    //   var smallPic = ''
     // }
 //add null pic
 
@@ -198,7 +185,6 @@ $('.WFilterbyName').click(function(){
     var linkltor = '/review/' + data[i]['ID']
     console.log(linkltor)
     console.log('XDDDDDDDDDDDD')
->>>>>>> dfebc02bc4369713dae4fd80b8b4552eb2c54bc2
     var LinktoR = $(document.createElement('a')).attr('href',linktor).text(data[i]['Name'])
     var div1 = $(document.createElement('div')).addClass('content-overlay')
     var div2 = $(document.createElement('div')).addClass("content-details fadeIn-bottom")
@@ -277,12 +263,6 @@ function BTNclick(style_t){
 
     PicContent.css('background-image',"url("+smallPic+")")
     var linktor = '/review/?placeide=' + data[i]['Id']
-<<<<<<< HEAD
-=======
-    // console.log("=====================================================================")
-    // console.log(data[i]['Id'])
-    // console.log("=====================================================================")
->>>>>>> dfebc02bc4369713dae4fd80b8b4552eb2c54bc2
     var LinktoR = $(document.createElement('a')).attr('href',linktor).text(data[i]['Name'])
     var div1 = $(document.createElement('div')).addClass('content-overlay')
     var div2 = $(document.createElement('div')).addClass("content-details fadeIn-bottom")

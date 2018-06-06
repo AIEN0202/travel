@@ -47,9 +47,9 @@ def trip(request):
     else:
         pass
 
-    if request.method == "POST":  
-        tripid = random.randint(700000, 799999)   
-        userid = request.session['user']   
+    if request.method == "POST":
+        tripid = random.randint(700000, 799999)
+        userid = request.session['user']
         tripname = request.POST["tripname"]
         miantrip_country = request.POST["miantrip_country"]
         miantrip_region = request.POST["miantrip_region"]
@@ -86,7 +86,7 @@ def trip(request):
         print('')
         print(Stylelist)
         print('')
-        
+
     return render(request,'trip/trip.html',locals())
 
 #Create a function for Ajax to call later
@@ -121,10 +121,10 @@ def Wchange(request):
             Idlala = x.resid
         elif CheckForSelect == "Hotel":
             Idlala = x.id_hotel
-        
+
         ImDict['Id'] = Idlala
         print(ImDict['Id'])
-        
+
         #Pass in the data to list
         ImList.append(ImDict)
 
