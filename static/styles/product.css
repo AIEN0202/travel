@@ -7,16 +7,16 @@
  */
 
 .site-header {
-  background-color: rgba(0, 0, 0, .85);
+  background-color: #ffffff;
   -webkit-backdrop-filter: saturate(180%) blur(20px);
   backdrop-filter: saturate(180%) blur(20px);
 }
 .site-header a {
-  color: #999;
+  color: #484848;
   transition: ease-in-out color .15s;
 }
 .site-header a:hover {
-  color: #fff;
+  color: #484848;
   text-decoration: none;
 }
 
