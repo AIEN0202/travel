@@ -54,7 +54,10 @@ def reviewindex(request):
 
     for showHastab in ShowAllHasTag:
         if showHastab['hastable']!=None:
-            HasTList = HasTList + showHastab['hastable'].split(',')
+            if showHastab['hastable'] not in HasTList:
+                HasTList = HasTList + showHastab['hastable'].split(',')
+            else:
+                pass
         else:
             HasTList = []
 
