@@ -74,7 +74,12 @@ def Main_index(request):
     citylist = get_city_data.select_all("SELECT * FROM travel.country")
 
     if 'user' in request.session:
-        useris = request.session['user']
+        mem_name = Mbr.Member()
+        
+        memid = request.session['user']
+        res = mem_name.select_one(
+            "select Membername from travel.member where idMember = %s ", memid)
+        useris = res[0]
         print("GET {}".format(useris))
         isLogin = True
     else:

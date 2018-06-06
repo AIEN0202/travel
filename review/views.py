@@ -77,7 +77,7 @@ def reviewindex(request):
         CorrectPlacePhone = CorrectPlace.tel
     CorrectPlaceAddr = CorrectPlace.addr
     CorrectPlaceTime = CorrectPlace.time
-    if CorrectPlace.time is None:
+    if CorrectPlace.time is '':
         CorrectPlaceTime = "Open 24 hours"
     else:
         CorrectPlaceTime = CorrectPlace.time
