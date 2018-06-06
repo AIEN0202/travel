@@ -30,6 +30,7 @@ def signup(request):
         sign_data = Mbr.Member()
         sign_data.excute_sql("insert into travel.member (idMember, Membername, MemberEmail, MemberPassword, MemberBday, MemberGender, MemberidCountry, MemberHobby) values(%s, %s, %s, %s, %s, %s, %s, %s)",
                              memberid, (lastname + "/" + firstname), email, pwd, birthday, gender, country, checkstr)
+        return redirect('../member/')
         # print(lastname + "/" +firstname+ "/" +email+ "/" +birthday+ "/" +country+ "/" +region+ "/" +gender)
         # print(check)
         # print(type(check))
@@ -79,7 +80,7 @@ def Main_index(request):
         memid = request.session['user']
         res = mem_name.select_one(
             "select Membername from travel.member where idMember = %s ", memid)
-        useris = res[0]
+        useris = res[0].split('/')[1]
         print("GET {}".format(useris))
         isLogin = True
     else:
