@@ -2,24 +2,28 @@
 {% load static %}
 <div class="tab" id="tabContainer">
     <button class="tablinks active" onclick="openDay(event, 'day1')">Day1</button>
+    {% for x in triptotalday %}
+    <!-- 
     <button class="tablinks" onclick="openDay(event, 'day2')">Day2</button>
     <button class="tablinks" onclick="openDay(event, 'day3')">Day3</button>
     <button class="tablinks" onclick="openDay(event, 'day4')">Day4</button>
-    <button class="tablinks" onclick="openDay(event, 'day5')">Day5</button>
+    <button class="tablinks" onclick="openDay(event, 'day5')">Day5</button> -->
+    <button class="tablinks" onclick="openDay(event, 'day{{x}}')">day{{x}}</button>
+    {% endfor %}
 </div>
 
 <!-- Tab content -->
-<div id="day1" class="daytab">
-    
+<!-- <div id="day1" class="daytab">
+
     <button class="accordion">景點</button>
     <div class="panel">
-        <ul id="sp1" class="sortable"> 
-                <li class="ui-state-default">
-                    <div class='delli'>x</div>
-                </li>
+        <ul id="sp1" class="sortable">
+            <li class="ui-state-default">
+                <div class='delli'>x</div>
+            </li>
         </ul>
     </div>
-    <span ></span>
+    <span></span>
     <button class="accordion">餐飲</button>
     <div class="panel">
         <ul id="sr1" class="sortable">
@@ -29,77 +33,105 @@
     <div class="panel">
         <ul id="sh1">
         </ul>
-    </div> 
+    </div>
 </div>
 <div id="day2" class="daytab">
-        <button class="accordion">景點</button>
-        <div class="panel">
-            <ul id="sp2" class="sortable">
-            </ul>
-        </div>
-        <button class="accordion">餐飲</button>
-        <div class="panel">
-            <ul id="sr2" class="sortable">
-            </ul>
-        </div>
-        <button class="accordion">住宿</button>
-        <div class="panel">
-            <ul id="sh2">
-            </ul>
-        </div>
+    <button class="accordion">景點</button>
+    <div class="panel">
+        <ul id="sp2" class="sortable">
+        </ul>
     </div>
+    <button class="accordion">餐飲</button>
+    <div class="panel">
+        <ul id="sr2" class="sortable">
+        </ul>
+    </div>
+    <button class="accordion">住宿</button>
+    <div class="panel">
+        <ul id="sh2">
+        </ul>
+    </div>
+</div>
 <div id="day3" class="daytab">
-            <button class="accordion">景點</button>
+    <button class="accordion">景點</button>
+    <div class="panel">
+        <ul id="sp3" class="sortable">
+        </ul>
+    </div>
+    <button class="accordion">餐飲</button>
+    <div class="panel">
+        <ul id="sr3" class="sortable">
+        </ul>
+    </div>
+    <button class="accordion">住宿</button>
+    <div class="panel">
+        <ul id="sh3">
+        </ul>
+    </div>
+</div>
+<div id="day4" class="daytab">
+    <button class="accordion">景點</button>
+    <div class="panel">
+        <ul id="sp4" class="sortable">
+        </ul>
+    </div>
+    <button class="accordion">餐飲</button>
+    <div class="panel">
+        <ul id="sr4" class="sortable">
+        </ul>
+    </div>
+    <button class="accordion">住宿</button>
+    <div class="panel">
+        <ul id="sh4">
+        </ul>
+    </div>
+</div>
+<div id="day5" class="daytab">
+    <button class="accordion">景點</button>
+    <div class="panel">
+        <ul id="sp5" class="sortable">
+        </ul>
+    </div>
+    <button class="accordion">餐飲</button>
+    <div class="panel">
+        <ul id="sr5" class="sortable">
+        </ul>
+    </div>
+    <button class="accordion">住宿</button>
+    <div class="panel">
+        <ul id="sh5">
+        </ul>
+    </div>
+</div> -->
+
+
+
+<form method="POST" action="{% url 'trip:trippost' %}" id="leftform">
+    {% for item in triptotalpanel %}
+    {% csrf_token %}
+    <input type="hidden" id="i_daysp{{item}}" name="i_daysp{{item}}" value="">
+    <input type="hidden" id="i_daysr{{item}}" name="i_daysr{{item}}" value="">
+    <input type="hidden" id="i_daysh{{item}}" name="i_daysh{{item}}" value="">
+    <span id="daysp{{item}}" name="daysp{{item}}" style="display: none"></span>
+    <span id="daysr{{item}}" name="daysr{{item}}" style="display: none"></span>
+    <span id="daysh{{item}}" name="daysh{{item}}" style="display: none"></span>
+    <div id="day{{item}}" class="daytab">
+            <button class="accordion" type="button">景點</button>
             <div class="panel">
-                <ul id="sp3" class="sortable">
+                <ul id="sp{{item}}" class="sortable">
                 </ul>
             </div>
-            <button class="accordion">餐飲</button>
+            <button class="accordion" type="button">餐飲</button>
             <div class="panel">
-                <ul id="sr3" class="sortable">
+                <ul id="sr{{item}}" class="sortable">
                 </ul>
             </div>
-            <button class="accordion">住宿</button>
+            <button class="accordion" type="button">住宿</button>
             <div class="panel">
-                <ul id="sh3">
+                <ul id="sh{{item}}">
                 </ul>
             </div>
         </div>
-        <div id="day4" class="daytab">
-                <button class="accordion">景點</button>
-                <div class="panel">
-                    <ul id="sp4" class="sortable">
-                    </ul>
-                </div>
-                <button class="accordion">餐飲</button>
-                <div class="panel">
-                    <ul id="sr4" class="sortable">
-                    </ul>
-                </div>
-                <button class="accordion">住宿</button>
-                <div class="panel">
-                    <ul id="sh4">
-                    </ul>
-                </div>
-            </div>
-            <div id="day5" class="daytab">
-                    <button class="accordion">景點</button>
-                    <div class="panel">
-                        <ul id="sp5" class="sortable">
-                        </ul>
-                    </div>
-                    <button class="accordion">餐飲</button>
-                    <div class="panel">
-                        <ul id="sr5" class="sortable">
-                        </ul>
-                    </div>
-                    <button class="accordion">住宿</button>
-                    <div class="panel">
-                        <ul id="sh5">
-                        </ul>
-                    </div>
-            </div>
-        <form method="post" action="">
-            {% csrf_token %}
-            <button type="submit" id="send">出發</button>
-        </form>
+        {% endfor %}
+    <button type="button" id="send">出發</button>
+</form>

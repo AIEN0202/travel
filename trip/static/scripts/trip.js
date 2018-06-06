@@ -62,6 +62,8 @@ $(document).ready(function () {
     placeholder: "ui-state-highlight"
   });
   $(".sortable").disableSelection();
+  
+  BTNclick('Shopping');
 
 });
 
@@ -125,19 +127,30 @@ for (var i = 0; i < btns.length; i++) {
   //   // var sorttitle=("content-title").text(data[i]['RestName']);
   // });
   $('#WeStartHere').on('change','.selector',function(){
-    console.log($(this).val())  //date
-    console.log($(this).attr('name')) //placename
-    Hi = '#sp'+$(this).val()
-    console.log(typeof (Hi))
-    console.log(Hi)
+    if ($('#lalala').text() == "A"){
+      var Hi = '#sp'+$(this).val()
+      var Hi2 = '#daysp'+$(this).val()
+    }
+    else if ($('#lalala').text() == "H"){
+      var Hi = "#sh"+$(this).val()
+      var Hi2 = "#daysh"+$(this).val()
+    }
+    else if ($('#lalala').text() == "R"){
+      var Hi = "#sr"+$(this).val()
+      var Hi2 = "#daysr"+$(this).val()
+    }
+    console.log($(this).closest('select').attr('id'))
     // $(Hi).append($(this).attr('name'))
     $(Hi).append($(document.createElement('li')).addClass('ui-state-default').text($(this).attr('name')).append($(document.createElement('div')).addClass('delli').text("x")));
     $(".delli").on("click", function () {
       $(this).closest("li").remove();
     });
+    $(Hi2).append($(this).closest('select').attr('id')+"/")
+
   })
 
 //Willy try Code
+
 $('.WFilterbyName').click(function(){
   var CurrentState = $(this).text();
   console.log(CurrentState)
@@ -173,6 +186,7 @@ $('.WFilterbyName').click(function(){
     console.log(FinalR)
     var PicContent = $(document.createElement('div')).addClass('content')
 
+<<<<<<< HEAD
     // if (data[i]['Img'] != ""){
     //   var smallPic = data[i]['Img']
     // }
@@ -185,6 +199,19 @@ $('.WFilterbyName').click(function(){
     var linkltor = '/review/' + data[i]['ID']
     console.log(linkltor)
     console.log('XDDDDDDDDDDDD')
+=======
+    if (data[i]['Img'] != ""){
+      var smallPic = data[i]['Img']
+    }
+    else{
+      var smallPic = ''
+    }
+//add null pic
+
+    PicContent.css('background-image',"url("+smallPic+")")
+    var linktor = '/review/' + data[i]['ID']
+    console.log(data[i]['ID'])
+>>>>>>> 92f52beea03ae4eaa9ba07dab38ed0c66cb44a36
     var LinktoR = $(document.createElement('a')).attr('href',linktor).text(data[i]['Name'])
     var div1 = $(document.createElement('div')).addClass('content-overlay')
     var div2 = $(document.createElement('div')).addClass("content-details fadeIn-bottom")
@@ -222,17 +249,17 @@ function BTNclick(style_t){
   var CurrentState = style_t;
   console.log(typeof(style_t))
   if ($('#lalala').text() == "A"){
-    var AppendIDCheck = '#sp'
+    // var AppendIDCheck = '#sp'
     var AppendID = 'idAttraction'
     var AppendSelect = 'Attraction'
   }
   else if ($('#lalala').text() == "H"){
-    var AppendIDCheck = "#sh"
+    // var AppendIDCheck = "#sh"
     var AppendID = 'id_hotel'
     var AppendSelect = 'Hotel'
   }
   else if ($('#lalala').text() == "R"){
-    var AppendIDCheck = "#sr"
+    // var AppendIDCheck = "#sr"
     var AppendID = 'Resid'
     var AppendSelect = 'Restaurant'
   }
@@ -269,7 +296,7 @@ function BTNclick(style_t){
     var PiCTitle = $(document.createElement('h3')).addClass("content-title").html(LinktoR)
     var PiCRate = $(document.createElement('p')).addClass('content-text').text('★★★★☆')
     //adding selector
-    var PickADate= $(document.createElement('select')).addClass('selector').attr('name',data[i]['Name'])
+    var PickADate= $(document.createElement('select')).addClass('selector').attr('name',data[i]['Name']).attr('id',data[i]['Id'])
     // var PickDate = $(document.createElement('option')).text('Hi')
     // PickADate.append(PickDate)
     var DfOption=$(document.createElement('option'));
