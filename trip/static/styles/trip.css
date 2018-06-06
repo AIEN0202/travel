@@ -4,9 +4,10 @@
 
 #send {
   background-color: #484848;
-  border-radius: 12px;
+  /* border-radius: 12px; */
   border: none;
   color: white;
+  width: 335px;
   padding: 8px 60px;
   text-align: center;
   font-size: 16px;
@@ -22,7 +23,7 @@
 /* Style the tab */
 .tab {
     overflow: hidden;
-    border: 5px solid #fff
+    /* border: 5px solid white; */
     background-color: #fff;
 }
 
@@ -33,8 +34,11 @@
     border: none;
     outline: none;
     cursor: pointer;
-    padding: 14px 16px;
+    padding: 10px 10px;
+    color: #484848;
+    font-weight: bolder;
     transition: 0.3s;
+    text-transform: uppercase;
 }
 
 /* Change background color of buttons on hover */
@@ -64,7 +68,7 @@
     width: 100%;
     text-align: left;    
     border: none;
-    border-bottom: #ffffff 1em solid;
+    /* border-bottom: #ffffff 1em solid; */
 
     outline: none;
     transition: 0.4s;
@@ -86,8 +90,15 @@
 /* sortable */
 .ui-state-default{
   list-style: none;
-  padding: 5px 0px
+  color: #484848;
+  padding: 0.5em 1em 0.5em 2.2em;
 }
+.ui-state-default:hover { 
+  list-style: square inside;
+  padding: 0.5em 1em;
+
+}
+
 #sortable { list-style-type: none; margin: 0; padding: 0; width: 60%; }
   #sortable li { margin: 0 5px 5px 5px; padding: 5px; font-size: 1.2em; height: 1.5em; }
   html>body #sortable li { height: 1.5em; line-height: 1.2em; }
@@ -160,13 +171,14 @@
     margin: auto;
       /* crop */
     /* width: 100px; */
-    height: 250px;
+    height: 300px;
     background-position: center;
     background-repeat: no-repeat;
+    background-size: cover;
     /* crop */
     overflow: hidden;
     background-color: white;
-    padding: 10px;
+    padding: 20px;
   }
 
   .content .content-overlay {
@@ -204,8 +216,8 @@
   .content-details {
     position: absolute;
     text-align: center;
-    /* padding-left: 1em;
-    padding-right: 1em; */
+    padding-left: 1em;
+    padding-right: 1em;
     width: 100%;
     top: 50%;
     left: 50%;

@@ -219,7 +219,7 @@ $('.WFilterbyName').click(function(){
 
     for (n = 1; n <= 5;n++){
       var DateOption=$(document.createElement('option')).attr("value",n);
-      DateOption.text("Day"+n)
+      DateOption.text("DAY"+n)
       // console.log(typeof DateOption)
       PickADate.append(DateOption)
       }
@@ -303,7 +303,7 @@ function BTNclick(style_t){
     console.log(data[i]['GetTpday'])
     for (n = 1; n <= data[i]['GetTpday'];n++){
       var DateOption=$(document.createElement('option')).attr("value",n);
-      DateOption.text("Day"+n)
+      DateOption.text("DAY"+n)
       // console.log(typeof DateOption)
       PickADate.append(DateOption)
       }
