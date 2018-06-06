@@ -8,6 +8,7 @@
   width:80%;
   height:auto;
 }
+
 /* Slideshow container */
 .slideshow-container {
   max-width: 50%;
@@ -79,7 +80,7 @@
   margin-top:5px;
 }
 .Styleofsmallparagraph{
-  font-size:5px;
+  font-size:14px!important;
   color:#414141;
 }
 .StyleofHashTags{
@@ -103,7 +104,7 @@
 .popover{
     width:200px;
     height:180px;
-    left: 210px !important;
+    left: 50px !important;
 }
 .PopoverTotoalreviews{text-align: center;margin-left:50px;margin-top:5px;}
 /* This is the part for user to rate and comment */

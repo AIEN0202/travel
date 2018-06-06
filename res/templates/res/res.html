@@ -1,4 +1,5 @@
 {% extends 'master.html' %} {% load static %} {% block style_part %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.1/jquery.fancybox.min.css" />
 <style>
   .tile-img {
     padding-bottom: 100%;
@@ -6,6 +7,43 @@
     background-position: center;
     background-color: #ddd
   }
+
+  /* Start state */
+.animated-modal {
+  max-width: 550px;
+  border-radius: 4px;
+  overflow: hidden;
+  
+  transform: translateY(-50px);
+  transition: all .7s;
+}
+
+.animated-modal h2,
+.animated-modal p {
+  transform: translateY(-50px);
+  opacity: 0;
+  
+  transition-property: transform, opacity;
+  transition-duration: .4s;
+}
+
+/* Final state */
+.fancybox-slide--current .animated-modal,
+.fancybox-slide--current .animated-modal h2,
+.fancybox-slide--current .animated-modal p {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* Reveal content with different delays */
+.fancybox-slide--current .animated-modal h2 {
+  transition-delay: .1s;
+}
+
+.fancybox-slide--current .animated-modal p {
+  transition-delay: .3s;
+}
+
 </style>
 {% endblock %} {% block main_content %}
 
@@ -13,8 +51,8 @@
 <!-- <body> -->
 <div class="container" style="border:3px black solid;border-radius:10px;height:60px;background-color:black;">
   <div class="row">
-    <div class="col-sm" style="background-color:white;width:300px;height:50px;text-align:center;line-height:50px;font-size:200%">
-      res
+    <div class="col-sm" style="background-color:white;width:300px;height:50px;text-align:center;line-height:40px;font-size:200%">
+      <a href="/res/booking" class="btn btn-primary">Itinerary_Day</a>
     </div>
 
   </div>
@@ -81,17 +119,17 @@
       </div>
 
 
-      <form method="POST">
+      <form method="POST" id="myform">
         {% csrf_token %}
         <div class="form-row">
           <div class="form-group " style="margin-top:10px">
-            <label for="inputEmail4">訂位人姓名{{resid}}</label>
-            <input type="text" class="form-control" id="uname" name="uname" placeholder="name">
+            <label for="inputEmail4">訂位人姓名</label>
+            <input type="text" class="form-control" id="uiname" name="uiname" placeholder="name">
           </div>
         </div>
         <div class="form-group">
           <label for="inputAddress">聯絡人電話</label>
-          <input type="number" class="form-control" id="tel" name="tel" placeholder="0977452454">
+          <input type="number" class="form-control" id="uitel" name="uitel" placeholder="tel">
         </div>
         <div class="form-group">
           <label for="inputAddress2">訂位日期</label>
@@ -101,15 +139,34 @@
 
 
         <button type="submit" class="btn btn-primary">
-          <a style="font-size:150%;color:beige;font-family:sans-serif;img src='{% static 'images/bkkk.png' %}'" width="70px ">訂位</a>
+          <a style="font-size:100%;color:beige;font-family:sans-serif;" width="70px ">
+            訂位
+          </a>
         </button>
+        <a data-fancybox data-animation-duration="700" data-src="#animatedModal" href="javascript:;" class="btn btn-primary">看訂單資料</a>
+        <!-- <a id="fkbtn" data-fancybox data-animation-duration="700" data-src="#animatedModal" href="#" class="btn btn-primary">Open demo</a> -->
+        <!-- <a id="fkbtn" data-fancybox data-animation-duration="700" data-src="#animatedModal" href="#" class="btn btn-primary">訂位</a> -->
       </form>
 
 
       <div "form-row " style="border:3px black solid;border-radius:10px;height:60px;background-color:white;margin-top:10px ">
         <div style="background-color:white;height:50px;text-align:center;line-height:50px;font-size:1px ">ver0.01</div>
       </div>
+      <!-- ------------ -->
+      <p class="mb-0">
 
+      </p>
+    
+      
+      <div style="display: none;" id="animatedModal" class="animated-modal">
+        <h2>訂單成功:</h2>
+        <p>訂單編號:{{oid}}</p>
+        <p>用餐人數:{{ters}}</p>
+        <p>餐廳電話:{{dtel}}</p>
+        <p>訂餐時間:{{BookingDate}}</p>
+
+      </div>
+            <!-- ------------ -->
     </div>
   </div>
 </div>
@@ -131,8 +188,8 @@
                     <div class="collapse multi-collapse" id="multiCollapseExample1">
                       <div class="card card-body" style="font-size: 40px;font: 1em sans-serif;">
                           店名:{{dname}}<br>
-                          類型{{dtype}}<br>
-                          電話{{dtel}}<br>
+                          類型:{{dtype}}<br>
+                          電話:{{dtel}}<br>
                       </div>
                     </div>
                   </div>
@@ -171,4 +228,11 @@
 <script src="//code.jquery.com/jquery-3.3.1.min.js "></script>
 
 <link rel="stylesheet " href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.5/jquery.fancybox.min.css " />
-<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.5/jquery.fancybox.min.js "></script> {% endblock %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.5/jquery.fancybox.min.js "></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.1/jquery.fancybox.min.js"></script>
+<script>
+  // $('#fkbtn').click(function(){
+  //   document.getElementById("myform").submit();
+  // })
+</script>
+ {% endblock %}
