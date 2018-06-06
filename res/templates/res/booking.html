@@ -1,17 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <title>訂位成功</title>
-</head>
-<body>
+{% extends 'master.html' %} {% load static %} {% block style_part %}
+<style>
+  .tile-img {
+    padding-bottom: 100%;
+    background-size: cover;
+    background-position: center;
+    background-color: #ddd
+  }
+</style>
+{% endblock %} {% block main_content %}
+<div class="position-relative">
+    <h1 style="background-image: url({% static 'images/titimg2.jpg' %}); text-align: center;padding: 20px;color: white; background-repeat: no-repeat;
+    background-attachment: fixed;background-position: center;background-size: cover;">行程資訊</h1>
+    <div class="col-md-5 mx-auto" style="padding-bottom: 0px!important;margin-bottom: 0px!important;margin-top: 20px;">
+        <!-- <hr class="myhr">  -->
+
         <div class="container" style="border:3px black solid;border-radius:10px;height:60px;background-color:black;">
                 <div class="row">
                   <div class="col-sm" style="background-color:white;width:300px;height:50px;text-align:center;line-height:50px;font-size:200%">
-                    res
                   </div>
 
                 </div>
@@ -21,29 +26,34 @@
               <div class="container" style="border:1px black solid;border-radius:10px;height:60px;background-color:black;">
                     <div class="row">
                       <div class="col-9" style="font-family:monospace;background-color:white;width:300px;height:50px;text-align:left;line-height:50px;font-size:200%">
-                        訂單詳細資訊
+                        旅遊詳細資訊
                       </div>
 
-                      <div class="col-3" style="font-family:monospace;background-color:white;width:300px;height:50px;text-align:left;line-height:50px;font-size:200%">
-                            訂單編號
+                      <div class="col-3" style="font-family:monospace;background-color:white;width:300px;height:50px;text-align:left;line-height:50px;font-size:100%">
+                            會員編號:{{uid}}
                           </div>
-    <!-- --------------------------------------------- -->
+ 
+ 
+                          <!-- --------------------------------------------- -->
+
+                          <form method="POST">
+                              {% csrf_token %}
 <table class="table table-bordered table-dark">
   <thead>
     <tr>
-      <th scope="col">#</th>
-      <th scope="col">餐廳名稱</th>
-      <th scope="col">訂位人數</th>
-      <th scope="col">訂餐時間</th>
-      <th scope="col">聯絡人電話</th>
+      <th scope="col">行程:{{tname}}</th>
+      <th scope="col">國家:{{fcountry}}</th>
+      <th scope="col">區域:{{farea}}</th>
+      <th scope="col">天數:{{tday}}</th>
+      <th scope="col">出發日:{{tdate}}</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th scope="row">#</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
+      <th scope="row">旅行人數:{{ters}}</th>
+      <td><th scope="col"></th></td>
+      <td></td>
+      <td></td>
     </tr>
     <tr>
 
@@ -57,120 +67,131 @@
 </div>
 
 <!-- ------------------------------------------------------------------------------------------------------------------ -->
-
-<!-- -------------------------------------------------------------------------------------------- 應付金額 -->
-
 <div style="margin-top:150px;">
-        <div class="container" style="border:1px black solid;border-radius:10px;height:60px;background-color:black;">
-              <div class="row">
-                <div class="col-9" style="font-family:monospace;background-color:white;width:300px;height:50px;text-align:left;line-height:50px;font-size:200%">
-                  應付總額
-                </div>
+<table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">day</th>
+        <th scope="col">景點</th>
+        <th scope="col">restaurant</th>
+        <th scope="col">hotel</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">1</th>
+        <td>
+          {% for item in Adictlist %}
+          <a href="/review?placeide={{item.Aid}}">{{item.Atitle}}</a><br>
+          {% endfor %}
+        </td>
+        <td>
+          {% for item in resdictlist %}
+          <a href="/res?id={{item.resid}}">{{item.title}}</a><br>
+          {% endfor %}
+        </td>
+        <td>
+            {% for item in Hdictlist %}
+            <a href="/Hotel?hoid={{item.Hid}}">{{item.Htitle}}</a><br>
+            {% endfor %}
+        </td>
+      </tr>
+      <tr>
+        <th scope="row">2</th>
+        <td>
+            {% for item in Adictlist1 %}
+            <a href="/review?placeide={{item.Aid1}}">{{item.Atitle1}}</a>
+            <a href="/review?placeide={{item.Aid2}}">{{item.Atitle2}}</a>
+            {% endfor %}
+        </td>
+        <td>
+            {% for item in resdictlist1 %}
+            <a href="/res?id={{item.resid1}}">{{item.title1}}</a>
+            <a href="/res?id={{item.resid2}}">{{item.title2}}</a>
+            {% endfor %}
+        </td>
+        <td>
+          {% for item in Hdictlist1 %}
+          <a href="/res?id={{item.Hid1}}">{{item.Htitle1}}</a>
+          {% endfor %}
+        </td>
+      </tr>
+      <tr>
+        <th scope="row">3</th>
+        <td>
+            {% for item in Adictlist1 %}
+            <a href="/review?placeide={{item.Aid3}}">{{item.Atitle3}}</a>
+            <a href="/review?placeide={{item.Aid4}}">{{item.Atitle4}}</a>
+            {% endfor %}
+        </td>
+        <td>
+            {% for item in resdictlist1 %}
+            <a href="/res?id={{item.resid3}}">{{item.title3}}</a>
+            <a href="/res?id={{item.resid4}}">{{item.title4}}</a>
+            {% endfor %}
+        </td>
+        <td>
+                  <!-- hotel -->
+            {% for item in Hdictlist1 %}
+            <a href="/res?id={{item.Hid2}}">{{item.Htitle2}}</a>
+            {% endfor %}
+        </td>
+      </tr>
 
-                <div class="col-3" style="font-family:monospace;background-color:white;width:300px;height:50px;text-align:left;line-height:50px;font-size:200%">
-                      NT:
-                    </div>
-<!-- --------------------------------------------- -->
-<table class="table table-bordered table-dark">
-<thead>
-<tr>
-<th scope="col">#</th>
-<th scope="col">金額總計</th>
+      <tr>
+        <th scope="col">4</th>
+        <td>
+            {% for item in Adictlist1 %}
+            <a href="/review?placeide={{item.Aid5}}">{{item.Atitle5}}</a>
+            <a href="/review?placeide={{item.Aid6}}">{{item.Atitle6}}</a>
+            {% endfor %}
+        </th>
+        <td>
+            {% for item in resdictlist1 %}
+            <a href="/res?id={{item.resid5}}">{{item.title5}}</a>
+            <a href="/res?id={{item.resid6}}">{{item.title6}}</a>
+            {% endfor %}
+        </th>
+        <td>
+            <!-- hotel -->
+            {% for item in Hdictlist1 %}
+            <a href="/res?id={{item.Hid3}}">{{item.Htitle3}}</a>
+            {% endfor %}
+        </th>
+      </tr>
 
-</tr>
-</thead>
-<tbody>
-<tr>
-<th scope="row">#</th>
-<td>500</td>
-<td>平日8折</td>
-<td>400</td>
-</tr>
-
-</tbody>
-</table>
-
-                
-              </div>
-            </div>
-</div>
-
-
-<!-- -------------------------------------------------------- -->
-<div style="margin-top:150px;">
-    <div class="container" style="border:1px black solid;border-radius:10px;height:60px;background-color:black;">
-          <div class="row">
-            <div class="col-9" style="font-family:monospace;background-color:white;width:300px;height:50px;text-align:left;line-height:50px;font-size:200%">
-              應付總額
-            </div>
-
-            <div class="col-3" style="font-family:monospace;background-color:white;width:300px;height:50px;text-align:left;line-height:50px;font-size:200%">
-                  NT:
-                </div>
-<!-- --------------------------------------------- -->
-<table class="table table-bordered table-dark">
-<thead>
-<tr>
-<th scope="col">#</th>
-<th scope="col">金額總計</th>
-
-</tr>
-</thead>
-<tbody>
-<tr>
-<th scope="row">#</th>
-<td>500</td>
-<td>平日8折</td>
-<td>400</td>
-</tr>
-
-</tbody>
-</table>
-
+      <tr>
+        <th scope="row">5</th>
+        <td>
+            {% for item in Adictlist1 %}
+            <a href="/review?placeide={{item.Aid7}}">{{item.Atitle7}}</a>
+            <a href="/review?placeide={{item.Aid8}}">{{item.Atitle8}}</a>
+            {% endfor %}
+        </td>
+        <td>
             
-          </div>
-        </div>
-</div>
-
-<!-- ---------------------------------------------------------------------- -->
-
-<div style="margin-top:150px;">
-    <div class="container" style="border:1px black solid;border-radius:10px;height:60px;background-color:black;">
-          <div class="row">
-            <div class="col-9" style="font-family:monospace;background-color:white;width:300px;height:50px;text-align:left;line-height:50px;font-size:200%">
-              應付總額
-            </div>
-
-            <div class="col-3" style="font-family:monospace;background-color:white;width:300px;height:50px;text-align:left;line-height:50px;font-size:200%">
-                  NT:
-                </div>
-<!-- --------------------------------------------- -->
-<table class="table table-bordered table-dark">
-<thead>
-<tr>
-<th scope="col">#</th>
-<th scope="col">金額總計</th>
-
-</tr>
-</thead>
-<tbody>
-<tr>
-<th scope="row">#</th>
-<td>500</td>
-<td>平日8折</td>
-<td>400</td>
-</tr>
-
-</tbody>
-</table>
-
+              {% for item in resdictlist1 %}
+              <a href="/res?id={{item.resid7}}">{{item.title7}}</a>
+              <a href="/res?id={{item.resid8}}">{{item.title8}}</a>
+              {% endfor %}
             
-          </div>
-        </div>
-</div>
+        </td>
+        <td>
+              <!-- hotel -->
+              {% for item in Hdictlist1 %}
+              <a href="/res?id={{item.Hid4}}">{{item.Htitle4}}</a>
+              {% endfor %}
+        </td>
+      </tr>
 
+    </tbody>
+  </table>
+
+  </form>
+</div>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </body>
-</html>
+  {% endblock %} 
+  {% block script_part %} {% endblock %}
