@@ -142,7 +142,7 @@ max-width: 550px;
 border-radius: 4px;
 overflow: hidden;
 padding:30px;
-width:50%;
+width:30%;
 height:50%;
 transform: translateY(-50px);
 transition: all .3s;
