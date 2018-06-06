@@ -31,7 +31,7 @@ for (i = 0; i < acc.length; i++) {
 
     /* Toggle between hiding and showing the active panel */
     var panel = this.nextElementSibling;
-    if (panel.style.display === "block") {
+    if (panel.style.display == "block") {
       panel.style.display = "none";
     } else {
       panel.style.display = "block";
@@ -62,7 +62,7 @@ $(document).ready(function () {
     placeholder: "ui-state-highlight"
   });
   $(".sortable").disableSelection();
-  
+
   BTNclick('Shopping');
 
 });
@@ -141,9 +141,15 @@ for (var i = 0; i < btns.length; i++) {
     }
     console.log($(this).closest('select').attr('id'))
     // $(Hi).append($(this).attr('name'))
-    $(Hi).append($(document.createElement('li')).addClass('ui-state-default').text($(this).attr('name')).append($(document.createElement('div')).addClass('delli').text("x")));
+    $(Hi).append($(document.createElement('li')).addClass('ui-state-default').text($(this).attr('name')).attr('id',$(this).closest('select').attr('id')).append($(document.createElement('div')).addClass('delli').text("x")));
     $(".delli").on("click", function () {
+      console.log($(this).closest("li").attr("id"))
+      console.log($(Hi2).text())
+      console.log($(Hi2).text().replace($(this).closest('li').attr('id')+'/',''))
+      $(Hi2).text($(Hi2).text().replace($(this).closest('li').attr('id')+'/',''))
       $(this).closest("li").remove();
+      // console
+      // $(Hi2).replace($(this).closest('select').attr('id')+"/","")
     });
     $(Hi2).append($(this).closest('select').attr('id')+"/")
 
@@ -190,7 +196,8 @@ $('.WFilterbyName').click(function(){
       var smallPic = data[i]['Img']
     }
     else{
-      var smallPic = ''
+      // var smallPic = '../static/images/null.jpg'
+      var smallPic = 'xxx'
     }
 //add null pic
 
@@ -217,10 +224,11 @@ $('.WFilterbyName').click(function(){
       PickADate.append(DateOption)
       }
 
-    div2.append(PiCTitle,PiCRate,PickADate)
+    // div2.append(PiCTitle,PiCRate,PickADate)
     // LinktoR.append(div1,div2)
-    PiCTitle.append(LinktoR) // link pictitle to review?
-    PicContent.append(LinktoR,div2)
+    LinktoR.append(PiCTitle) // link pictitle to review?
+    div2.append(LinktoR,PiCRate,PickADate)
+    PicContent.append(div1,div2)
     FinalR.append(PicContent)
     $('#WeStartHere').append(FinalR)
   }
@@ -267,9 +275,12 @@ function BTNclick(style_t){
 
     if (data[i]['Img'] != ""){
       var smallPic = data[i]['Img']
+      console.log(smallPic)
     }
+
     else{
-      var smallPic = ''
+      var smallPic = '../static/images/null.jpg'
+      console.log('NULL IMG'+smallPic)
     }
 //add null pic
 
@@ -279,7 +290,9 @@ function BTNclick(style_t){
     var div1 = $(document.createElement('div')).addClass('content-overlay')
     var div2 = $(document.createElement('div')).addClass("content-details fadeIn-bottom")
     var PiCTitle = $(document.createElement('h3')).addClass("content-title").html(LinktoR)
-    var PiCRate = $(document.createElement('p')).addClass('content-text').text('★★★★☆')
+    var StarsNum = ['☆☆☆☆☆','★☆☆☆☆','★★☆☆☆','★★★☆☆','★★★★☆','★★★★★']
+    var GetRating = data[i]['GetRating']
+    var PiCRate = $(document.createElement('p')).addClass('content-text').text(StarsNum[GetRating])
     //adding selector
     var PickADate= $(document.createElement('select')).addClass('selector').attr('name',data[i]['Name']).attr('id',data[i]['Id'])
     // var PickDate = $(document.createElement('option')).text('Hi')
@@ -287,20 +300,19 @@ function BTNclick(style_t){
     var DfOption=$(document.createElement('option'));
       DfOption.text("Pick A Date")
       PickADate.append(DfOption)
-
-    for (n = 1; n <= 5;n++){
+    console.log(data[i]['GetTpday'])
+    for (n = 1; n <= data[i]['GetTpday'];n++){
       var DateOption=$(document.createElement('option')).attr("value",n);
       DateOption.text("Day"+n)
       // console.log(typeof DateOption)
       PickADate.append(DateOption)
       }
 
-    div2.append(PiCTitle,PiCRate,PickADate)
-    // LinktoR.append(div1,div2)
-    PiCTitle.append(LinktoR) // link pictitle to review?
-    PicContent.append(LinktoR,div2)
-    FinalR.append(PicContent)
-    $('#WeStartHere').append(FinalR)
+      PiCTitle.append(LinktoR) // link pictitle to review?
+      div2.append(PiCTitle,PiCRate,PickADate)
+      PicContent.append(div1,div2)
+      FinalR.append(PicContent)
+      $('#WeStartHere').append(FinalR)
   }
   }
 });
