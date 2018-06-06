@@ -17,6 +17,7 @@
   display: inline-block;
   text-decoration: none;
   cursor: pointer;
+  margin-top: 20px;
 }
 #send:hover {opacity: 0.6}
 /* Style the tab */
