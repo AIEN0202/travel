@@ -4,6 +4,17 @@
 {% block style_part %}
 <link rel="stylesheet" href="{% static 'styles/review.css'%}">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.1/jquery.fancybox.min.css" />
+<style media="screen">
+.MainPicSizeAdjust{
+  background-image:url({{CorrectPlacePic}});
+  width: 100%;
+  height:400px;
+  /* max-height:750px; */
+  background-position:center;
+  background-repeat:no-repeat;
+  background-size:cover;
+}
+</style>
 {% endblock %}
 <!-- Show my content -->
 {% block main_content %}
