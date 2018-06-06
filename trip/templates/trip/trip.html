@@ -3,7 +3,7 @@
 <!-- Load my own -->
 {% block style_part %}
 <link rel="stylesheet" href="{% static 'styles/trip.css'%}">
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+<!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous"> -->
 {% endblock %}
 <!-- Show my content -->
 {% block main_content %}
@@ -24,7 +24,7 @@
 <script src="{%static 'scripts/trip.js'%}"></script>
 <script>
   $().ready(function(){
-    
+    $('#day1').css({'display': 'block',});
   });
 
   $('#send').click(function(){

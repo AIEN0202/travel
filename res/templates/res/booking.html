@@ -68,10 +68,10 @@
       <table class="table">
         <thead class="thead-dark">
           <tr>
-            <th scope="col">day</th>
-            <th scope="col">景點</th>
-            <th scope="col">restaurant</th>
-            <th scope="col">hotel</th>
+            <th scope="col">DAY</th>
+            <th scope="col">ACCTRACTION</th>
+            <th scope="col">HOTEL</th>
+            <th scope="col">RESTAURANT</th>
           </tr>
         </thead>
         <tbody>
@@ -88,7 +88,7 @@
             <td>
               {% for hotitem in item.hot %}
               <div class="col-md-12">
-                  <a href="/hot?id={{hotitem.getid}}">{{hotitem.getname}}</a>
+                  <a href="/hotel?hoid={{hotitem.getid}}">{{hotitem.getname}}</a>
               </div>
               {% endfor %}
             </td>

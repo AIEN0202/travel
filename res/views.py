@@ -11,7 +11,25 @@ from member import member_models as Mbr
 # Create your views here.
 def res(request):
     ##用resid抓圖片src
-    
+    bk = modelsres.bookingq()
+
+    if 'user' in request.session:
+        useris = request.session['user']
+        uid=("{}".format(useris[0]))
+        isLogin = True
+    else:
+        print("NO GET")
+        ########################
+    teid = None
+
+    if 'tripid' in request.session:
+        teid = request.session['tripid']
+    else:
+        pass
+        ########################
+    IALL=bk.itine(uid,teid)
+    ters=IALL[5]
+    ######################
     Resid=request.GET["id"]
     # Resid=rid
     bk = modelsres.bookingq() #modelsproduct.Product()
@@ -36,6 +54,7 @@ def res(request):
     # print(request.method);
     #POST
     if request.method == "POST" :
+        print('GET POST ======================')
 
 
         # print("---------------------------------------")
@@ -45,8 +64,8 @@ def res(request):
         # fs.save(myFile.name, myFile)
         
         #取得表單透過POST傳過來的資料
-        hottel = request.POST['tel']
-        hotname = request.POST['uname']
+        hottel = request.POST['uitel']
+        hotname = request.POST['uiname']
         BookingDate = request.POST['bdaytime']
         print(hottel,hotname,BookingDate)
         print('-------------------------------------------------')
@@ -54,15 +73,18 @@ def res(request):
         Orderid = random.randint(51000,59999)
         # CategoryID = request.POST['CategoryID']
         # ProductImage = myFile.name
-        Resid='10'
-        MEMBER_ID='100370'
-        NumberOfPeople='20'
+
+        MEMBER_ID=uid
+        NumberOfPeople=ters
         #todo 把資料寫進資料庫
         bk = modelsres.bookingq() #modelsproduct.Product()
         data = tuple([Orderid,Resid,MEMBER_ID,BookingDate,NumberOfPeople,hotname,hottel])
         print(data)
         bk.create(data)
-       
+        oid=Orderid
+        telon = hottel
+
+        print("----------------------------------------------",oid,hottel,hotname)
 
     return render(request,'res/res.html',locals())
 

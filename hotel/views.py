@@ -5,9 +5,43 @@ from . import modelsres
 from .modelsres import bookingq
 import datetime
 import random
-# Create your views here.
+
 
 def hotel(request):
+    id_hotel=request.GET["hoid"]
+    # id_hotel="60000"
+    bk = modelsres.bookingq() #modelsproduct.Product()
+    data = id_hotel
+    print(data)
+    print("-------")
+    t = bk.simg(data)
+    print("-----")
+    imgsrc = t[0]
+    print(imgsrc)
+    ##抓detail
+    d = bk.detail(data)
+    # detail = 
+    print("d::::::::::::::::::::::::::::",d)
+    dname=d[0]
+    # 飯店名稱
+    dtype=d[1]
+    #飯店type
+    # dtel=d[1]
+    ad = bk.ad(data)
+    #抓timeaddr
+    print(ad)
+    dstyle=ad[0]
+    #房型
+    dstyle1=ad[1]
+    #房型
+    dprice=ad[2]
+    #價錢
+    dprice1=ad[3]  
+
+
+   
+   
+   
     print('-------------------------------------------------HI1')
 
     if request.method=="GET":
@@ -24,7 +58,7 @@ def hotel(request):
         return redirect('../member/')
    
     
-    if request.method == "POST" :
+    if request.method == "POST":
 
 
         # print("---------------------------------------")
