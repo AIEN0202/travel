@@ -36,8 +36,9 @@ def reviewindex(request):
     else:
         print("False")
 
+    # Get the MainPlace by filter & order review by time
     MainPlace = rw.objects.filter(placeid = pid)
-    reviews = rw.objects.filter(placeid = pid).order_by('datereview')
+    reviews = rw.objects.filter(placeid = pid).order_by('-datereview')
 
     # This is for filter out the place name, and get the range for stars
     HI3 = MainPlace.aggregate(Avg('rating'))
@@ -49,9 +50,12 @@ def reviewindex(request):
         AVGGSTARR = range(0)
         AVGBSTARR = range(0,5)
     ShowAllHasTag = MainPlace.values('hastable')
-    print(ShowAllHasTag)
-    HasTList = []
 
+    #Calculate Stars to show on the popover box
+    StarsProgress = StarsProgressBar(MainPlace,TOTALREVIEWC)
+
+    #Show Hastable
+    HasTList = []
     for showHastab in ShowAllHasTag:
         if showHastab['hastable']!=None:
             if showHastab['hastable'] not in HasTList:
@@ -59,8 +63,11 @@ def reviewindex(request):
             else:
                 pass
         else:
-            HasTList = []
+            pass
+    HasTList = HasTList[1:]
+    HasTList=set(HasTList)
 
+    # Present Data onto detail box
     CorrectPlaceName = CorrectPlace.title
     CorrectPlaceType = CorrectPlace.type
     CorrectPlacePic = CorrectPlace.imgsrc
@@ -113,5 +120,17 @@ def reviewindex(request):
     print('after post func')
     return render(request,'review/ReviewHome.html',locals())
 
-def create(request):
-    return render(request,'review/create.html',locals())
+def StarsProgressBar(M,T):
+    #This is a Table of stars
+    StarTable = {}
+    #Get the total Count of review
+    ThisisProgressBar = T['contentofreview__count']
+    # FStar = M.filter(rating=5).aggregate(Count('rating'))
+    if ThisisProgressBar != 0:
+        for x in range(1,6):
+            FStar = M.filter(rating=x).aggregate(Count('rating'))
+            StarTable[str(x)+'Star'] = str(round((FStar['rating__count']/ThisisProgressBar)*100))+"%"
+    else:
+        for x in range(1,6):
+            StarTable[str(x)+'Star'] = str(0)+"%"
+    return StarTable
