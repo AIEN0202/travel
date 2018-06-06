@@ -9,6 +9,8 @@ from member import member_models as MB
 import random
 from .models import Hotel as hotel
 from .models import Attraction as attr
+from review.models import Review as rw
+from django.db.models import Avg
 
 # def trip(request):
     # 	if request.method == 'POST':
@@ -48,10 +50,10 @@ def trip(request):
          tripid_fromsession = request.session['tripid']
     else:
         pass
-    
+
     if 'tpday' in request.session:
-         triptotalday = range(2, int(request.session['tpday'])+1) 
-         triptotalpanel = range(1, int(request.session['tpday'])+1) 
+         triptotalday = range(2, int(request.session['tpday'])+1)
+         triptotalpanel = range(1, int(request.session['tpday'])+1)
     else:
         pass
 
@@ -80,8 +82,8 @@ def trip(request):
         request.session.modified = True
 
         tripid_fromsession = request.session['tripid']
-        triptotalday = range(2, int(request.session['tpday'])+1) 
-        triptotalpanel = range(1, int(request.session['tpday'])+1) 
+        triptotalday = range(2, int(request.session['tpday'])+1)
+        triptotalpanel = range(1, int(request.session['tpday'])+1)
 
         print(tripname)
         print('')
@@ -115,14 +117,14 @@ def trippost(request):
                 attrname = 'i_daysp'+str(days)
                 hotelname = 'i_daysh'+str(days)
                 resname = 'i_daysr'+str(days)
-                get_attr= request.POST[attrname][:-2] 
+                get_attr= request.POST[attrname][:-2]
                 get_hot= request.POST[hotelname][:-2]
                 get_res= request.POST[resname][:-2]
                 tripid = request.session['tripid']
                 print(tripid)
-                print(get_attr) 
-                print(get_hot) 
-                print(get_res) 
+                print(get_attr)
+                print(get_hot)
+                print(get_res)
                 print('')
                 trip_data = MB.Member()
                 trip_data.excute_sql("insert into itinerary_day values(%s, %s, %s, %s, %s);", days, get_hot, get_res, tripid, get_attr)
@@ -130,10 +132,10 @@ def trippost(request):
         else:
             pass
 
-    
 
 
-         
+
+
 
     return render(request, 'trip/trip.html', locals())
 
@@ -160,9 +162,7 @@ def Wchange(request):
             Info = rest.objects.all()
         elif CheckForSelect == "Hotel":
             Info = hotel.objects.all()
-        
     #Loop through the Query Objects
-
     for x in Info:
         #Create a new Dictionary
         ImDict = {}
@@ -176,9 +176,22 @@ def Wchange(request):
             Idlala = x.resid
         elif CheckForSelect == "Hotel":
             Idlala = x.id_hotel
-
         ImDict['Id'] = Idlala
         print(ImDict['Id'])
+
+        #Get the average stars of different places.
+        RewStarCount = rw.objects.filter(placeid=Idlala)
+        print(RewStarCount)
+        HI3 = RewStarCount.aggregate(Avg('rating'))
+        if HI3['rating__avg'] is not None:
+            ImDict['GetRating'] = round(HI3['rating__avg'])
+        else:
+            ImDict['GetRating'] = HI3['rating__avg'] = 0
+        print("-----")
+        #Get Session for how many days
+        ImDict['GetTpday'] = request.session['tpday']
+        # print(ImDict['GetTpday'])
+        # print(type(ImDict['GetTpday']))
 
         #Pass in the data to list
         ImList.append(ImDict)
