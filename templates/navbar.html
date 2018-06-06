@@ -41,9 +41,9 @@
         </ul>
         <!-- form-inline my-2 my-lg-0 -->
         {% if isLogin  == True%}
-        <a class="nav-link" href="#" id="login_a">Logout</a>
+        <a class="nav-link" href="#" id="login_a">LOGOUT</a>
         {% else %}
-        <a class="nav-link" href="#" id="login_a">Login</a>
+        <a class="nav-link" href="#" id="login_a">LOGIN</a>
         {% endif %}
         
         <div class="cus_collapsed" id="login_from">
@@ -56,24 +56,23 @@
                             <div class="input-group col-auto" style="width: 50%;float: left;">
                                 <!-- <label for="exampleInputEmail1">Email address</label> style="display: inline-block;"-->
                                 <div class="input-group-prepend">
-                                    <div class="input-group-text" style="background-color: inherit;border: 1px solid black;"><i class="fas fa-envelope" style="color: white;"></i></div>
+                                    <div class="input-group-text" style="background-color: black;border: none;"><i class="fas fa-envelope" style="color: white;"></i></div>
                                   </div>
                                 <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" name="loginmail" style="background-color: black;
-                                border-top-color: black;border-right-color: black;border-left-color: black;border-bottom-color: gray;">
+                                border:none;border-bottom-color: gray;">
                                 <!-- <i class="fas fa-envelope" style=" float: left; position: relative;z-index: 2; margin-right: 6px;margin-top: -20px;"></i> -->
                             </div>
                             <div class="input-group col-auto" style="width: 50%;float: right;">
                                 <!-- <label for="exampleInputPassword1">Password</label> style="display: inline-block;"-->
                                 <div class="input-group-prepend">
-                                    <div class="input-group-text" style="background-color: inherit;border: 1px solid black;"><i class="fas fa-lock" style="color: white;"></i></div>
+                                    <div class="input-group-text" style="background-color: black;border:none;"><i class="fas fa-lock" style="color: white;"></i></div>
                                   </div>
-                                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" name="loginpwd" style="background-color: black;
-                                border-top-color: black;border-right-color: black;border-left-color: black;border-bottom-color: gray;">
+                                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" name="loginpwd" style="background-color: black;border:none ;border-bottom:2px solid gray;">
                             </div>
                         </div>
                         <div style="float: right;">
                             <div class="col-auto" style="">
-                                <button type="submit" class="btn btn-outline-secondary">Login</button>
+                                <button type="submit" class="btn btn-outline-secondary">LOGIN</button>
                             </div>
                         </div>
                         
