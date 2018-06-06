@@ -58,9 +58,9 @@ class bookingq:
         return data6    
 ###############################################################
 ################會員ID抓行程####################################
-    def itine(self,id):
+    def itine(self,id,TripID):
         with connection.cursor() as cursor:
-            cursor.execute("select * from itinerary where idMember = %s",(id,))
+            cursor.execute("select * from itinerary where idMember = %s and TripID = %s",(id,TripID,))
             data6 = cursor.fetchone()
         return data6   
 
