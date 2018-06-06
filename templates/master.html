@@ -19,6 +19,8 @@
     <link rel="stylesheet" href="{% static 'styles/product.css' %}">
     <link rel="stylesheet" href="{% static 'styles/master.css' %}">
 
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+
     <style>
 		#row-main {
 			overflow-x: hidden; /* necessary to hide collapsed sidebar */
@@ -39,6 +41,48 @@
 				margin-left: -25%; 
 			}
         } */
+
+        
+
+        .titlelink:hover {             
+            padding-bottom: 7px;
+            text-decoration: none;
+            border-bottom: 3px solid #00a699;
+        }
+
+        #exampleInputPassword1::placeholder {
+            color: white;
+        }
+
+        #exampleInputEmail1::placeholder {
+            color: white;
+        }
+
+        .cusbtn {
+            background-color: #00a699;
+            border-radius: 12px;
+            border: white 2px solid;
+            color: white;
+            /* width: 100%; */
+            padding: 8px 60px;
+            text-align: center;
+            font-size: 16px;
+            font-weight: 500;
+            margin: 4px 2px;
+            transition: 0.3s;
+            display: inline-block;
+            text-decoration: none;
+            cursor: pointer;
+            /* margin-top: 20px; */
+        }
+
+        .cusbtn:hover {
+            color: white
+        }
+
+        *{
+            font-family: 'Roboto', sans-serif;
+        }
 
         
 

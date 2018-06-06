@@ -14,19 +14,19 @@
   <div class="col-md-5 mx-auto" style="padding-bottom: 0px!important;margin-bottom: 0px!important;margin-top: 20px;">
     <!-- <hr class="myhr">  -->
 
-    <div class="container" style="border:3px black solid;border-radius:10px;height:60px;background-color:black;">
+    <!-- <div class="container" style="border:3px black solid;border-radius:10px;height:60px;background-color:black;">
       <div class="row">
         <div class="col-sm" style="background-color:white;width:300px;height:50px;text-align:center;line-height:50px;font-size:200%">
         </div>
 
       </div>
-    </div>
+    </div> -->
 
     <div style="margin-top:50px;">
       <div class="container" style="border:1px black solid;border-radius:10px;height:60px;background-color:black;">
         <div class="row">
           <div class="col-9" style="font-family:monospace;background-color:white;width:300px;height:50px;text-align:left;line-height:50px;font-size:200%">
-            旅遊詳細資訊
+              {{tname}}
           </div>
 
           <div class="col-3" style="font-family:monospace;background-color:white;width:300px;height:50px;text-align:left;line-height:50px;font-size:100%">
@@ -34,28 +34,24 @@
           </div>
 
 
-          <table class="table table-bordered table-dark">
+          <table class="table table-bordered table-dark" style="text-align: centerwu; padding-left: 5px">
             <thead>
               <tr>
-                <th scope="col">行程:{{tname}}</th>
-                <th scope="col">國家:{{fcountry}}</th>
-                <th scope="col">區域:{{farea}}</th>
-                <th scope="col">天數:{{tday}}</th>
-                <th scope="col">出發日:{{tdate}}</th>
+                <th scope="col">國家</th>
+                <th scope="col">區域</th>
+                <th scope="col">天數</th>
+                <th scope="col">人數</th>
+                <th scope="col">出發日</th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <th scope="row">旅行人數:{{ters}}</th>
-                <td>
-                  <th scope="col"></th>
-                </td>
-                <td></td>
-                <td></td>
-              </tr>
-              <tr>
-
-              </tr>
+                <tr>
+                    <td scope="col">{{fcountry}}</td>
+                    <td scope="col">{{farea}}</td>
+                    <td scope="col">{{tday}}</td>
+                    <td scope="col">{{ters}}</td>
+                    <td scope="col">{{tdate}}</td>
+                  </tr>
             </tbody>
           </table>
 
