@@ -3,7 +3,7 @@
 <div class="tab" id="tabContainer">
     <button class="tablinks active" onclick="openDay(event, 'day1')">Day1</button>
     {% for x in triptotalday %}
-    <!-- 
+    <!--
     <button class="tablinks" onclick="openDay(event, 'day2')">Day2</button>
     <button class="tablinks" onclick="openDay(event, 'day3')">Day3</button>
     <button class="tablinks" onclick="openDay(event, 'day4')">Day4</button>
@@ -116,8 +116,8 @@
     <span id="daysr{{item}}" name="daysr{{item}}" style="display: none"></span>
     <span id="daysh{{item}}" name="daysh{{item}}" style="display: none"></span>
     <div id="day{{item}}" class="daytab">
-            <button class="accordion" type="button">景點</button>
-            <div class="panel">
+            <button class="accordion active" type="button">景點</button>
+            <div class="panel" style="display:block">
                 <ul id="sp{{item}}" class="sortable">
                 </ul>
             </div>
