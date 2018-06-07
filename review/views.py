@@ -25,6 +25,29 @@ def reviewindex(request):
         request.session['placeide'] = pid
         request.session.modified = True
 
+    if request.method=="POST":
+        print('in post')
+        print(request.session['placeide'])
+        TextArea = request.POST['TextArea']
+        SeperateTextArea = TextArea.split("#")
+        TrueTextArea = SeperateTextArea[0]
+        HastagText = ",".join(SeperateTextArea[1:])
+        # Get random ID
+        ReviewID = random.randint(208398, 299999)
+        DateOfReview = request.POST['HReviewTime']
+        PlaceID = request.session['placeide']
+        MemberID = m1.Member.objects.get(idmember=useris[0])
+        StarCounts = request.POST['HStarCount']
+        rw.objects.create(contentofreview = TrueTextArea,memberid = MemberID,datereview = DateOfReview,idreview = ReviewID,placeid = PlaceID,typeplace = 'Shopping',rating = StarCounts,hastable = HastagText)
+        print('post func')
+        
+
+        if 'placeide' in request.session:
+            placeide = request.session['placeide']
+            return redirect('/review/?placeide={}'.format(placeide))
+        else:
+            return redirect('/trip')
+
     #Judge Where to read database
     if pid.startswith('3'):
         CorrectPlace = at.objects.filter(idattraction = pid).get()
@@ -96,26 +119,26 @@ def reviewindex(request):
 
     #Post
 
-    if request.method=="POST":
-        print('in post')
-        TextArea = request.POST['TextArea']
-        SeperateTextArea = TextArea.split("#")
-        TrueTextArea = SeperateTextArea[0]
-        HastagText = ",".join(SeperateTextArea[1:])
-        # Get random ID
-        ReviewID = random.randint(200000, 299999)
-        DateOfReview = request.POST['HReviewTime']
-        PlaceID = '1'
-        MemberID = m1.Member.objects.get(idmember=useris[0])
-        StarCounts = request.POST['HStarCount']
-        rw.objects.create(contentofreview = TrueTextArea,memberid = MemberID,datereview = DateOfReview,idreview = ReviewID,placeid = PlaceID,typeplace = 'Happy',rating = StarCounts,hastable = HastagText)
-        print('post func')
+    # if request.method=="POST":
+    #     print('in post')
+    #     TextArea = request.POST['TextArea']
+    #     SeperateTextArea = TextArea.split("#")
+    #     TrueTextArea = SeperateTextArea[0]
+    #     HastagText = ",".join(SeperateTextArea[1:])
+    #     # Get random ID
+    #     ReviewID = random.randint(200000, 299999)
+    #     DateOfReview = request.POST['HReviewTime']
+    #     PlaceID = '1'
+    #     MemberID = m1.Member.objects.get(idmember=useris[0])
+    #     StarCounts = request.POST['HStarCount']
+    #     rw.objects.create(contentofreview = TrueTextArea,memberid = MemberID,datereview = DateOfReview,idreview = ReviewID,placeid = PlaceID,typeplace = 'Happy',rating = StarCounts,hastable = HastagText)
+    #     print('post func')
 
-        if 'placeide' in request.session:
-            placeide = request.session['placeide']
-            return redirect('/review/?placeide={}'.format(placeide))
-        else:
-            return redirect('/trip')
+    #     if 'placeide' in request.session:
+    #         placeide = request.session['placeide']
+    #         return redirect('/review/?placeide={}'.format(placeide))
+    #     else:
+    #         return redirect('/trip')
 
     print('after post func')
     return render(request,'review/ReviewHome.html',locals())
