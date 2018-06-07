@@ -23,34 +23,34 @@
     </div> -->
 
     <div style="margin-top:50px;">
-      <div class="container" style="border:1px black solid;border-radius:10px;height:60px;background-color:black;">
+      <div class="container" style="border-radius:14px;height:60px;">
         <div class="row">
-          <div class="col-9" style="font-family:monospace;background-color:white;width:300px;height:50px;text-align:left;line-height:50px;font-size:200%">
+          <div class="col-9" style="border-top-left-radius: 14px;border-top-right-radius: 14px; padding-left: 30px;color:white; background-color:#cf642d;width:300px;height:50px;text-align:left;line-height:50px;font-size:200%">
               {{tname}}
           </div>
 
-          <div class="col-3" style="font-family:monospace;background-color:white;width:300px;height:50px;text-align:left;line-height:50px;font-size:100%">
-            會員編號:{{uid}}
+          <div class="col-3" style="background-color:white;width:300px;height:50px;text-align:center;line-height:50px;font-size:100%">
+            <span>ID:{{uid}}</span>
           </div>
 
 
-          <table class="table table-bordered table-dark" style="text-align: centerwu; padding-left: 5px">
-            <thead>
+          <table class="table" style="padding-left: 5px;background-color: black;color: white;">
+            <thead style="border-bottom-color: white;">
               <tr>
-                <th scope="col">國家</th>
-                <th scope="col">區域</th>
-                <th scope="col">天數</th>
-                <th scope="col">人數</th>
-                <th scope="col">出發日</th>
+                <th style="padding-left: 20px;border-bottom-color: white;" scope="col">國家</th>
+                <th style="padding-left: 20px;border-bottom-color: white;" scope="col">區域</th>
+                <th style="padding-left: 20px;border-bottom-color: white;" scope="col">天數</th>
+                <th style="padding-left: 20px;border-bottom-color: white;" scope="col">人數</th>
+                <th style="padding-left: 20px;border-bottom-color: white;" scope="col">出發日</th>
               </tr>
             </thead>
-            <tbody>
-                <tr>
-                    <td scope="col">{{fcountry}}</td>
-                    <td scope="col">{{farea}}</td>
-                    <td scope="col">{{tday}}</td>
-                    <td scope="col">{{ters}}</td>
-                    <td scope="col">{{tdate}}</td>
+            <tbody    style="border: none;">
+                <tr    style="border: none;">
+                    <td style="padding-left: 20px;background-color: white;color: black;border:none;" scope="col">{{fcountry}}</td>
+                    <td style="padding-left: 20px;background-color: white;color: black;border:none;" scope="col">{{farea}}</td>
+                    <td style="padding-left: 20px;background-color: white;color: black;border:none;" scope="col">{{tday}}</td>
+                    <td style="padding-left: 20px;background-color: white;color: black;border:none;" scope="col">{{ters}}</td>
+                    <td style="padding-left: 20px;background-color: white;color: black;border:none;" scope="col">{{tdate}}</td>
                   </tr>
             </tbody>
           </table>
@@ -60,147 +60,52 @@
       </div>
     </div>
 
-    <div style="margin-top:150px;">
+    <div style="margin-top:100px;">
       <table class="table">
         <thead class="thead-dark">
           <tr>
-            <th scope="col">DAY</th>
-            <th scope="col">ACCTRACTION</th>
-            <th scope="col">HOTEL</th>
-            <th scope="col">RESTAURANT</th>
+            <th style="padding-left: 20px;" scope="col">DAY</th>
+            <th style="padding-left: 20px;" scope="col">ACCTRACTION</th>
+            <th style="padding-left: 20px;" scope="col">HOTEL</th>
+            <th style="padding-left: 20px;" scope="col">RESTAURANT</th>
           </tr>
         </thead>
         <tbody>
           {% for item in TOTAL_reslist %}
           <tr>
             <th scope="row">{{item.day}}</th>
-            <td>
+            <td  >
               {% for attritem in item.attr %}
               <div class="col-md-12">
-                  <a href="/review?placeide={{attritem.getid}}">{{attritem.getname}}</a>
+                  <a style="color: #00a699;" href="/review?placeide={{attritem.getid}}">{{attritem.getname}}</a>
               </div>
               {% endfor %}
             </td>
             <td>
               {% for hotitem in item.hot %}
               <div class="col-md-12">
-                  <a href="/hotel?hoid={{hotitem.getid}}">{{hotitem.getname}}</a>
+                  <a style="color: #00a699;" href="/hotel?hoid={{hotitem.getid}}">{{hotitem.getname}}</a>
               </div>
               {% endfor %}
             </td>
             <td>
               {% for resitem in item.res %}
               <div class="col-md-12">
-                  <a href="/res?id={{resitem.getid}}">{{resitem.getname}}</a>
+                  <a style="color: #00a699;" href="/res?id={{resitem.getid}}">{{resitem.getname}}</a>
               </div>
               
               {% endfor %}
-            </td>
+            </td>            
           </tr>
 
           {% endfor %}
-          <!-- <tr>
-            <th scope="row">1</th>
-            <td>
-              {% for item in Adictlist %}
-              <a href="/review?placeide={{item.Aid}}">{{item.Atitle}}</a>
-              <br> {% endfor %}
-            </td>
-            <td>
-              {% for item in resdictlist %}
-              <a href="/res?id={{item.resid}}">{{item.title}}</a>
-              <br> {% endfor %}
-            </td>
-            <td>
-              {% for item in Hdictlist %}
-              <a href="/Hotel?hoid={{item.Hid}}">{{item.Htitle}}</a>
-              <br> {% endfor %}
+          <tr>
+            <td colspan="4" style="text-align: right;">
+              <div>
+                <iframe src="https://www.facebook.com/plugins/share_button.php?href=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&layout=button&size=small&mobile_iframe=true&width=53&height=20&appId" width="53" height="20" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
+              </div>
             </td>
           </tr>
-          <tr>
-            <th scope="row">2</th>
-            <td>
-              {% for item in Adictlist1 %}
-              <a href="/review?placeide={{item.Aid1}}">{{item.Atitle1}}</a>
-              <a href="/review?placeide={{item.Aid2}}">{{item.Atitle2}}</a>
-              {% endfor %}
-            </td>
-            <td>
-              {% for item in resdictlist1 %}
-              <a href="/res?id={{item.resid1}}">{{item.title1}}</a>
-              <a href="/res?id={{item.resid2}}">{{item.title2}}</a>
-              {% endfor %}
-            </td>
-            <td>
-              {% for item in Hdictlist1 %}
-              <a href="/res?id={{item.Hid1}}">{{item.Htitle1}}</a>
-              {% endfor %}
-            </td>
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td>
-              {% for item in Adictlist1 %}
-              <a href="/review?placeide={{item.Aid3}}">{{item.Atitle3}}</a>
-              <a href="/review?placeide={{item.Aid4}}">{{item.Atitle4}}</a>
-              {% endfor %}
-            </td>
-            <td>
-              {% for item in resdictlist1 %}
-              <a href="/res?id={{item.resid3}}">{{item.title3}}</a>
-              <a href="/res?id={{item.resid4}}">{{item.title4}}</a>
-              {% endfor %}
-            </td>
-            <td>
-              {% for item in Hdictlist1 %}
-              <a href="/res?id={{item.Hid2}}">{{item.Htitle2}}</a>
-              {% endfor %}
-            </td>
-          </tr>
-
-          <tr>
-            <th scope="col">4</th>
-            <td>
-              {% for item in Adictlist1 %}
-              <a href="/review?placeide={{item.Aid5}}">{{item.Atitle5}}</a>
-              <a href="/review?placeide={{item.Aid6}}">{{item.Atitle6}}</a>
-              {% endfor %}
-              </th>
-              <td>
-                {% for item in resdictlist1 %}
-                <a href="/res?id={{item.resid5}}">{{item.title5}}</a>
-                <a href="/res?id={{item.resid6}}">{{item.title6}}</a>
-                {% endfor %}
-                </th>
-                <td>
-                  {% for item in Hdictlist1 %}
-                  <a href="/res?id={{item.Hid3}}">{{item.Htitle3}}</a>
-                  {% endfor %}
-                  </th>
-          </tr>
-
-          <tr>
-            <th scope="row">5</th>
-            <td>
-              {% for item in Adictlist1 %}
-              <a href="/review?placeide={{item.Aid7}}">{{item.Atitle7}}</a>
-              <a href="/review?placeide={{item.Aid8}}">{{item.Atitle8}}</a>
-              {% endfor %}
-            </td>
-            <td>
-
-              {% for item in resdictlist1 %}
-              <a href="/res?id={{item.resid7}}">{{item.title7}}</a>
-              <a href="/res?id={{item.resid8}}">{{item.title8}}</a>
-              {% endfor %}
-
-            </td>
-            <td>
-              {% for item in Hdictlist1 %}
-              <a href="/res?id={{item.Hid4}}">{{item.Htitle4}}</a>
-              {% endfor %}
-            </td>
-          </tr> -->
 
         </tbody>
       </table>
@@ -209,6 +114,7 @@
 
   </div>
 </div>
+
 </body>
 {% endblock %} {% block script_part %}
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"

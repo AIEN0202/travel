@@ -49,11 +49,10 @@
 
 
 <!-- <body> -->
-<div class="container" style="border:3px black solid;border-radius:10px;height:60px;background-color:black;">
+<div class="container" style="border:3px white solid;border-radius:10px;height:60px;background-color:white;">
+
   <div class="row">
-    <div class="col-sm" style="background-color:white;width:300px;height:50px;text-align:center;line-height:40px;font-size:200%">
-      <a href="/res/booking" class="btn btn-primary">Itinerary_Day</a>
-    </div>
+
 
   </div>
 </div>
@@ -76,7 +75,7 @@
 <div class="container">
   <div class="row">
     <div class="col-4" style="margin-top:10px">
-      <div class="card" style="width: 80%;">
+      <div class="card" style="width: 180%;">
 
         <div class="tile-img rounded float-left" style="background-image:url({{imgsrc}})">
 
@@ -85,73 +84,81 @@
         </div>
       </div>
 
-      <div class="card" style="width: 80%;margin-top:10px">
 
-        <div class="tile-img rounded float-left" style="background-image:url({{imgsrc}})">
 
-        </div>
-      </div>
+
+
     </div>
-    <div class="col-4" style="margin-top:10px">
-      <div class="card" style="width: 80%;">
+    <div class="col-3" style="margin-top:10px">
 
-        <div class="tile-img rounded float-left" style="background-image:url({{imgsrc}})">
-          <!-- <h5 class="card-title">Card title</h5>
-                                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
-          <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
-        </div>
-      </div>
 
-      <div class="card" style="width: 80%;margin-top:10px">
 
-        <div class="tile-img rounded float-left" style="background-image:url({{imgsrc}})">
-          <!-- <h5 class="card-title">Card title</h5>
-                                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
-          <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
-        </div>
-      </div>
+
+
+
     </div>
     <!-- 訂位表單 -->
-    <div class="col-4" style="margin-left: px;">
+    <div class="col-5" style="margin-left: px;">
 
-      <div "form-row" style="border:3px black solid;border-radius:10px;height:60px;background-color:white;">
-        <div style="background-color:white;height:50px;text-align:center;line-height:50px;">訂位表單</div>
-      </div>
+        <h3 style="font-size: 2vw;
+        padding:0px;
+        line-height: 5vh;
+        color:#414141;
+        font-weight:bold;">{{dname}}</h3>
+        <div style="
+        color: gray;
+        opacity: 0.5;
+        font-style: italic;
+        font-size: 1vw;">{{dtype}}</div>
+        <div style="
+        opacity: 0.9;
+        font-size: 0.7em;">
+        {{dtel}}</div>
+        <div style="
+        opacity: 0.9;
+        font-size: 0.7em;">
+        {{time}}</div>
+        <div style="
+        opacity: 0.9;
+        font-size: 0.7em;">
+        {{addr}}</div>
 
 
       <form method="POST" id="myform">
         {% csrf_token %}
-        <div class="form-row">
+        <div class="">
           <div class="form-group " style="margin-top:10px">
-            <label for="inputEmail4">訂位人姓名</label>
+            <label for="inputEmail4">訂位姓名</label>
             <input type="text" class="form-control" id="uiname" name="uiname" placeholder="name">
           </div>
         </div>
         <div class="form-group">
-          <label for="inputAddress">聯絡人電話</label>
+          <label for="inputAddress">聯絡電話</label>
           <input type="number" class="form-control" id="uitel" name="uitel" placeholder="tel">
         </div>
         <div class="form-group">
           <label for="inputAddress2">訂位日期</label>
-          <input type="datetime-local" id="bdaytime" name="bdaytime">
+          <input class="form-control" type="datetime-local" id="bdaytime" name="bdaytime">
           <!-- <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor"> -->
         </div>
 
 
-        <button type="submit" class="btn btn-primary">
-          <a style="font-size:100%;color:beige;font-family:sans-serif;" width="70px ">
-            訂位
+        <button type="submit" class="btn btn-primary" style="width:100%;margin-top:1%;background-color:#fc642d">
+          <a style="font-size:100%;color:beige;font-family:sans-serif;" width="100% ">
+              送出訂單
           </a>
         </button>
-        <a data-fancybox data-animation-duration="700" data-src="#animatedModal" href="javascript:;" class="btn btn-primary">看訂單資料</a>
+        
+      
         <!-- <a id="fkbtn" data-fancybox data-animation-duration="700" data-src="#animatedModal" href="#" class="btn btn-primary">Open demo</a> -->
         <!-- <a id="fkbtn" data-fancybox data-animation-duration="700" data-src="#animatedModal" href="#" class="btn btn-primary">訂位</a> -->
       </form>
 
 
-      <div "form-row " style="border:3px black solid;border-radius:10px;height:60px;background-color:white;margin-top:10px ">
-        <div style="background-color:white;height:50px;text-align:center;line-height:50px;font-size:1px ">ver0.01</div>
-      </div>
+      <!-- <div "form-row " style="border:3px black solid;border-radius:10px;height:60px;background-color:#484848;margin-top:5px "> -->
+          <!-- <a style="margin-top:1%;width: 100%;background-color:#484848 ;border-color: #484848"  href="/res/booking" class="btn btn-primary">回上一頁</a> -->
+
+      <!-- </div> -->
       <!-- ------------ -->
       <p class="mb-0">
 
@@ -172,37 +179,31 @@
 </div>
 
 
-<div class="container " style="height:50px;margin-bottom: 180px; ">
+<div class="container " style="height:50px;margin-bottom: 180px;margin-top:1%; ">
   <div class="row " style="line-height:150px; ">
+      <a data-fancybox data-animation-duration="700" data-src="#animatedModal" href="javascript:;" class="btn btn-primary" style="margin-left:1%;margin-right:1%;width:100%;margin-top:1%;background-color:#484848" > 訂單資料</a>
+      <a href="/res/booking"" class="btn btn-primary" style="margin-left:1%;margin-right:1%;width:100%;margin-top:1%;background-color:#484848">回上一頁</a>
     <div class="col-12 ">
-      <!-- detail  menu---------------------------------------------------------------- -->
-      <div class="col-6" style="border:3px white solid;border-radius:10px;height:44px;background-color:white;">
+      
+      <div class="col-12" style="border:3px white solid;border-radius:10px;height:44px;background-color:white;">
           <div  class="row">
-                  <a style="margin-left:6%";"margin-top:2%"; class="btn btn-primary" data-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">detial</a>
-                  <button  style="margin-left:38%" class="btn btn-primary" type="button" data-toggle="collapse" data-target="#multiCollapseExample2" aria-expanded="false" aria-controls="multiCollapseExample2">time & addr</button>
-                  
+                  <!-- <a style="margin-left:1%";"margin-top:2%"; class="btn btn-primary" data-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">detial</a> -->
+                  <!-- <button  style="margin-left:31%" class="btn btn-primary" type="button" data-toggle="collapse" data-target="#multiCollapseExample2" aria-expanded="false" aria-controls="multiCollapseExample2">time & addr</button> -->
+
+
+      </div>            
           </div>
       </div>
-                <div style="margin-top:10px" class="row">
-                  <div class="col-6">
-                    <div class="collapse multi-collapse" id="multiCollapseExample1">
-                      <div class="card card-body" style="font-size: 40px;font: 1em sans-serif;">
-                          店名:{{dname}}<br>
-                          類型:{{dtype}}<br>
-                          電話:{{dtel}}<br>
+
+
                       </div>
                     </div>
                   </div>
-                  <div class="col-6">
-                    <div class="collapse multi-collapse" id="multiCollapseExample2">
-                      <div class="card card-body" style="font-size: 40px;font: 1em sans-serif;">
-                          營業時間:{{time}}<br>
-                          地址:{{addr}}<br>
-                      </div>
-                    </div>
-                  </div>
+
+
+                  
                 </div>
-      <!-- detail  menu----------------------------------------------------------------------    -->
+     
     </div>
     <div class="col-sm ">
 
